@@ -1,0 +1,310 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>sphinxのインストールメモ &mdash; sphinx  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="索引"
+              href="../genindex.html"/>
+        <link rel="search" title="検索" href="../search.html"/>
+    <link rel="top" title="sphinx  documentation" href="../index.html"/>
+        <link rel="up" title="ソフトインストールメモ" href="index.html"/>
+        <link rel="prev" title="ソフトインストールメモ" href="index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+  
+  <a href="../index.html" class="icon icon-home"> sphinx
+  
+
+  
+  </a>
+
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+  
+  
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../java/index.html">java学習メモ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sql/index.html">sql</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../office/index.html">office学習メモ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sphinx/index.html">sphinx</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../sphinx/index.html#url">urlの利用</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">ソフトインストールメモ</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">sphinxのインストールメモ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#python">pythonのインストール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#javasphinx">javasphinxのインストール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#html">最後htmlファイルを生成する</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">sphinx</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">ソフトインストールメモ</a> &raquo;</li>
+        
+      <li>sphinxのインストールメモ</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="sphinx">
+<span id="sphinx-soft"></span><h1>sphinxのインストールメモ<a class="headerlink" href="#sphinx" title="Permalink to this headline">¶</a></h1>
+<p>sphinxのインストール手順は以下となります。</p>
+<div class="section" id="python">
+<h2>pythonのインストール<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h2>
+<p>ここでは最新版のpython27をインストールした
+インストール方法は <a class="reference external" href="http://uxmilk.jp/37145">このURL</a> に参考する。</p>
+<p>インストールする時、customize installationを選定する <br />
+※ インストール中path追加のチェックボックスをチェックすれば、環境設定が不要。</p>
+<p>インストール後、バージョン確認：</p>
+<blockquote>
+<div><div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">V</span>
+</pre></div>
+</div>
+</div></blockquote>
+<ul class="simple">
+<li>ライブラリとかのインストール</li>
+</ul>
+<ol class="arabic simple">
+<li><a class="reference external" href="http://peak.telecommunity.com/dist/ez_setup.py">ez_setup.py</a> をダウンロードして、コマンドラインから実行。</li>
+</ol>
+<blockquote>
+<div><div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">ez_setup</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li>pip（パッケージマネージャ）のインストール</li>
+</ol>
+<blockquote>
+<div><div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">easy_install</span> <span class="n">pip</span>
+</pre></div>
+</div>
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li>sphinxのインストール</li>
+</ol>
+<blockquote>
+<div><div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">easy_install</span> <span class="n">sphinx</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>以下のコマンドで、Sphinxのプロジェクトが作成できればインストールは成功している。</p>
+<blockquote>
+<div><div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">sphinx</span><span class="o">-</span><span class="n">quickstart</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>実行すると、プロジェクトの詳細設定を聞かれるメッセージがでるが、
+とりあえずEnterを押していく。途中、以下の３つの項目が入力必須項目。</p>
+<blockquote>
+<div><ul class="simple">
+<li>プロジェクト名: sphinx</li>
+<li>バージョン番号: 1.0</li>
+<li>著者の名前: ko</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="javasphinx">
+<h2>javasphinxのインストール<a class="headerlink" href="#javasphinx" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">javasphinx</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>javasphinxをうまくインストールできない場合、エラーを確認して、必要なライブラリを追加する。</p>
+<p>たとえば：lxmlの問題なら、lxmlのインストールが必要。</p>
+<blockquote>
+<div><div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">lxml</span>
+</pre></div>
+</div>
+</div></blockquote>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p>lxmlのインストールエラーが出たら、次の方法でインストールする</p>
+<p><a class="reference external" href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#lxml/">ここから</a> lxmlのファイルを取得する</p>
+<p>例：lxml-3.7.3-cp27-cp27m-win_amd64.whl</p>
+<p>以下のコマンドを実行する(win7 64bit)</p>
+<div class="last highlight-python"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">lxml</span><span class="o">-</span><span class="mf">3.7</span><span class="o">.</span><span class="mi">3</span><span class="o">-</span><span class="n">cp27</span><span class="o">-</span><span class="n">cp27m</span><span class="o">-</span><span class="n">win_amd64</span><span class="o">.</span><span class="n">whl</span>
+</pre></div>
+</div>
+</div>
+<p>うまくインストールできるかをいかのコマンドで確認する</p>
+<blockquote>
+<div><div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">freeze</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>問題がなければ、javasphinxを再インストールする</p>
+</div>
+<div class="section" id="html">
+<h2>最後htmlファイルを生成する<a class="headerlink" href="#html" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">html</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+
+    <hr/>
+
+    <div role="contentinfo">
+        <p>
+            &copy; Copyright 2016-2017, ko.
+        </p>
+    </div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
