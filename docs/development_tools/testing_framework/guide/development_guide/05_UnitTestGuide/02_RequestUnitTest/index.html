@@ -1,0 +1,1037 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3.1.2. リクエスト単体テストの実施方法 &mdash; ∇Nablarch  5u8 ドキュメント</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../../../_static/custom.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="索引"
+              href="../../../../../../genindex.html"/>
+        <link rel="search" title="検索" href="../../../../../../search.html"/>
+    <link rel="top" title="∇Nablarch  5u8 ドキュメント" href="../../../../../../index.html"/>
+        <link rel="up" title="3.1. 単体テスト実施方法" href="../index.html"/>
+        <link rel="next" title="3.1.3. リクエスト単体テストの実施方法(ファイルアップロード)" href="fileupload.html"/>
+        <link rel="prev" title="3.1.1.2. Action/Componentのクラス単体テスト" href="../01_ClassUnitTest/02_componentUnitTest.html"/> 
+
+  
+  <script src="../../../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+  
+  <a href="../../../../../../index.html" id="sidebar-title" class="icon"> ∇Nablarch 
+  
+
+  
+    <div id="sidebar-version">Version: 5u8</div>
+  </a>
+
+  <div role="search">
+    <form id="google-search-form" class="wy-form" method="get" action="https://www.google.co.jp/search">
+      <input type="hidden" id="document-version" value="5u8" />
+      <input type="text" name="text" placeholder="Search docs on google" id="text"/>
+      <input type="hidden" name="q" id="q"/>
+    </form>
+  </div>
+    
+    
+
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+  
+  
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../about_nablarch/index.html">Nablarchについて</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../about_nablarch/concept.html">Nablarchのコンセプト</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../about_nablarch/concept.html#robustness">Robustness</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../about_nablarch/concept.html#testability">Testability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../about_nablarch/concept.html#ready-to-use">Ready-to-Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../about_nablarch/mvn_module.html">Nablarch のモジュール一覧</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../about_nablarch/license.html">Nablarchのライセンスについて</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../application_framework/index.html">Nablarchアプリケーションフレームワーク</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../application_framework/application_framework/index.html">アプリケーションフレームワーク</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/nablarch/index.html">1. Nablarchアプリケーションフレームワークとは</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/web/index.html">2. ウェブアプリケーション編</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/web_service/index.html">3. ウェブサービス編</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/batch/index.html">4. バッチアプリケーション編</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/messaging/index.html">5. メッセージング編</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/handlers/index.html">6. Nablarchの提供する標準ハンドラ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/libraries/index.html">7. Nablarchが提供するライブラリ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/blank_project/index.html">8. ブランクプロジェクト</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/setting_guide/index.html">9. Nablarchアプリケーションフレームワーク設定ガイド</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../application_framework/adaptors/index.html">アダプタ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/log_adaptor.html">logアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/router_adaptor.html">ルーティングアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/webspheremq_adaptor.html">IBM WebSphere MQアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/jaxrs_adaptor.html">JAX-RSアダプタ</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../application_framework/example/index.html">Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/example/index.html#id1">環境構築手順について</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/example/index.html#id2">アプリケーションの実行手順について</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../extension_components/index.html">Nablarch拡張コンポーネント</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../extension_components/report/index.html">1. 帳票ライブラリ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../extension_components/report/index.html#id2">1.1. 概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../extension_components/report/index.html#id3">1.2. 要求</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../extension_components/report/index.html#id7">1.3. 構造</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../extension_components/report/index.html#report-template">1.4. 実装例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../extension_components/workflow/index.html">2. ワークフロー</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../extension_components/workflow/doc/index.html">2.1. ワークフローライブラリ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../extension_components/workflow/sample_application/doc/index.html">2.2. ワークフローアプリケーション実装ガイド</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../extension_components/workflow/tool/doc/index.html">2.3. ワークフロー定義データ生成ツール</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../extension_components/etl/index.html">3. ETL</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../extension_components/etl/index.html#id3">3.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../extension_components/etl/index.html#id4">3.2. ETLの各フェーズの仕様</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../extension_components/etl/index.html#id5">3.3. 使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../extension_components/etl/index.html#id7">3.4. 拡張例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../extension_components/etl/etl_maven_plugin.html">4. ETL Mavenプラグイン</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../extension_components/etl/etl_maven_plugin.html#id2">4.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../extension_components/etl/etl_maven_plugin.html#id3">4.2. 使用方法</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../../../index.html">Nablarch開発ツール</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../../../java_static_analysis/index.html">1. 効率的なJava静的チェック</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../java_static_analysis/index.html#code-analysis">1.1. 構文チェックを行う</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../java_static_analysis/index.html#code-format">1.2. フォーマットを統一する</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../java_static_analysis/index.html#api">1.3. 許可していないAPIが使用されていないかチェックする</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../ui_dev/index.html">2. フロントエンド上級者向けのUI開発基盤</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../ui_dev/doc/index.html">2.1. Nablarch UI開発基盤 解説書</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../ui_dev/guide/index.html">2.2. JSP/HTML作成ガイド</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../ui_dev/guide/widget_usage/widget_list.html">2.3. UI部品の実装サンプルで提供しているウィジェットの一覧</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../../../index.html">3. 大規模開発向け重厚なテスティングフレームワーク</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">3.1. 単体テスト実施方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../06_TestFWGuide/index.html">3.2. 自動テストフレームワークの使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../08_TestTools/index.html">3.3. プログラミング工程で使用するツール</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../toolbox/index.html">4. アプリケーション開発時に使える便利なツール</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/UnpublishedMethodDetector/UnpublishedApi.html">4.1. 使用不許可APIチェックツール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/PublishedApi/PublishedApiConfigGenerator.html">4.2. 使用許可API一覧作成ツール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/JspStaticAnalysis/index.html">4.3. JSP静的解析ツール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/SqlExecutor/SqlExecutor.html">4.4. Nablarch SQL Executor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/JspVerifier/JspVerifier.html">4.5. 業務画面JSP検証ツール</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../examples/index.html">Nablarch実装例集</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/01/index.html">データベースを用いたパスワード認証機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/01/0101_PBKDF2PasswordEncryptor.html">PBKDF2を用いたパスワード暗号化機能サンプル</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/01/index.html#id3">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/01/index.html#id4">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/01/index.html#id6">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/01/index.html#id12">使用方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/02/index.html">バリデーション機能の拡張</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/02/index.html#id3">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/02/index.html#extendedvalidation-mailaddressvalidator">メールアドレスバリデーション</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/02/index.html#extendedvalidation-japanesetelnumbervalidator">日本電話番号バリデーション</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/02/index.html#id12">コード値精査</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/03/index.html">検索結果の一覧表示</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#id3">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#id4">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#id5">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#id8">使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#listsearchinfo">ListSearchInfoクラス</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#listsearchresult">listSearchResultタグ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#listsearchresult-sort">検索結果の並び替え</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#listsearchresult-nopaging">1画面にすべての検索結果を一覧表示する場合の実装方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#listsearchresult-defaultcondition">デフォルトの検索条件で検索した結果を初期表示する場合の実装方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#listsearchresult-setting">検索結果の一覧表示機能のデフォルト値設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#listsearchresult-customize">業務アプリケーションへのサンプル実装(タグファイル)の取り込み方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#listsearchresult-tagreference">タグリファレンス</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/04/index.html">フォーマッタ機能の拡張</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/04/0401_ExtendedDataFormatter.html">データフォーマッタの拡張</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/04/0402_ExtendedFieldType.html">データフォーマッタ機能におけるフィールドタイプの拡張</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/05/index.html">データベースを用いたファイル管理機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/05/index.html#id2">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/05/index.html#id6">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/05/index.html#id7">機能</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/05/index.html#id10">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/05/index.html#id15">使用方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/06/index.html">CAPTCHA機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/06/06_Captcha_guide.html">CAPTCHA機能の組み込み手順</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/06/index.html#id3">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/06/index.html#id4">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/06/index.html#id6">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/06/index.html#id21">使用方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/07/index.html">UserAgent情報取得機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/07/index.html#id1">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/07/index.html#id3">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/07/index.html#id8">設定の記述</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/07/index.html#id11">使用例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/08/index.html">HTMLメール送信機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/08/index.html#id1">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/08/index.html#id3">要求</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/08/index.html#id6">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/08/index.html#id14">実装例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/09/index.html">bouncycastleを使用した電子署名つきメールの送信サンプルの使用方法</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/09/index.html#id3">環境準備</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/09/index.html#id4">電子署名付きメール送信機能の構造</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/09/index.html#id5">設定ファイルの準備</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/09/index.html#id7">実行方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/10/index.html">ログ集計サンプルの使用方法</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/10/index.html#id3">提供サンプル一覧</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/11/index.html">メッセージング基盤テストシミュレータサンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/11/index.html#id4">用途</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/11/index.html#id8">特徴</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/11/index.html#id12">要求</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/11/index.html#id15">使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/11/index.html#id18">拡張例</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../nablarch_api/index.html">Nablarch API</a></li>
+</ul>
+
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../../index.html">∇Nablarch </a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../../../index.html">Nablarch開発ツール</a> &raquo;</li>
+      
+          <li><a href="../../../../index.html">3. 大規模開発向け重厚なテスティングフレームワーク</a> &raquo;</li>
+      
+          <li><a href="../index.html">3.1. 単体テスト実施方法</a> &raquo;</li>
+      
+    <li>3.1.2. リクエスト単体テストの実施方法</li>
+      <li class="wy-breadcrumbs-aside">
+        <a href="https://github.com/nablarch" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="requestunittest">
+<span id="id1"></span><h1>3.1.2. リクエスト単体テストの実施方法<a class="headerlink" href="#requestunittest" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="id2">
+<h2>3.1.2.1. テストクラスの書き方<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>テストクラスは以下の条件を満たすように作成する。</p>
+<ul class="simple">
+<li>テストクラスのパッケージは、テスト対象のActionクラスと同じとする。</li>
+<li>&lt;Actionクラス名&gt;RequestTestというクラス名でテストクラスを作成する。</li>
+<li>nablarch.test.core.http.BasicHttpRequestTestTemplateを継承する。
+(プロジェクト側で拡張したTemplate実装がある場合は、この限りではない)</li>
+</ul>
+<p>例えば、テスト対象のActionクラスが、nablarch.sample.management.user.UserSearchActionだとすると、
+テストクラスは以下のようになる。</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nn">nablarch.sample.management.user</span><span class="o">;</span>
+
+<span class="c1">// ～中略～</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserSearchActionRequestTest</span> <span class="kd">extends</span> <span class="n">BasicHttpRequestTestTemplate</span> <span class="o">{</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">ちなみに</p>
+<p class="last">スーパクラスBasicHttpRequestTestTemplateは、リクエスト単体テストに必要な各種メソッドを用意している。DbAccessTestSupportの機能も兼ね備えているので、データベースの設定などもクラス単体テストと同じように実行できる。</p>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>3.1.2.2. テストメソッド分割<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>以下の手順により、作成するテストメソッドを決定する。</p>
+<ul class="simple">
+<li>リクエストID毎（Actionのメソッド毎）に、テストケースを正常系と異常系に分類し、それぞれテストメソッドを作成する。<ul>
+<li>メニューからの単純な画面遷移のように異常系のケースが無い場合は、正常系のテストメソッドのみ作成する。</li>
+</ul>
+</li>
+<li>画面表示検証項目については、正常系、異常系のいずれかのメソッドに含められるか検討する。<ul>
+<li>同一シートにでの条件分岐が煩雑になる場合は画面表示検証用のテストメソッドを別途作成する。</li>
+<li>そうでない場合は、画面検証用のメソッドは作成せず、正常系または異常系のテストメソッドに含める。</li>
+</ul>
+</li>
+</ul>
+<p><strong>メソッド分割例 （正常系、異常系、画面表示検証用で分割した場合）</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="22%" />
+<col width="22%" />
+<col width="24%" />
+<col width="20%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" rowspan="2">リクエストID</th>
+<th class="head" rowspan="2">Actionメソッド名</th>
+<th class="head" colspan="3">テストデータシート名</th>
+</tr>
+<tr class="row-even"><th class="head">正常系</th>
+<th class="head">異常系</th>
+<th class="head">画面表示検証用</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td>USERS00101</td>
+<td>doUsers00101</td>
+<td>testUsers00101Normal</td>
+<td>testUsers00101Abnormal</td>
+<td>testUsers00101View</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="first admonition-title">ちなみに</p>
+<p class="last">上記のようにメソッドを分割するのは、テストデータシートが煩雑になり可読性が下がることを避ける為である。上記以外でも、１つのテストデータシートにさまざまなテストケースを詰め込むと可読性が下がる場合は、テストデータシートを分割する。</p>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>3.1.2.3. テストデータの書き方<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>テストデータを記載したExcelファイルは、クラス単体テストと同様にテストソースコードと同じディレクトリに同じ名前で格納する（拡張子のみ異なる）。</p>
+<p>テストデータの記述方法詳細については、<a class="reference internal" href="../../06_TestFWGuide/01_Abstract.html#how-to-write-excel"><span class="std std-ref">Excelによるテストデータ記述</span></a>を参照。</p>
+<div class="section" id="request-test-setup-db">
+<span id="id5"></span><h3>3.1.2.3.1. テストクラスで共通のデータベース初期値<a class="headerlink" href="#request-test-setup-db" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>テストデータを記載したExcelファイルに、<strong>setUpDb</strong>という名前でシートを用意し、
+そこに共通のデータベース初期値を投入する。ここに記載されたデータは、
+自動テストフレームワークによりテストメソッド実行時に投入される。</p>
+<img alt="../../../../../../_images/setupdb.png" src="../../../../../../_images/setupdb.png" />
+</div>
+<div class="section" id="request-test-testcases">
+<span id="id6"></span><h3>3.1.2.3.2. テストケース一覧<a class="headerlink" href="#request-test-testcases" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>LIST_MAPのデータタイプで１テストメソッド分のケース表を記載する。IDは、<strong>testShots</strong>とする。</p>
+<a class="reference internal image-reference" href="../../../../../../_images/testShots.png"><img alt="../../../../../../_images/testShots.png" src="../../../../../../_images/testShots.png" style="width: 711.9px; height: 186.75px;" /></a>
+<p>１ケース毎に以下の要素を持たせる。</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="75%" />
+<col width="4%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">カラム名</th>
+<th class="head">説明</th>
+<th class="head">必須</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>no</td>
+<td>テストケース番号を1からの連番で記載する。</td>
+<td>必須</td>
+</tr>
+<tr class="row-odd"><td>description</td>
+<td>そのテストケースの説明を記載する。
+ウェブアプリケーションのリクエスト単体テストで出力されるHTMLダンプファイルのファイル名
+に利用される。 <a class="footnote-reference" href="#id9" id="id7">[1]</a></td>
+<td>必須</td>
+</tr>
+<tr class="row-even"><td>context</td>
+<td>そのテストケースで、どのリクエストIDにどのようなユーザでリクエストを送るかを記載する。
+詳細は、<a class="reference internal" href="#request-test-user-info"><span class="std std-ref">ユーザ情報</span></a>を参照。</td>
+<td>必須</td>
+</tr>
+<tr class="row-odd"><td>cookie</td>
+<td>そのテストケースで必要となるCookie情報を記載する。
+詳細は、<a class="reference internal" href="#request-test-cookie-info"><span class="std std-ref">Cookie情報</span></a>を参照。</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>isValidToken</td>
+<td>トークンを設定する場合にはtrueを設定する。トークンの詳細については、
+<a class="reference internal" href="../../../../../../application_framework/application_framework/libraries/tag.html#tag-double-submission-server-side"><span class="std std-ref">サーバ側の二重サブミット防止</span></a>を参照。</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>setUpTable</td>
+<td>各テストケース実行前にデータベースに登録する場合は、同じシート内に記載したデータの<a class="reference internal" href="../../06_TestFWGuide/03_Tips.html#tips-groupid"><span class="std std-ref">グループID</span></a>を記載する。データの投入は自動テストフレームワークに
+より行われる。</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>expectedStatusCode</td>
+<td>期待するHTTPステータスコードを記載する。 <a class="footnote-reference" href="#id10" id="id8">[2]</a></td>
+<td>必須</td>
+</tr>
+<tr class="row-odd"><td>expectedMessageId</td>
+<td>メッセージが出力されること期待する場合は、その<strong>メッセージID</strong>を記載する。
+複数のメッセージが出力される場合はカンマ区切りで列挙する。メッセージを
+期待しない場合は空欄とする。空欄にしたが、実際にはメッセージが出力され
+た場合は、テスト失敗となる。</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>expectedSearch</td>
+<td>データベース検索結果がリクエストスコープに設定されることを期待する場合
+、<strong>期待する検索結果</strong>を記載する。検索結果は、同じシート内のLIST_MAPデータ
+タイプのIDで指定する。リクエストスコープから取得する際のキーは<strong>searchResult</strong>である。</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>expectedTable</td>
+<td>データベースの内容を比較する場合、期待するテーブルの<a class="reference internal" href="../../06_TestFWGuide/03_Tips.html#tips-groupid"><span class="std std-ref">グループID</span></a>を記載する。</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>forwardUri</td>
+<td>期待するフォワード先URIを記載する。Actionクラスで指定したフォワード先JSPへのURIを記載する。空欄の場合はJSPへのフォワードが行われないものとしてアサートされる。システムエラー画面や認証エラー画面へ遷移することを想定するテストケースでは、その画面を描画するJSPへのURIを記載する。例えば、システムエラー画面に遷移する場合は、<cite>/jsp/systemError.jsp</cite>が期待するフォワード先URIとなる（デフォルト値の場合）。</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>expectedContentLength</td>
+<td>コンテンツレングス・ヘッダの期待値を記載する。
+ファイルダウンロードをテストする場合にこのカラムに指定する。</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>expectedContentType</td>
+<td>コンテンツタイプ・ヘッダの期待値を記載する。
+ファイルダウンロードをテストする場合にこのカラムに指定する。</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>expectedContentFileName</td>
+<td>コンテンツディスポジション・ヘッダに指定したファイル名の期待値を記載する。
+ファイルダウンロードをテストする場合にこのカラムを指定する。</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>expectedMessage</td>
+<td>メッセージ同期送信を行う場合、期待する要求電文の <a class="reference internal" href="../../06_TestFWGuide/03_Tips.html#tips-groupid"><span class="std std-ref">グループID</span></a>を記載する。メッセージの作成は自動テストフレームワークにより行われる。</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>responseMessage</td>
+<td>メッセージ同期送信を行う場合、返却する応答電文の <a class="reference internal" href="../../06_TestFWGuide/03_Tips.html#tips-groupid"><span class="std std-ref">グループID</span></a>を記載する。メッセージの作成は自動テストフレームワークにより行われる。</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>expectedMessageByClient</td>
+<td>HTTPメッセージ同期送信を行う場合、期待する要求電文の <a class="reference internal" href="../../06_TestFWGuide/03_Tips.html#tips-groupid"><span class="std std-ref">グループID</span></a>を記載する。メッセージの作成は自動テストフレームワークにより行われる。</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>responseMessageByClient</td>
+<td>HTTPメッセージ同期送信を行う場合、返却する応答電文の <a class="reference internal" href="../../06_TestFWGuide/03_Tips.html#tips-groupid"><span class="std std-ref">グループID</span></a>を記載する。メッセージの作成は自動テストフレームワークにより行われる。</td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+<p>そのテストケースにて送信するHTTP<a class="reference internal" href="#id12">リクエストパラメータ</a>ついては、この表ではなく別の表に記載する（<a class="reference internal" href="#request-test-req-params"><span class="std std-ref">後述</span></a>）。</p>
+<table class="docutils footnote" frame="void" id="id9" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id7">[1]</a></td><td>descriptionの内容はファイル名に利用するため、OSで規定されたファイル名に利用可能な文字以外の文字の利用や、ファイル名の長さ上限を超過した場合に、
+IOExceptionが発生するため、ファイル名として許可された内容を入力すること。
+例えば、descriptionに改行コードが含まれていた場合、ファイル名として不正であるためテスト実行時にエラーが発生する。</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id10" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id8">[2]</a></td><td><p class="first">ウェブアプリケーションのリクエスト単体テストでは、HTTPステータスコードのアサート時に、通常のブラウザで同じリダイレクトの動きとなるス
+テータスコード 302 および 303 を同一視してアサートする。 つまり予想結果と実行結果が全く同一のHTTPステータスコードであった場合だけで
+なく、予想結果が 303 で実行結果が 302 であった場合と、予想結果が 302 で実行結果が 303 の場合いずれも アサート結果は正常終了となる。</p>
+<p class="last">＜理由＞ RFC の規定では、 HTTP 1.1 を理解するブラウザに対してはリダイレクトに 303 を返すほうがよい作法といえるが、現在主要なWebコ
+ンテナはレガシーなブラウザを考慮して302のレスポンスコードを使用しているため。</p>
+</td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="request-test-user-info">
+<span id="id11"></span><h3>3.1.2.3.3. ユーザ情報<a class="headerlink" href="#request-test-user-info" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>そのテストケースで、どのリクエストIDにどのようなユーザでリクエストを送るかを、LIST_MAPのデータタイプで記載する。
+複数のユーザ情報を使い分けることで、ユーザの権限によって処理が異なる機能をテストすることができる。</p>
+<p>例えば、権限によって参照可能なデータが異なる場合は、以下のようにユーザ情報を使い分ける。</p>
+<img alt="../../../../../../_images/testcase-user.png" src="../../../../../../_images/testcase-user.png" />
+</div>
+<div class="section" id="cookie">
+<span id="request-test-cookie-info"></span><h3>3.1.2.3.4. Cookie情報<a class="headerlink" href="#cookie" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>そのテストケースで必要となるCookie情報をLIST_MAPのデータタイプで記載する。
+これにより、ケースごとに異なるCookie情報を送信してテストを行うことが可能となる。</p>
+<p>Cookie情報は、任意項目のためCookieを必要としないケースの場合には、記載不要である。</p>
+<p>例えば、ケースよってCookieの値を変更する必要がある場合には、以下のようにCookie情報を設定する。
+Cookieを必要としないケースの場合には、以下例の8ケース目のように値を記載せずに空白としておくこと。</p>
+<img alt="../../../../../../_images/requestCookie.png" src="../../../../../../_images/requestCookie.png" />
+</div>
+<div class="section" id="request-test-req-params">
+<span id="id12"></span><h3>3.1.2.3.5. リクエストパラメータ<a class="headerlink" href="#request-test-req-params" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>各テストケースで送信するHTTPパラメータを、LIST_MAPのデータタイプで記載する。</p>
+<p><a class="reference internal" href="../../08_TestTools/01_HttpDumpTool/01_HttpDumpTool.html#http-dump-tool"><span class="std std-ref">リクエスト単体データ作成ツール</span></a> を使用して、リクエストパラメータのデータ作成を行う。初期画面表示のリクエスト（例えばメニュー画面からの遷移）以外は、このツールを用いてリクエストパラメータのデータを作成する。</p>
+<p>LIST_MAPのデータタイプでHTTPリクエストパラメータを記載する。IDは、<strong>requestParams</strong>とする。
+このデータと、<a class="reference internal" href="#request-test-testcases"><span class="std std-ref">テストケース一覧</span></a> とは、行単位で関連付けられる。例えば、テストケース一覧の先頭のテストケースでは、リクエストパラメータ表の先頭のデータが使用される（以下同様）。</p>
+<p>テストケースとのひもづけを分かりやすくするため <a class="reference internal" href="../../06_TestFWGuide/01_Abstract.html#marker-column"><span class="std std-ref">マーカーカラム</span></a> としてテストケース番号を記載すること。</p>
+<a class="reference internal image-reference" href="../../../../../../_images/testcase_and_request.png"><img alt="../../../../../../_images/testcase_and_request.png" src="../../../../../../_images/testcase_and_request.png" style="width: 747.2px; height: 286.4px;" /></a>
+<div class="admonition tip">
+<p class="first admonition-title">ちなみに</p>
+<p>リクエストパラメータは必ず記載する必要がある。</p>
+<p>例えば初期画面表示のリクエストなど、リクエストパラメータが存在しない場合でも LIST_MAP=requestParams には必ず列を定義する必要がある。</p>
+<p>リクエストパラメータが不要な場合は、下記のようにテストケース番号の列のみを記載する。
+データはテストケース数分定義する。（3ケースであれば3行、10ケースであれば10行用意する）</p>
+<p>※[no]列は、テストケース番号を視覚的に表すもの( <a class="reference internal" href="../../06_TestFWGuide/01_Abstract.html#marker-column"><span class="std std-ref">マーカーカラム</span></a> )なので、リクエストパラメータには含まれない。</p>
+<blockquote class="last">
+<div><a class="reference internal image-reference" href="../../../../../../_images/dummy_request_param.png"><img alt="../../../../../../_images/dummy_request_param.png" src="../../../../../../_images/dummy_request_param.png" style="width: 224.0px; height: 127.0px;" /></a>
+</div></blockquote>
+</div>
+<div class="section" id="id13">
+<h4>3.1.2.3.5.1. ひとつのキーに対して複数の値を設定する場合<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>HTTPリクエストパラメータは、ひとつのキーに対して複数の値を設定することができる。
+リクエスト単体テストでは、<strong>値をカンマ区切りで記述することにより、複数の値を表現</strong>できる。</p>
+<p>以下の例では、fooというキーに対して、oneとtwoという複数の値を設定している。</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="42%" />
+<col width="58%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">foo</th>
+<th class="head">bar</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>one,two</td>
+<td>three</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p>値にカンマそのものを含める場合には、<cite>\</cite>マークでエスケープを行う。値に\マークそのものを含める場合には、\マーク自身をエスケープし、<cite>\\</cite>と記述する。</p>
+<p>例えば、<cite>\1,000</cite>という値を表すには以下のように記述する。</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">foo</th>
+<th class="head">bar</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>\\1\,000</td>
+<td>three</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="id14">
+<h3>3.1.2.3.6. 各種期待値<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>検索結果、データベースを期待値と比較する場合は、
+それぞれのデータとテストケース一覧とをIDで紐付けする。</p>
+<div class="section" id="id15">
+<h4>3.1.2.3.6.1. 期待する検索結果<a class="headerlink" href="#id15" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>期待する検索結果を、テストケース一覧とリンクさせる。</p>
+<img alt="../../../../../../_images/expected_search_result.png" src="../../../../../../_images/expected_search_result.png" />
+</div>
+<div class="section" id="request-test-expected-tables">
+<span id="id16"></span><h4>3.1.2.3.6.2. 期待するデータベースの状態<a class="headerlink" href="#request-test-expected-tables" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>更新系のテストケースでは、期待するデータベースの状態を確認する為、
+期待するデータベースの状態をテストケース一覧とリンクさせる。</p>
+<a class="reference internal image-reference" href="../../../../../../_images/expected_table.png"><img alt="../../../../../../_images/expected_table.png" src="../../../../../../_images/expected_table.png" style="width: 780.8px; height: 550.4px;" /></a>
+</div>
+</div>
+</div>
+<div class="section" id="howtocodingtestmethod">
+<span id="id17"></span><h2>3.1.2.4. テストメソッドの書き方<a class="headerlink" href="#howtocodingtestmethod" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id18">
+<h3>3.1.2.4.1. スーパクラスについて<a class="headerlink" href="#id18" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>BasicHttpRequestTestTemplateクラスを継承する。
+このクラスでは、準備したテストデータを元に以下の手順でリクエスト単体テストを実行する。</p>
+<ul>
+<li><p class="first">データシートからテストケースリスト(testShots LIST_MAP）を取得</p>
+</li>
+<li><p class="first">取得したテストケース分、以下を繰り返し実行</p>
+<ul class="simple">
+<li>データベース初期化</li>
+<li>ExecutionContext、HTTPリクエストを生成</li>
+<li>業務テストコード用拡張ポイント呼出(beforeExecuteRequestメソッド）</li>
+<li>トークンが必要な場合、トークンを設定</li>
+<li>テスト対象のリクエスト実行</li>
+<li>実行結果の検証</li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li>HTTPステータスコード および メッセージID</li>
+<li>HTTPレスポンス値(リクエストスコープ値)</li>
+<li>検索結果</li>
+<li>テーブル更新結果</li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li>業務テストコード用拡張ポイント呼出(afterExecuteRequestメソッド）</li>
+</ul>
+</li>
+</ul>
+<p>以下のメソッドが、スーパクラスで抽象メソッドとして定義されているのでオーバーライドする。</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserSearchActionRequestTest</span> <span class="kd">extends</span> <span class="n">BasicHttpRequestTestTemplate</span> <span class="o">{</span>
+
+   <span class="cm">/**</span>
+<span class="cm">    * {@inheritDoc}</span>
+<span class="cm">    * 【説明】 URIの共通部分を返却する。</span>
+<span class="cm">    */</span>
+   <span class="nd">@Override</span>
+   <span class="kd">protected</span> <span class="n">String</span> <span class="nf">getBaseUri</span><span class="o">()</span> <span class="o">{</span>
+       <span class="k">return</span> <span class="s">&quot;/action/management/user/UserSearchAction/&quot;</span><span class="o">;</span>
+   <span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id19">
+<h3>3.1.2.4.2. テストメソッド作成<a class="headerlink" href="#id19" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>準備したテストシートに対応するメソッドを作成する。</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testMenus00101</span><span class="o">()</span> <span class="o">{</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id20">
+<h3>3.1.2.4.3. スーパクラスのメソッド呼び出し<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>テストメソッド内で、スーパクラスの以下のいずれかのメソッドを呼び出す。</p>
+<ul class="simple">
+<li>void execute(String sheetName)</li>
+<li>void execute(String sheetName, Advice advice)</li>
+</ul>
+<p>通常の場合、execute(String sheetName)を使用する。</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testUsers00101Normal</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">execute</span><span class="o">(</span><span class="s">&quot;testUsers00101Normal&quot;</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<div class="section" id="id21">
+<h4>3.1.2.4.3.1. 固有の処理を追加する場合<a class="headerlink" href="#id21" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>スーパクラスでは、どんなテストケースでも必要となる処理を定型化しているが、
+テストケースによっては固有の処理が必要な場合がある。
+(例えば、リクエストスコープにエンティティが格納されており、その内容を確認したい場合等)。</p>
+<p>シート固有の準備処理、結果確認処理が必要な場合は、execute(String sheetName, Advice advice)を使用して、リクエスト送信前後に処理を挿し込むことができる。
+BasicAdviceクラスには以下のメソッドが用意されており、それぞれリクエスト送信前、送信後にコールバックされる。</p>
+<ul class="simple">
+<li>void beforeExecute(TestCaseInfo testCaseInfo, ExecutionContext context)</li>
+<li>void afterExecute(TestCaseInfo testCaseInfo, ExecutionContext context)</li>
+</ul>
+<div class="admonition tip">
+<p class="first admonition-title">ちなみに</p>
+<p class="last">これらのメソッド両方をオーバーライドする必要はない。必要なものだけをオーバーライドする。
+また、これらのメソッド内に全ての処理を記述する必要はない。記述が長くなったり、
+テストメソッド間で共通する処理がある場合は、プライベートメソッドに切り出すこと。</p>
+</div>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testMenus00102Normal</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">execute</span><span class="o">(</span><span class="s">&quot;testMenus00102Normal&quot;</span><span class="o">,</span> <span class="k">new</span> <span class="n">BasicAdvice</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// 【説明】本メソッドはリクエスト送信前に呼び出される。</span>
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">beforeExecute</span><span class="o">(</span><span class="n">TestCaseInfo</span> <span class="n">testCaseInfo</span><span class="o">,</span>
+                <span class="n">ExecutionContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c1">// 【説明】ここに準備処理を記述する。</span>
+        <span class="o">}</span>
+
+        <span class="c1">// 【説明】本メソッドはリクエスト送信後に呼び出される。</span>
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">afterExecute</span><span class="o">(</span><span class="n">TestCaseInfo</span> <span class="n">testCaseInfo</span><span class="o">,</span>
+                <span class="n">ExecutionContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c1">// 【説明】ここに結果確認処理を記述する。</span>
+        <span class="o">}</span>
+    <span class="o">});</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<div class="section" id="id22">
+<h5>3.1.2.4.3.1.1. リクエストスコープに複数種類の検索結果が格納されている場合の例<a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">¶</a></h5>
+<p>以下の例では、リクエストスコープに「ユーザグループ」と「ユースケース」の2種類の検索結果が含まれており、
+それぞれの検索結果が期待通りであることを検証している。</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testMenus00103</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">execute</span><span class="o">(</span><span class="s">&quot;testMenus00103&quot;</span><span class="o">,</span> <span class="k">new</span> <span class="n">BasicAdvice</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">afterExecute</span><span class="o">(</span><span class="n">TestCaseInfo</span> <span class="n">testCaseInfo</span><span class="o">,</span>
+                <span class="n">ExecutionContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+
+            <span class="n">String</span> <span class="n">messgae</span> <span class="o">=</span> <span class="n">testCaseInfo</span><span class="o">.</span><span class="na">getTestCaseName</span><span class="o">();</span>   <span class="c1">// 【説明】比較失敗時のメッセージ</span>
+            <span class="n">String</span> <span class="n">sheetName</span> <span class="o">=</span> <span class="n">testCaseInfo</span><span class="o">.</span><span class="na">getSheetName</span><span class="o">();</span>    <span class="c1">// 【説明】シート名</span>
+            <span class="n">String</span> <span class="n">no</span> <span class="o">=</span> <span class="n">testCaseInfo</span><span class="o">.</span><span class="na">getTestCaseNo</span><span class="o">();</span>          <span class="c1">// 【説明】テストケース番号</span>
+
+            <span class="c1">// グループ検索結果の検証</span>
+            <span class="n">SqlResultSet</span> <span class="n">actualGroup</span> <span class="o">=(</span><span class="n">SqlResultSet</span><span class="o">)</span> <span class="n">context</span><span class="o">.</span><span class="na">getRequestScopedVar</span><span class="o">(</span><span class="s">&quot;allGroup&quot;</span><span class="o">);</span>
+            <span class="n">assertSqlResultSetEquals</span><span class="o">(</span><span class="n">message</span><span class="o">,</span> <span class="n">sheetName</span><span class="o">,</span> <span class="s">&quot;expectedUgroup&quot;</span> <span class="o">+</span> <span class="n">no</span><span class="o">,</span> <span class="n">actualGroup</span><span class="o">);</span>
+
+            <span class="c1">// ユースケース検索結果の検証</span>
+            <span class="n">SqlResultSet</span> <span class="n">actualUseCase</span> <span class="o">=(</span><span class="n">SqlResultSet</span><span class="o">)</span> <span class="n">context</span><span class="o">.</span><span class="na">getRequestScopedVar</span><span class="o">(</span><span class="s">&quot;allUseCase&quot;</span><span class="o">);</span>
+            <span class="n">assertSqlResultSetEquals</span><span class="o">(</span><span class="n">message</span><span class="o">,</span> <span class="n">sheetName</span><span class="o">,</span> <span class="s">&quot;expectedUseCase&quot;</span> <span class="o">+</span> <span class="n">no</span><span class="o">,</span> <span class="n">actualUseCase</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">});</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="sqlresultset-form">
+<h5>3.1.2.4.3.1.2. リクエストスコープに検索結果(SqlResultSet)ではなくFormやエンティティが格納されている場合の例<a class="headerlink" href="#sqlresultset-form" title="このヘッドラインへのパーマリンク">¶</a></h5>
+<p>以下の例では、リクエストスコープにエンティティが格納されており、
+それぞれの検索結果が期待通りであることを検証している。</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testUsers00302Normal</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">execute</span><span class="o">(</span><span class="s">&quot;testUsers00302Normal&quot;</span><span class="o">,</span> <span class="k">new</span> <span class="n">BasicAdvice</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">afterExecute</span><span class="o">(</span><span class="n">TestCaseInfo</span> <span class="n">testCaseInfo</span><span class="o">,</span>
+                <span class="n">ExecutionContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">String</span> <span class="n">sheetName</span> <span class="o">=</span> <span class="n">testCaseInfo</span><span class="o">.</span><span class="na">getSheetName</span><span class="o">();</span>
+            <span class="c1">// システムアカウントを比較</span>
+            <span class="c1">// 【説明】期待値のID（接頭辞&quot;systemAccount&quot; + ケース番号）</span>
+            <span class="n">String</span> <span class="n">expectedSystemAccountId</span> <span class="o">=</span> <span class="s">&quot;systemAccount&quot;</span> <span class="o">+</span> <span class="n">testCaseInfo</span><span class="o">.</span><span class="na">getTestCaseNo</span><span class="o">();</span>
+            <span class="c1">// 【説明】実際の値をリクエストスコープから取り出す</span>
+            <span class="n">Object</span> <span class="n">actualSystemAccount</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="na">getRequestScopedVar</span><span class="o">(</span><span class="s">&quot;systemAccount&quot;</span><span class="o">);</span>
+            <span class="c1">// 【説明】エンティティを比較するメソッドを呼び出す。</span>
+            <span class="n">assertEntity</span><span class="o">(</span><span class="n">sheetName</span><span class="o">,</span> <span class="n">expectedSystemAccountId</span><span class="o">,</span> <span class="n">actualSystemAccount</span><span class="o">);</span>
+
+            <span class="c1">// ユーザを比較</span>
+            <span class="n">String</span> <span class="n">expectedUsersId</span> <span class="o">=</span> <span class="s">&quot;users&quot;</span> <span class="o">+</span> <span class="n">testCaseInfo</span><span class="o">.</span><span class="na">getTestCaseNo</span><span class="o">();</span>
+            <span class="n">Object</span> <span class="n">actualUsers</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="na">getRequestScopedVar</span><span class="o">(</span><span class="s">&quot;users&quot;</span><span class="o">);</span>
+            <span class="n">assertEntity</span><span class="o">(</span><span class="n">sheetName</span><span class="o">,</span> <span class="n">expectedUsersId</span><span class="o">,</span> <span class="n">actualUsers</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">});</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>期待値は、エンティティのクラス単体テスト（<a class="reference internal" href="../01_ClassUnitTest/01_entityUnitTest.html#entityunittest-settergettercase"><span class="std std-ref">setter、getterに対するテストケース</span></a>）と同様の書式で記述する。
+ただし、この場合はsetterの欄は不要である。</p>
+<img alt="../../../../../../_images/assert_entity.png" src="../../../../../../_images/assert_entity.png" />
+<div class="admonition tip">
+<p class="first admonition-title">ちなみに</p>
+<p>リクエストスコープにFormが格納されている場合、別のFormを設定したプロパティでなければEntityの場合と同様にテストが出来る。</p>
+<p>別のFormを設定したプロパティの場合、そのFormを取得してEntityと同様にテストをすればよい。以下に例を示す。</p>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testSampleNormal</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">execute</span><span class="o">(</span><span class="s">&quot;testSampleNormal&quot;</span><span class="o">,</span> <span class="k">new</span> <span class="n">BasicAdvice</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">afterExecute</span><span class="o">(</span><span class="n">TestCaseInfo</span> <span class="n">testCaseInfo</span><span class="o">,</span>
+                <span class="n">ExecutionContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">String</span> <span class="n">sheetName</span> <span class="o">=</span> <span class="n">testCaseInfo</span><span class="o">.</span><span class="na">getSheetName</span><span class="o">();</span>
+            <span class="c1">// システムアカウントを比較</span>
+            <span class="c1">// 【説明】期待値のID（接頭辞&quot;systemAccount&quot; + ケース番号）</span>
+            <span class="n">String</span> <span class="n">expectedSystemAccountId</span> <span class="o">=</span> <span class="s">&quot;systemAccount&quot;</span> <span class="o">+</span> <span class="n">testCaseInfo</span><span class="o">.</span><span class="na">getTestCaseNo</span><span class="o">();</span>
+            <span class="c1">// 【説明】Formをリクエストスコープから取り出す</span>
+            <span class="n">Object</span> <span class="n">actualForm</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="na">getRequestScopedVar</span><span class="o">(</span><span class="s">&quot;form&quot;</span><span class="o">);</span>
+            <span class="c1">// 【説明】Formのプロパティである別のFormを取得</span>
+            <span class="n">Object</span> <span class="n">actualSystemAccount</span> <span class="o">=</span> <span class="n">actualForm</span><span class="o">.</span><span class="na">getSystemAccount</span><span class="o">();</span>
+            <span class="c1">// 【説明】エンティティを比較するメソッドを呼び出す。</span>
+            <span class="n">assertEntity</span><span class="o">(</span><span class="n">sheetName</span><span class="o">,</span> <span class="n">expectedSystemAccountId</span><span class="o">,</span> <span class="n">actualSystemAccount</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">});</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="sqlresultsetsqlrow">
+<h5>3.1.2.4.3.1.3. リクエストスコープにSqlResultSetではなくSqlRowが格納されている場合の例<a class="headerlink" href="#sqlresultsetsqlrow" title="このヘッドラインへのパーマリンク">¶</a></h5>
+<p>以下の例では、リクエストスコープに、検索結果一覧(SqlResultSet)ではなく、
+検索結果1件分(SqlRow)がリクエストスコープに格納されており、
+その検索結果が期待通りであることを検証している。</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testUsers00302Normal</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">execute</span><span class="o">(</span><span class="s">&quot;testUsers00302Normal&quot;</span><span class="o">,</span> <span class="k">new</span> <span class="n">BasicAdvice</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">afterExecute</span><span class="o">(</span><span class="n">TestCaseInfo</span> <span class="n">testCaseInfo</span><span class="o">,</span> <span class="n">ExecutionContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">String</span> <span class="n">message</span> <span class="o">=</span> <span class="n">testCaseInfo</span><span class="o">.</span><span class="na">getTestCaseName</span><span class="o">();</span>   <span class="c1">// 【説明】比較失敗時のメッセージ</span>
+            <span class="n">String</span> <span class="n">sheetName</span> <span class="o">=</span> <span class="n">testCaseInfo</span><span class="o">.</span><span class="na">getSheetName</span><span class="o">();</span>    <span class="c1">// 【説明】シート名</span>
+            <span class="n">String</span> <span class="n">no</span> <span class="o">=</span> <span class="n">testCaseInfo</span><span class="o">.</span><span class="na">getTestCaseNo</span><span class="o">();</span>          <span class="c1">// 【説明】テストケース番号</span>
+
+            <span class="c1">// グループ検索結果の検証</span>
+            <span class="n">SqlRow</span> <span class="n">actual</span> <span class="o">=(</span><span class="n">SqlRow</span><span class="o">)</span> <span class="n">context</span><span class="o">.</span><span class="na">getRequestScopedVar</span><span class="o">(</span><span class="s">&quot;user&quot;</span><span class="o">);</span>
+            <span class="c1">// 【説明】SqlRowを比較するメソッドを呼び出す。</span>
+            <span class="n">assertSqlRowEquals</span><span class="o">(</span><span class="n">message</span><span class="o">,</span> <span class="n">sheetName</span><span class="o">,</span> <span class="s">&quot;expectedUser&quot;</span> <span class="o">+</span> <span class="n">no</span><span class="o">,</span> <span class="n">actual</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">});</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id23">
+<h5>3.1.2.4.3.1.4. リクエストパラメータの値を検証したい場合<a class="headerlink" href="#id23" title="このヘッドラインへのパーマリンク">¶</a></h5>
+<p><a class="reference internal" href="../../../../../../application_framework/application_framework/libraries/tag.html#tag-window-scope"><span class="std std-ref">ウィンドウスコープ</span></a> の値をリセットするために、
+テスト対象機能にてリクエストパラメータを書き換える場合がある。</p>
+<p>以下の例では、テスト対象実行後のリクエストパラメータが期待通りであることを検証している。</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testUsers00302Normal</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">execute</span><span class="o">(</span><span class="s">&quot;testUsers00302Normal&quot;</span><span class="o">,</span> <span class="k">new</span> <span class="n">BasicAdvice</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">afterExecute</span><span class="o">(</span><span class="n">TestCaseInfo</span> <span class="n">testCaseInfo</span><span class="o">,</span> <span class="n">ExecutionContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+
+            <span class="n">HttpRequest</span> <span class="n">request</span> <span class="o">=</span> <span class="n">testCaseInfo</span><span class="o">.</span><span class="na">getHttpRequest</span><span class="o">();</span>   <span class="c1">// 【説明】テスト実行後のHttpRequest</span>
+            <span class="c1">// リクエストパラメータがリセットされていること</span>
+            <span class="n">assertEquals</span><span class="o">(</span><span class="s">&quot;&quot;</span><span class="o">,</span> <span class="n">request</span><span class="o">.</span><span class="na">getParam</span><span class="o">(</span><span class="s">&quot;resetparameter&quot;</span><span class="o">));</span>
+        <span class="o">}</span>
+    <span class="o">});</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id24">
+<h5>3.1.2.4.3.1.5. その他の場合<a class="headerlink" href="#id24" title="このヘッドラインへのパーマリンク">¶</a></h5>
+<p>前述のように、SqlResultSetやSqlRow等のよく使用されるオブジェクトについては、
+Excelに記載した期待値と直接比較するメソッドが用意されているが、
+そうでない場合については、期待値を読み込む処理を記述する必要がある。</p>
+<p>具体的には、以下の手順で検証を行う。</p>
+<ul class="simple">
+<li>テストデータをExcelファイルから取得</li>
+<li>リクエストスコープ等から実際の値を取得</li>
+<li>自動テストフレームワークまたはJUnitのAPIを用いて結果検証を行う。</li>
+</ul>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testUsers00303Normal</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">execute</span><span class="o">(</span><span class="s">&quot;testUsers00303Normal&quot;</span><span class="o">,</span> <span class="k">new</span> <span class="n">BasicAdvice</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">afterExecute</span><span class="o">(</span><span class="n">TestCaseInfo</span> <span class="n">testCaseInfo</span><span class="o">,</span> <span class="n">ExecutionContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c1">// 【説明】期待値をExcelファイルから取得</span>
+            <span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;&gt;</span> <span class="n">expected</span> <span class="o">=</span> <span class="n">getListMap</span><span class="o">(</span><span class="s">&quot;doRW25AA0303NormalEnd&quot;</span><span class="o">,</span> <span class="s">&quot;result_1&quot;</span><span class="o">);</span>
+            <span class="c1">// 【説明】テスト実行後のリクエストスコープから実際の値を取得</span>
+            <span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;&gt;</span> <span class="n">actual</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="na">getRequestScopedVar</span><span class="o">(</span><span class="s">&quot;pageData&quot;</span><span class="o">);</span>
+            <span class="c1">// 【説明】結果検証</span>
+            <span class="n">assertListMapEquals</span><span class="o">(</span><span class="n">expected</span><span class="o">,</span> <span class="n">actual</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">});</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p></p>
+<div class="admonition tip">
+<p class="first admonition-title">ちなみに</p>
+<dl class="last docutils">
+<dt>テストデータの取得方法については、以下のリンク先を参照。</dt>
+<dd><ul class="first last simple">
+<li>「<a class="reference internal" href="../../06_TestFWGuide/03_Tips.html#how-to-get-data-from-excel"><span class="std std-ref">Excelファイルから、入力パラメータや戻り値に対する期待値などを取得したい</span></a>」</li>
+</ul>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id25">
+<h3>3.1.2.4.4. ダウンロードファイルのテスト<a class="headerlink" href="#id25" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>ダウンロードファイルをテストする場合は、<a class="reference internal" href="batch.html#batch-request-test"><span class="std std-ref">リクエスト単体テストの実施方法(バッチ)</span></a> と同じ方法でファイルの期待値をExcelファイルに記載してテストする。以下にCSVファイルをダウンロードする場合のテスト例を示す。</p>
+<p><strong>期待するファイルの定義例</strong></p>
+<blockquote>
+<div><p>ファイルパスにはダンプファイルを指定する。ダウンロード処理の場合は、ダウンロードされたファイルがダンプされ、下記の命名規則でダンプファイルが出力される。ダンプ出力結果が格納されるディレクトリの詳細は、 <a class="reference internal" href="#html-dump-dir"><span class="std std-ref">HTMLダンプ出力結果</span></a> を参照すること。</p>
+<blockquote>
+<div><div class="highlight-bash"><div class="highlight"><pre><span></span>ダンプファイルの命名規則：
+  Excelファイルのシート名＋<span class="s2">&quot;_&quot;</span>＋テストケース名＋<span class="s2">&quot;_&quot;</span>＋ダウンロードされたファイル名
+</pre></div>
+</div>
+</div></blockquote>
+<a class="reference internal image-reference" href="../../../../../../_images/expected_download_csv.png"><img alt="../../../../../../_images/expected_download_csv.png" src="../../../../../../_images/expected_download_csv.png" style="width: 795.0px; height: 156.6px;" /></a>
+</div></blockquote>
+<p><strong>テストメソッドの実装例</strong></p>
+<blockquote>
+<div><p>FileSupportクラスのassertFileメソッドを使用してダウンロードファイルのアサートを行う。</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">private</span> <span class="n">FileSupport</span> <span class="n">fileSupport</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileSupport</span><span class="o">(</span><span class="n">getClass</span><span class="o">());</span>
+
+<span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testRW11AC0104Download</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">execute</span><span class="o">(</span><span class="s">&quot;testRW11AC0104Download&quot;</span><span class="o">,</span> <span class="k">new</span> <span class="n">BasicAdvice</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">afterExecute</span><span class="o">(</span><span class="n">TestCaseInfo</span> <span class="n">testCaseInfo</span><span class="o">,</span> <span class="n">ExecutionContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">String</span> <span class="n">msgOnFail</span> <span class="o">=</span> <span class="s">&quot;ダウンロードしたユーザ一覧照会結果のCSVファイルのアサートに失敗しました。&quot;</span><span class="o">;</span>
+            <span class="n">fileSupport</span><span class="o">.</span><span class="na">assertFile</span><span class="o">(</span><span class="n">msgOnFail</span><span class="o">,</span> <span class="s">&quot;testRW11AC0104Download&quot;</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">});</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="id26">
+<h2>3.1.2.5. テスト起動方法<a class="headerlink" href="#id26" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>クラス単体テストと同様。通常のJUnitテストと同じように実行する。</p>
+</div>
+<div class="section" id="id27">
+<h2>3.1.2.6. テスト結果確認（目視）<a class="headerlink" href="#id27" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>１リクエスト毎にHTMLダンプファイルが出力される。ファイルをブラウザで開き、目視確認を行う。</p>
+<div class="admonition tip">
+<p class="first admonition-title">ちなみに</p>
+<p class="last">リクエスト単体テストで生成されたHTMLファイルは自動テストフレームワークにて自動的にチェックされる。自動テストフレームワークは、<a class="reference internal" href="../../08_TestTools/03_HtmlCheckTool/index.html"><span class="doc">HTMLチェックツール</span></a>を用いて生成されたHTMLファイルをチェックする。
+HTMLファイル内に構文エラー等の違反があった場合は、その違反内容に応じた例外が発生し、そのテストケースは失敗となる。</p>
+</div>
+<div class="section" id="html">
+<span id="html-dump-dir"></span><h3>3.1.2.6.1. HTMLダンプ出力結果<a class="headerlink" href="#html" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>テストを実行すると、テスト用プロジェクトのルートディレクトリにtmp/html_dumpディレクトリが作成され、
+その配下にHTMLダンプファイルが出力される。
+HTMLダンプ出力結果が格納されるディレクトリの詳細は、 <a class="reference internal" href="../../06_TestFWGuide/02_RequestUnitTest.html#dump-dir-label"><span class="std std-ref">HTMLダンプ出力ディレクトリ</span></a> の項を参照すること。</p>
+<blockquote>
+<div><img alt="../../../../../../_images/htmlDumpDir.png" src="../../../../../../_images/htmlDumpDir.png" />
+</div></blockquote>
+<div class="admonition tip">
+<p class="first admonition-title">ちなみに</p>
+<p class="last">HTMLダンプファイル名には、<a class="reference internal" href="#id6">テストケース一覧</a>のテストケース説明（testShotsのdescription欄）
+の記述が使用される。</p>
+</div>
+</div>
+</div>
+<div class="section" id="id28">
+<h2>3.1.2.7. リクエスト単体テストクラス作成時の注意点<a class="headerlink" href="#id28" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>リクエスト単体テストでは、Web Frameworkのハンドラを経由して呼び出される点がクラス単体テストと異なる。
+この違いにより注意すべき点があるので、以下に記載する。</p>
+<div class="section" id="threadcontext">
+<h3>3.1.2.7.1. ThreadContextへの値設定は不要<a class="headerlink" href="#threadcontext" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>リクエスト単体テストでは、Web Frameworkのハンドラが作用する為、
+ThreadContextへの値設定はハンドラで実施される。
+よって、<strong>テストクラスからThreadContextへの値を設定する必要はない。</strong></p>
+<p>リクエスト単体テストでのユーザID設定方法については、前述の<a class="reference internal" href="#request-test-user-info"><span class="std std-ref">ユーザ情報</span></a>を参照。</p>
+</div>
+<div class="section" id="id29">
+<h3>3.1.2.7.2. テストクラスでのトランザクション制御は不要<a class="headerlink" href="#id29" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>クラス単体テストでは、Web Frameworkのハンドラが作用しない為、テストクラス内で明示的にトランザクションコミットを行っていた。リクエスト単体テストでは、トランザクション制御はハンドラで行われるので、<strong>テストクラス内で明示的にトランザクションコミットを行う必要はない。</strong></p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+
+    <hr/>
+
+    <div role="contentinfo">
+        <p>
+            &copy; Copyright 2010-2017, TIS Inc.
+        </p>
+    </div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../../../',
+            VERSION:'5u8',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../../../../_static/custom.js"></script>
+      <script type="text/javascript" src="../../../../../../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

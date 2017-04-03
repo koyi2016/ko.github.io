@@ -1,0 +1,658 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2.3.1.1.2. 登録内容の確認 &mdash; ∇Nablarch  5u8 ドキュメント</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../../_static/custom.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="索引"
+              href="../../../../../genindex.html"/>
+        <link rel="search" title="検索" href="../../../../../search.html"/>
+    <link rel="top" title="∇Nablarch  5u8 ドキュメント" href="../../../../../index.html"/>
+        <link rel="up" title="2.3.1. 登録機能の作成(ハンズオン形式)" href="index.html"/>
+        <link rel="next" title="2.3.1.1.3. 登録内容確認画面から登録画面へ戻る" href="client_create3.html"/>
+        <link rel="prev" title="2.3.1.1.1. 登録画面初期表示の作成" href="client_create1.html"/> 
+
+  
+  <script src="../../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+  
+  <a href="../../../../../index.html" id="sidebar-title" class="icon"> ∇Nablarch 
+  
+
+  
+    <div id="sidebar-version">Version: 5u8</div>
+  </a>
+
+  <div role="search">
+    <form id="google-search-form" class="wy-form" method="get" action="https://www.google.co.jp/search">
+      <input type="hidden" id="document-version" value="5u8" />
+      <input type="text" name="text" placeholder="Search docs on google" id="text"/>
+      <input type="hidden" name="q" id="q"/>
+    </form>
+  </div>
+    
+    
+
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+  
+  
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../about_nablarch/index.html">Nablarchについて</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../about_nablarch/concept.html">Nablarchのコンセプト</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../about_nablarch/concept.html#robustness">Robustness</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../about_nablarch/concept.html#testability">Testability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../about_nablarch/concept.html#ready-to-use">Ready-to-Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../about_nablarch/mvn_module.html">Nablarch のモジュール一覧</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../about_nablarch/license.html">Nablarchのライセンスについて</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../../index.html">Nablarchアプリケーションフレームワーク</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../../index.html">アプリケーションフレームワーク</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../../nablarch/index.html">1. Nablarchアプリケーションフレームワークとは</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../../index.html">2. ウェブアプリケーション編</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../web_service/index.html">3. ウェブサービス編</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../batch/index.html">4. バッチアプリケーション編</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../messaging/index.html">5. メッセージング編</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../handlers/index.html">6. Nablarchの提供する標準ハンドラ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../libraries/index.html">7. Nablarchが提供するライブラリ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../blank_project/index.html">8. ブランクプロジェクト</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../setting_guide/index.html">9. Nablarchアプリケーションフレームワーク設定ガイド</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../adaptors/index.html">アダプタ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../adaptors/log_adaptor.html">logアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../adaptors/router_adaptor.html">ルーティングアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../adaptors/webspheremq_adaptor.html">IBM WebSphere MQアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../adaptors/jaxrs_adaptor.html">JAX-RSアダプタ</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../example/index.html">Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../example/index.html#id1">環境構築手順について</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../example/index.html#id2">アプリケーションの実行手順について</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../extension_components/index.html">Nablarch拡張コンポーネント</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../extension_components/report/index.html">1. 帳票ライブラリ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/report/index.html#id2">1.1. 概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/report/index.html#id3">1.2. 要求</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/report/index.html#id7">1.3. 構造</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/report/index.html#report-template">1.4. 実装例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../extension_components/workflow/index.html">2. ワークフロー</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/workflow/doc/index.html">2.1. ワークフローライブラリ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/workflow/sample_application/doc/index.html">2.2. ワークフローアプリケーション実装ガイド</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/workflow/tool/doc/index.html">2.3. ワークフロー定義データ生成ツール</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../extension_components/etl/index.html">3. ETL</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/etl/index.html#id3">3.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/etl/index.html#id4">3.2. ETLの各フェーズの仕様</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/etl/index.html#id5">3.3. 使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/etl/index.html#id7">3.4. 拡張例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../extension_components/etl/etl_maven_plugin.html">4. ETL Mavenプラグイン</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/etl/etl_maven_plugin.html#id2">4.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/etl/etl_maven_plugin.html#id3">4.2. 使用方法</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../development_tools/index.html">Nablarch開発ツール</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../development_tools/java_static_analysis/index.html">1. 効率的なJava静的チェック</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../development_tools/java_static_analysis/index.html#code-analysis">1.1. 構文チェックを行う</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../development_tools/java_static_analysis/index.html#code-format">1.2. フォーマットを統一する</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../development_tools/java_static_analysis/index.html#api">1.3. 許可していないAPIが使用されていないかチェックする</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../development_tools/ui_dev/index.html">2. フロントエンド上級者向けのUI開発基盤</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../development_tools/ui_dev/doc/index.html">2.1. Nablarch UI開発基盤 解説書</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../development_tools/ui_dev/guide/index.html">2.2. JSP/HTML作成ガイド</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../development_tools/ui_dev/guide/widget_usage/widget_list.html">2.3. UI部品の実装サンプルで提供しているウィジェットの一覧</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../development_tools/testing_framework/index.html">3. 大規模開発向け重厚なテスティングフレームワーク</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/index.html">3.1. 単体テスト実施方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../development_tools/testing_framework/guide/development_guide/06_TestFWGuide/index.html">3.2. 自動テストフレームワークの使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../development_tools/testing_framework/guide/development_guide/08_TestTools/index.html">3.3. プログラミング工程で使用するツール</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../development_tools/toolbox/index.html">4. アプリケーション開発時に使える便利なツール</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../development_tools/toolbox/UnpublishedMethodDetector/UnpublishedApi.html">4.1. 使用不許可APIチェックツール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../development_tools/toolbox/PublishedApi/PublishedApiConfigGenerator.html">4.2. 使用許可API一覧作成ツール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../development_tools/toolbox/JspStaticAnalysis/index.html">4.3. JSP静的解析ツール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../development_tools/toolbox/SqlExecutor/SqlExecutor.html">4.4. Nablarch SQL Executor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../development_tools/toolbox/JspVerifier/JspVerifier.html">4.5. 業務画面JSP検証ツール</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../examples/index.html">Nablarch実装例集</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/01/index.html">データベースを用いたパスワード認証機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/01/0101_PBKDF2PasswordEncryptor.html">PBKDF2を用いたパスワード暗号化機能サンプル</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/01/index.html#id3">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/01/index.html#id4">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/01/index.html#id6">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/01/index.html#id12">使用方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/02/index.html">バリデーション機能の拡張</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/02/index.html#id3">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/02/index.html#extendedvalidation-mailaddressvalidator">メールアドレスバリデーション</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/02/index.html#extendedvalidation-japanesetelnumbervalidator">日本電話番号バリデーション</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/02/index.html#id12">コード値精査</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/03/index.html">検索結果の一覧表示</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#id3">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#id4">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#id5">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#id8">使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#listsearchinfo">ListSearchInfoクラス</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#listsearchresult">listSearchResultタグ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#listsearchresult-sort">検索結果の並び替え</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#listsearchresult-nopaging">1画面にすべての検索結果を一覧表示する場合の実装方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#listsearchresult-defaultcondition">デフォルトの検索条件で検索した結果を初期表示する場合の実装方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#listsearchresult-setting">検索結果の一覧表示機能のデフォルト値設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#listsearchresult-customize">業務アプリケーションへのサンプル実装(タグファイル)の取り込み方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#listsearchresult-tagreference">タグリファレンス</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/04/index.html">フォーマッタ機能の拡張</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/04/0401_ExtendedDataFormatter.html">データフォーマッタの拡張</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/04/0402_ExtendedFieldType.html">データフォーマッタ機能におけるフィールドタイプの拡張</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/05/index.html">データベースを用いたファイル管理機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/05/index.html#id2">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/05/index.html#id6">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/05/index.html#id7">機能</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/05/index.html#id10">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/05/index.html#id15">使用方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/06/index.html">CAPTCHA機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/06/06_Captcha_guide.html">CAPTCHA機能の組み込み手順</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/06/index.html#id3">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/06/index.html#id4">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/06/index.html#id6">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/06/index.html#id21">使用方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/07/index.html">UserAgent情報取得機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/07/index.html#id1">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/07/index.html#id3">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/07/index.html#id8">設定の記述</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/07/index.html#id11">使用例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/08/index.html">HTMLメール送信機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/08/index.html#id1">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/08/index.html#id3">要求</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/08/index.html#id6">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/08/index.html#id14">実装例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/09/index.html">bouncycastleを使用した電子署名つきメールの送信サンプルの使用方法</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/09/index.html#id3">環境準備</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/09/index.html#id4">電子署名付きメール送信機能の構造</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/09/index.html#id5">設定ファイルの準備</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/09/index.html#id7">実行方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/10/index.html">ログ集計サンプルの使用方法</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/10/index.html#id3">提供サンプル一覧</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/11/index.html">メッセージング基盤テストシミュレータサンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/11/index.html#id4">用途</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/11/index.html#id8">特徴</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/11/index.html#id12">要求</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/11/index.html#id15">使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/11/index.html#id18">拡張例</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../nablarch_api/index.html">Nablarch API</a></li>
+</ul>
+
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">∇Nablarch </a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../../index.html">Nablarchアプリケーションフレームワーク</a> &raquo;</li>
+      
+          <li><a href="../../../index.html">アプリケーションフレームワーク</a> &raquo;</li>
+      
+          <li><a href="../../index.html">2. ウェブアプリケーション編</a> &raquo;</li>
+      
+          <li><a href="../index.html">2.3. Getting Started</a> &raquo;</li>
+      
+          <li><a href="index.html">2.3.1. 登録機能の作成(ハンズオン形式)</a> &raquo;</li>
+      
+    <li>2.3.1.1.2. 登録内容の確認</li>
+      <li class="wy-breadcrumbs-aside">
+        <a href="https://github.com/nablarch" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="client-create-2">
+<span id="id1"></span><h1>2.3.1.1.2. 登録内容の確認<a class="headerlink" href="#client-create-2" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>本章では、登録した内容を確認する処理について解説を行う。</p>
+<p><a class="reference internal" href="client_create1.html#client-create-1"><span class="std std-ref">前へ</span></a></p>
+<dl class="docutils">
+<dt>登録画面へ入力項目を追加する</dt>
+<dd><p class="first">登録確認画面への遷移を行うにあたり、まず顧客情報の登録に必要な以下の入力項目を登録画面に追加する。</p>
+<dl class="last docutils">
+<dt>フォームの作成</dt>
+<dd><p class="first">登録画面に入力された値を受け付けるため、 <cite>ClientForm</cite> クラスを新規作成する。</p>
+<dl class="last docutils">
+<dt>ClientForm.java</dt>
+<dd><div class="first last highlight-java"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nn">com.nablarch.example.app.web.form</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ClientForm</span> <span class="kd">implements</span> <span class="n">Serializable</span> <span class="o">{</span>
+
+    <span class="c1">// 顧客名</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">clientName</span><span class="o">;</span>
+
+    <span class="c1">// 業種コード</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">industryCode</span><span class="o">;</span>
+
+    <span class="c1">// getter、setterは省略</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</dd>
+<dt>この実装のポイント</dt>
+<dd><ul class="first last simple">
+<li>フォームクラスには必ずセッタ及びゲッタを作成する。</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/common/web/interceptor/InjectForm.html" title="nablarch.common.web.interceptor.InjectForm">&#64;InjectForm</a> を使用してバリデーションを実行する( <a class="reference internal" href="#client-create-setup-validation"><span class="std std-ref">後述</span></a> )ために、フォームは <cite>Serializable</cite> インタフェースを実装する。</li>
+<li>入力値を受け付けるプロパティは全てString型で宣言する。詳細は <a class="reference internal" href="../../../libraries/validation/bean_validation.html#bean-validation-form-property"><span class="std std-ref">バリデーションルールの設定方法</span></a> を参照。</li>
+</ul>
+</dd>
+</dl>
+</dd>
+<dt>登録画面のJSPを修正する</dt>
+<dd><p class="first">登録画面のJSPに以下の項目を追加する。</p>
+<ul class="simple">
+<li><a class="reference internal" href="../../../libraries/tag/tag_reference.html#tag-text-tag"><span class="std std-ref">textタグ</span></a> の <cite>name</cite> 属性に、顧客名を受け付けるフォームのプロパティ名を追加する。</li>
+<li><a class="reference internal" href="../../../libraries/tag/tag_reference.html#tag-select-tag"><span class="std std-ref">selectタグ</span></a> の <cite>name</cite> 属性に、業種コードを受け付けるフォームのプロパティ名を追加する。</li>
+<li>各タグの <cite>name</cite> 属性の指定方法は、 <a class="reference internal" href="../../../libraries/tag.html#tag-access-rule"><span class="std std-ref">入力/出力データへのアクセスルール</span></a> を参照。</li>
+<li><a class="reference internal" href="../../../libraries/tag/tag_reference.html#tag-text-tag"><span class="std std-ref">textタグ</span></a> 、 <a class="reference internal" href="../../../libraries/tag/tag_reference.html#tag-select-tag"><span class="std std-ref">selectタグ</span></a> に入力エラー発生時のCSSクラスを追加する。</li>
+<li>登録ボタン( <a class="reference internal" href="../../../libraries/tag/tag_reference.html#tag-button-tag"><span class="std std-ref">buttonタグ</span></a> )の <cite>uri</cite> 属性に、登録確認画面へ遷移するURIを追加する。
+<cite>uri</cite> 属性の指定方法は、 <a class="reference internal" href="../../../libraries/tag.html#tag-specify-uri"><span class="std std-ref">URIの指定方法</span></a> を参照。</li>
+<li>入力エラー発生時のエラーメッセージ表示領域を追加する。</li>
+</ul>
+<dl class="last docutils">
+<dt>/src/main/webapp/WEB-INF/view/client/create.jsp</dt>
+<dd><div class="first last highlight-jsp"><div class="highlight"><pre><span></span><span class="nt">&lt;n:form&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;form-group label-static is-empty&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">&quot;control-label&quot;</span><span class="nt">&gt;</span>顧客名<span class="nt">&lt;/label&gt;</span>
+        <span class="c">&lt;!-- 顧客名のテキストボックス --&gt;</span>
+<span class="hll">        <span class="nt">&lt;n:text</span> <span class="na">name=</span><span class="s">&quot;form.clientName&quot;</span>
+</span><span class="hll">                <span class="na">cssClass=</span><span class="s">&quot;form-control input-text&quot;</span> <span class="na">errorCss=</span><span class="s">&quot;form-control input-error&quot;</span> <span class="nt">/&gt;</span>
+</span>        <span class="c">&lt;!-- 顧客名の入力エラー時のエラーメッセージ --&gt;</span>
+<span class="hll">        <span class="nt">&lt;n:error</span> <span class="na">errorCss=</span><span class="s">&quot;message-error&quot;</span> <span class="na">name=</span><span class="s">&quot;form.clientName&quot;</span> <span class="nt">/&gt;</span>
+</span>    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;form-group label-static is-empty&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">&quot;control-label&quot;</span><span class="nt">&gt;</span>業種<span class="nt">&lt;/label&gt;</span>
+        <span class="c">&lt;!-- 業種のプルダウン --&gt;</span>
+        <span class="nt">&lt;n:select</span>
+                <span class="na">listName=</span><span class="s">&quot;industries&quot;</span>
+                <span class="na">elementValueProperty=</span><span class="s">&quot;industryCode&quot;</span>
+                <span class="na">elementLabelProperty=</span><span class="s">&quot;industryName&quot;</span>
+<span class="hll">                <span class="na">name=</span><span class="s">&quot;form.industryCode&quot;</span>
+</span>                <span class="na">withNoneOption=</span><span class="s">&quot;true&quot;</span>
+                <span class="na">cssClass=</span><span class="s">&quot;btn dropdown-toggle&quot;</span>
+<span class="hll">                <span class="na">errorCss=</span><span class="s">&quot;btn dropdown-toggle input-error&quot;</span> <span class="nt">/&gt;</span>
+</span>        <span class="c">&lt;!-- 業種の入力エラー時のエラーメッセージ --&gt;</span>
+<span class="hll">        <span class="nt">&lt;n:error</span> <span class="na">errorCss=</span><span class="s">&quot;message-error&quot;</span> <span class="na">name=</span><span class="s">&quot;form.industryCode&quot;</span> <span class="nt">/&gt;</span>
+</span>    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;button-nav&quot;</span><span class="nt">&gt;</span>
+        <span class="c">&lt;!-- 登録ボタン --&gt;</span>
+        <span class="nt">&lt;n:button</span>
+<span class="hll">                <span class="na">uri=</span><span class="s">&quot;/action/client/confirm&quot;</span>
+</span>                <span class="na">cssClass=</span><span class="s">&quot;btn btn-raised btn-success&quot;</span><span class="nt">&gt;</span>登録<span class="nt">&lt;/n:button&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/n:form&gt;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="docutils" id="client-create-validation-rule">
+<dt>入力値のチェックルールを設定する</dt>
+<dd><p class="first"><a class="reference internal" href="../../../libraries/validation/bean_validation.html#bean-validation"><span class="std std-ref">Bean Validation</span></a> を使用して、入力値のチェックルールを設定する。</p>
+<dl class="last docutils">
+<dt>ClientForm.java</dt>
+<dd><blockquote class="first">
+<div><div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@Required</span>
+<span class="nd">@Domain</span><span class="o">(</span><span class="s">&quot;clientName&quot;</span><span class="o">)</span>
+<span class="kd">private</span> <span class="n">String</span> <span class="n">clientName</span><span class="o">;</span>
+
+<span class="nd">@Required</span><span class="o">(</span><span class="n">message</span> <span class="o">=</span> <span class="s">&quot;{nablarch.core.validation.ee.Required.select.message}&quot;</span><span class="o">)</span>
+<span class="nd">@Domain</span><span class="o">(</span><span class="s">&quot;industryCode&quot;</span><span class="o">)</span>
+<span class="kd">private</span> <span class="n">String</span> <span class="n">industryCode</span><span class="o">;</span>
+</pre></div>
+</div>
+</div></blockquote>
+<dl class="last docutils">
+<dt>messages.properties</dt>
+<dd><div class="first last highlight-jproperties"><div class="highlight"><pre><span></span><span class="c">#その他のメッセージは省略</span>
+<span class="c">#プルダウンに適した入力必須メッセージを追加する</span>
+<span class="na">nablarch.core.validation.ee.Required.select.message</span><span class="o">=</span><span class="s">選択してください。</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd>
+<dt>この実装のポイント</dt>
+<dd><ul class="first last simple">
+<li><a class="reference internal" href="../../../libraries/validation/bean_validation.html#bean-validation"><span class="std std-ref">Bean Validation</span></a> を行うためには、<cite>nablarch.core.validation.ee</cite> 配下のアノテーションを付与する
+( <cite>nablarch.core.validation.validator</cite> 配下に同名アノテーションが存在する場合があるので注意)。</li>
+<li><a class="reference internal" href="../../../libraries/validation/bean_validation.html#bean-validation-domain-validation"><span class="std std-ref">ドメインバリデーション</span></a> を使用して、<cite>ClientForm</cite> クラスのプロパティにバリデーションルールを定義する。</li>
+<li>対象項目に適したメッセージを表示するために、 <a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/core/validation/ee/Required.html" title="nablarch.core.validation.ee.Required">Required</a> の <cite>message</cite> 属性に独自に定義したメッセージを指定する。
+メッセージ定義の詳細は <a class="reference internal" href="../../../libraries/message.html#message-property-definition"><span class="std std-ref">プロパティファイルにメッセージを定義する</span></a> を参照。</li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="docutils" id="client-create-setup-validation">
+<dt>confirmメソッドを作成し、バリデーションが行われるように設定する</dt>
+<dd><p class="first">実行前に入力値のチェックが行われるように設定したメソッドを作成する。</p>
+<dl class="last docutils">
+<dt>ClientAction.java</dt>
+<dd><div class="first last highlight-java"><div class="highlight"><pre><span></span><span class="nd">@InjectForm</span><span class="o">(</span><span class="n">form</span> <span class="o">=</span> <span class="n">ClientForm</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">prefix</span> <span class="o">=</span> <span class="s">&quot;form&quot;</span><span class="o">)</span>
+<span class="nd">@OnError</span><span class="o">(</span><span class="n">type</span> <span class="o">=</span> <span class="n">ApplicationException</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">path</span> <span class="o">=</span> <span class="s">&quot;forward://input&quot;</span><span class="o">)</span>
+<span class="kd">public</span> <span class="n">HttpResponse</span> <span class="nf">confirm</span><span class="o">(</span><span class="n">HttpRequest</span> <span class="n">request</span><span class="o">,</span> <span class="n">ExecutionContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+
+    <span class="c1">// バリデーション済みオブジェクトを取得</span>
+    <span class="n">ClientForm</span> <span class="n">form</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="na">getRequestScopedVar</span><span class="o">(</span><span class="s">&quot;form&quot;</span><span class="o">);</span>
+
+    <span class="c1">// 実装内容については後述</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</dd>
+<dt>この実装のポイント</dt>
+<dd><ul class="first last simple">
+<li>業務アクションメソッドに <a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/common/web/interceptor/InjectForm.html" title="nablarch.common.web.interceptor.InjectForm">InjectForm</a> を付与して <a class="reference internal" href="../../../libraries/validation/bean_validation.html#bean-validation"><span class="std std-ref">Bean Validation</span></a> を実行する。</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/fw/web/interceptor/OnError.html" title="nablarch.fw.web.interceptor.OnError">OnError</a> の <cite>path</cite> 属性で、バリデーションエラー発生時にinputメソッドへ内部フォーワードするよう設定する
+(登録画面を再表示するためには、業種リストを設定する必要があるため)。</li>
+<li>バリデーションエラーが発生しなかった場合は、リクエストスコープからバリデーション済みオブジェクトが取得出来る。</li>
+</ul>
+</dd>
+</dl>
+</dd>
+<dt>登録確認画面の表示処理を実装する</dt>
+<dd><p class="first">後続の登録処理に使用する顧客情報を <a class="reference internal" href="../../../libraries/session_store.html#session-store"><span class="std std-ref">セッションストア</span></a> に保存し、登録確認画面を表示する。</p>
+<dl class="last docutils">
+<dt>ClientAction.java</dt>
+<dd><div class="first last highlight-java"><div class="highlight"><pre><span></span><span class="nd">@InjectForm</span><span class="o">(</span><span class="n">form</span> <span class="o">=</span> <span class="n">ClientForm</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">prefix</span> <span class="o">=</span> <span class="s">&quot;form&quot;</span><span class="o">)</span>
+<span class="nd">@OnError</span><span class="o">(</span><span class="n">type</span> <span class="o">=</span> <span class="n">ApplicationException</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">path</span> <span class="o">=</span> <span class="s">&quot;forward://input&quot;</span><span class="o">)</span>
+<span class="kd">public</span> <span class="n">HttpResponse</span> <span class="nf">confirm</span><span class="o">(</span><span class="n">HttpRequest</span> <span class="n">request</span><span class="o">,</span> <span class="n">ExecutionContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">ClientForm</span> <span class="n">form</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="na">getRequestScopedVar</span><span class="o">(</span><span class="s">&quot;form&quot;</span><span class="o">);</span>
+
+    <span class="n">Client</span> <span class="n">client</span> <span class="o">=</span> <span class="n">BeanUtil</span><span class="o">.</span><span class="na">createAndCopy</span><span class="o">(</span><span class="n">Client</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">form</span><span class="o">);</span>
+    <span class="n">SessionUtil</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">context</span><span class="o">,</span> <span class="s">&quot;client&quot;</span><span class="o">,</span> <span class="n">client</span><span class="o">);</span>
+
+    <span class="n">EntityList</span><span class="o">&lt;</span><span class="n">Industry</span><span class="o">&gt;</span> <span class="n">industries</span> <span class="o">=</span> <span class="n">UniversalDao</span><span class="o">.</span><span class="na">findAll</span><span class="o">(</span><span class="n">Industry</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+    <span class="n">context</span><span class="o">.</span><span class="na">setRequestScopedVar</span><span class="o">(</span><span class="s">&quot;industries&quot;</span><span class="o">,</span> <span class="n">industries</span><span class="o">);</span>
+
+    <span class="k">return</span> <span class="k">new</span> <span class="n">HttpResponse</span><span class="o">(</span><span class="s">&quot;/WEB-INF/view/client/confirm.jsp&quot;</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</dd>
+<dt>この実装のポイント</dt>
+<dd><ul class="first last simple">
+<li>登録画面の表示処理時と同様、業種情報をデータベースから取得してリクエストスコープに設定する。</li>
+<li><a class="reference internal" href="../../../libraries/session_store.html#session-store"><span class="std std-ref">セッションストア</span></a> への保存は、<a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/common/web/session/SessionUtil.html" title="nablarch.common.web.session.SessionUtil">SessionUtil</a> を使用する。</li>
+<li><a class="reference internal" href="../../../libraries/session_store.html#session-store-form"><span class="std std-ref">セッションストアにフォームは格納しない</span></a> ため、
+<a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/core/beans/BeanUtil.html" title="nablarch.core.beans.BeanUtil">BeanUtil</a> を使用してフォームをエンティティに変換した上で <a class="reference internal" href="../../../libraries/session_store.html#session-store"><span class="std std-ref">セッションストア</span></a> に登録する。</li>
+<li><a class="reference internal" href="../../../libraries/session_store.html#session-store"><span class="std std-ref">セッションストア</span></a> を利用する際の詳しい実装例は <a class="reference internal" href="../../../libraries/session_store/create_example.html#create-example"><span class="std std-ref">登録機能での実装例</span></a> を参照。</li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="docutils" id="client-create-forconfirmationpage">
+<dt>登録確認画面のJSPを作成する</dt>
+<dd><p class="first">登録確認画面のJSPを新規作成する。</p>
+<dl class="last docutils">
+<dt>/src/main/webapp/WEB-INF/view/client/confirm.jsp</dt>
+<dd><div class="first last highlight-jsp"><div class="highlight"><pre><span></span><span class="k">&lt;%@</span> <span class="n">page</span> <span class="n">language</span><span class="o">=</span><span class="s">&quot;java&quot;</span> <span class="n">contentType</span><span class="o">=</span><span class="s">&quot;text/html; charset=UTF-8&quot;</span> <span class="n">pageEncoding</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span> <span class="k">%&gt;</span>
+<span class="k">&lt;%@</span> <span class="n">taglib</span> <span class="n">prefix</span><span class="o">=</span><span class="s">&quot;c&quot;</span> <span class="n">uri</span><span class="o">=</span><span class="s">&quot;http://java.sun.com/jsp/jstl/core&quot;</span> <span class="k">%&gt;</span>
+<span class="k">&lt;%@</span> <span class="n">taglib</span> <span class="n">prefix</span><span class="o">=</span><span class="s">&quot;n&quot;</span> <span class="n">uri</span><span class="o">=</span><span class="s">&quot;http://tis.co.jp/nablarch&quot;</span> <span class="k">%&gt;</span>
+<span class="c">&lt;!-- 登録画面を確認画面に変換して表示する --&gt;</span>
+<span class="nt">&lt;n:confirmationPage</span> <span class="na">path=</span><span class="s">&quot;./create.jsp&quot;</span> <span class="nt">&gt;&lt;/n:confirmationPage&gt;</span>
+</pre></div>
+</div>
+</dd>
+<dt>この実装のポイント</dt>
+<dd><ul class="first last simple">
+<li><a class="reference internal" href="../../../libraries/tag/tag_reference.html#tag-confirmation-page-tag"><span class="std std-ref">confirmationPageタグ</span></a> を使用することで、登録画面のJSPを流用して確認画面を作成できる。詳細は <a class="reference internal" href="../../../libraries/tag.html#tag-make-common"><span class="std std-ref">入力画面と確認画面を共通化する</span></a> を参照。</li>
+</ul>
+</dd>
+</dl>
+</dd>
+<dt>登録画面を修正する</dt>
+<dd><p class="first">登録画面のJSPを修正し、登録画面のみで表示する項目、確認画面でのみ表示する項目を出し分けられるようにする。</p>
+<dl class="last docutils">
+<dt>/src/main/webapp/WEB-INF/view/client/create.jsp</dt>
+<dd><div class="first last highlight-jsp"><div class="highlight"><pre><span></span><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;button-nav&quot;</span><span class="nt">&gt;</span>
+    <span class="c">&lt;!-- 登録ボタンは登録画面でのみ表示 --&gt;</span>
+    <span class="nt">&lt;n:forInputPage&gt;</span>
+        <span class="nt">&lt;n:button</span> <span class="na">uri=</span><span class="s">&quot;/action/client/confirm&quot;</span>
+                  <span class="na">cssClass=</span><span class="s">&quot;btn btn-raised btn-success&quot;</span><span class="nt">&gt;</span>登録<span class="nt">&lt;/n:button&gt;</span>
+    <span class="nt">&lt;/n:forInputPage&gt;</span>
+    <span class="c">&lt;!-- 入力へ戻る、確定ボタンは確認画面でのみ表示 --&gt;</span>
+    <span class="nt">&lt;n:forConfirmationPage&gt;</span>
+        <span class="nt">&lt;n:button</span> <span class="na">uri=</span><span class="s">&quot;/action/client/back&quot;</span>
+                  <span class="na">cssClass=</span><span class="s">&quot;btn btn-raised btn-default&quot;</span><span class="nt">&gt;</span>入力へ戻る<span class="nt">&lt;/n:button&gt;</span>
+        <span class="nt">&lt;n:button</span> <span class="na">uri=</span><span class="s">&quot;/action/client/create&quot;</span>
+                  <span class="na">cssClass=</span><span class="s">&quot;btn btn-raised btn-success&quot;</span><span class="nt">&gt;</span>確定<span class="nt">&lt;/n:button&gt;</span>
+    <span class="nt">&lt;/n:forConfirmationPage&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</pre></div>
+</div>
+</dd>
+<dt>この実装のポイント</dt>
+<dd><ul class="first last simple">
+<li>登録画面のみで表示する項目は <a class="reference internal" href="../../../libraries/tag/tag_reference.html#tag-for-input-page-tag"><span class="std std-ref">forInputPageタグ</span></a> の内部に記述する。</li>
+<li>確認画面でのみ表示する項目は <a class="reference internal" href="../../../libraries/tag/tag_reference.html#tag-for-confirmation-page-tag"><span class="std std-ref">forConfirmationPageタグ</span></a> の内部に記述する。</li>
+</ul>
+</dd>
+</dl>
+</dd>
+<dt>動作確認を行う</dt>
+<dd>登録確認処理が正しく実装されていることを確認するため、以下の手順で動作確認を実施する。</dd>
+<dt>バリデーションエラーが発生しないケース</dt>
+<dd><ol class="first arabic simple">
+<li>顧客登録画面を表示する。</li>
+</ol>
+<blockquote>
+<div><img alt="../../../../../_images/input_display.png" src="../../../../../_images/input_display.png" />
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li>顧客名に全角文字列、業種に任意の値を選択して確認ボタンを押下する。</li>
+</ol>
+<blockquote>
+<div><img alt="../../../../../_images/input_valid_value.png" src="../../../../../_images/input_valid_value.png" />
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li>登録確認画面が表示され、<cite>2</cite> で入力した顧客名、業種がラベルで表示されることを確認する。</li>
+</ol>
+<blockquote class="last">
+<div><img alt="../../../../../_images/confirm_display.png" src="../../../../../_images/confirm_display.png" />
+</div></blockquote>
+</dd>
+<dt>バリデーションエラーが発生するケース</dt>
+<dd><ol class="first arabic simple">
+<li>顧客登録画面を表示する。</li>
+</ol>
+<blockquote>
+<div><img alt="../../../../../_images/input_display.png" src="../../../../../_images/input_display.png" />
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li>顧客名に半角文字列、業種を未選択にして確認ボタンを押下する。</li>
+</ol>
+<blockquote>
+<div><img alt="../../../../../_images/input_invalid_value.png" src="../../../../../_images/input_invalid_value.png" />
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li>登録画面が再度表示され、エラーメッセージが表示されていることを確認する。</li>
+</ol>
+<blockquote class="last">
+<div><img alt="../../../../../_images/input_invalid_display.png" src="../../../../../_images/input_invalid_display.png" />
+</div></blockquote>
+</dd>
+</dl>
+<p><a class="reference internal" href="client_create3.html#client-create-3"><span class="std std-ref">次へ</span></a></p>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+
+    <hr/>
+
+    <div role="contentinfo">
+        <p>
+            &copy; Copyright 2010-2017, TIS Inc.
+        </p>
+    </div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../../',
+            VERSION:'5u8',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../../../_static/custom.js"></script>
+      <script type="text/javascript" src="../../../../../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,804 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>HTMLメール送信機能サンプル &mdash; ∇Nablarch  5u8 ドキュメント</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="索引"
+              href="../../genindex.html"/>
+        <link rel="search" title="検索" href="../../search.html"/>
+    <link rel="top" title="∇Nablarch  5u8 ドキュメント" href="../../index.html"/>
+        <link rel="up" title="Nablarch実装例集" href="../index.html"/>
+        <link rel="next" title="bouncycastleを使用した電子署名つきメールの送信サンプルの使用方法" href="../09/index.html"/>
+        <link rel="prev" title="UserAgent情報取得機能設定サンプル" href="../07/useragent_sample.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+  
+  <a href="../../index.html" id="sidebar-title" class="icon"> ∇Nablarch 
+  
+
+  
+    <div id="sidebar-version">Version: 5u8</div>
+  </a>
+
+  <div role="search">
+    <form id="google-search-form" class="wy-form" method="get" action="https://www.google.co.jp/search">
+      <input type="hidden" id="document-version" value="5u8" />
+      <input type="text" name="text" placeholder="Search docs on google" id="text"/>
+      <input type="hidden" name="q" id="q"/>
+    </form>
+  </div>
+    
+    
+
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+  
+  
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../about_nablarch/index.html">Nablarchについて</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../about_nablarch/concept.html">Nablarchのコンセプト</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../about_nablarch/concept.html#robustness">Robustness</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../about_nablarch/concept.html#testability">Testability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../about_nablarch/concept.html#ready-to-use">Ready-to-Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../about_nablarch/mvn_module.html">Nablarch のモジュール一覧</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../about_nablarch/license.html">Nablarchのライセンスについて</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../application_framework/index.html">Nablarchアプリケーションフレームワーク</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../application_framework/application_framework/index.html">アプリケーションフレームワーク</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/nablarch/index.html">1. Nablarchアプリケーションフレームワークとは</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/web/index.html">2. ウェブアプリケーション編</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/web_service/index.html">3. ウェブサービス編</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/batch/index.html">4. バッチアプリケーション編</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/messaging/index.html">5. メッセージング編</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/handlers/index.html">6. Nablarchの提供する標準ハンドラ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/libraries/index.html">7. Nablarchが提供するライブラリ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/blank_project/index.html">8. ブランクプロジェクト</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/setting_guide/index.html">9. Nablarchアプリケーションフレームワーク設定ガイド</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../application_framework/adaptors/index.html">アダプタ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/log_adaptor.html">logアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/router_adaptor.html">ルーティングアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/webspheremq_adaptor.html">IBM WebSphere MQアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/jaxrs_adaptor.html">JAX-RSアダプタ</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../application_framework/example/index.html">Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/example/index.html#id1">環境構築手順について</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/example/index.html#id2">アプリケーションの実行手順について</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../extension_components/index.html">Nablarch拡張コンポーネント</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../extension_components/report/index.html">1. 帳票ライブラリ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../extension_components/report/index.html#id2">1.1. 概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../extension_components/report/index.html#id3">1.2. 要求</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../extension_components/report/index.html#id7">1.3. 構造</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../extension_components/report/index.html#report-template">1.4. 実装例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../extension_components/workflow/index.html">2. ワークフロー</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../extension_components/workflow/doc/index.html">2.1. ワークフローライブラリ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../extension_components/workflow/sample_application/doc/index.html">2.2. ワークフローアプリケーション実装ガイド</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../extension_components/workflow/tool/doc/index.html">2.3. ワークフロー定義データ生成ツール</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../extension_components/etl/index.html">3. ETL</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../extension_components/etl/index.html#id3">3.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../extension_components/etl/index.html#id4">3.2. ETLの各フェーズの仕様</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../extension_components/etl/index.html#id5">3.3. 使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../extension_components/etl/index.html#id7">3.4. 拡張例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../extension_components/etl/etl_maven_plugin.html">4. ETL Mavenプラグイン</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../extension_components/etl/etl_maven_plugin.html#id2">4.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../extension_components/etl/etl_maven_plugin.html#id3">4.2. 使用方法</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../development_tools/index.html">Nablarch開発ツール</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../development_tools/java_static_analysis/index.html">1. 効率的なJava静的チェック</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/java_static_analysis/index.html#code-analysis">1.1. 構文チェックを行う</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/java_static_analysis/index.html#code-format">1.2. フォーマットを統一する</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/java_static_analysis/index.html#api">1.3. 許可していないAPIが使用されていないかチェックする</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../development_tools/ui_dev/index.html">2. フロントエンド上級者向けのUI開発基盤</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/ui_dev/doc/index.html">2.1. Nablarch UI開発基盤 解説書</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/ui_dev/guide/index.html">2.2. JSP/HTML作成ガイド</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/ui_dev/guide/widget_usage/widget_list.html">2.3. UI部品の実装サンプルで提供しているウィジェットの一覧</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../development_tools/testing_framework/index.html">3. 大規模開発向け重厚なテスティングフレームワーク</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/index.html">3.1. 単体テスト実施方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/testing_framework/guide/development_guide/06_TestFWGuide/index.html">3.2. 自動テストフレームワークの使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/testing_framework/guide/development_guide/08_TestTools/index.html">3.3. プログラミング工程で使用するツール</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../development_tools/toolbox/index.html">4. アプリケーション開発時に使える便利なツール</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/toolbox/UnpublishedMethodDetector/UnpublishedApi.html">4.1. 使用不許可APIチェックツール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/toolbox/PublishedApi/PublishedApiConfigGenerator.html">4.2. 使用許可API一覧作成ツール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/toolbox/JspStaticAnalysis/index.html">4.3. JSP静的解析ツール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/toolbox/SqlExecutor/SqlExecutor.html">4.4. Nablarch SQL Executor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/toolbox/JspVerifier/JspVerifier.html">4.5. 業務画面JSP検証ツール</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Nablarch実装例集</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../01/index.html">データベースを用いたパスワード認証機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../01/0101_PBKDF2PasswordEncryptor.html">PBKDF2を用いたパスワード暗号化機能サンプル</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../01/index.html#id3">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../01/index.html#id4">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../01/index.html#id6">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../01/index.html#id12">使用方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../02/index.html">バリデーション機能の拡張</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../02/index.html#id3">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../02/index.html#extendedvalidation-mailaddressvalidator">メールアドレスバリデーション</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../02/index.html#extendedvalidation-japanesetelnumbervalidator">日本電話番号バリデーション</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../02/index.html#id12">コード値精査</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../03/index.html">検索結果の一覧表示</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#id3">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#id4">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#id5">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#id8">使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#listsearchinfo">ListSearchInfoクラス</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#listsearchresult">listSearchResultタグ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#listsearchresult-sort">検索結果の並び替え</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#listsearchresult-nopaging">1画面にすべての検索結果を一覧表示する場合の実装方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#listsearchresult-defaultcondition">デフォルトの検索条件で検索した結果を初期表示する場合の実装方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#listsearchresult-setting">検索結果の一覧表示機能のデフォルト値設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#listsearchresult-customize">業務アプリケーションへのサンプル実装(タグファイル)の取り込み方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#listsearchresult-tagreference">タグリファレンス</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../04/index.html">フォーマッタ機能の拡張</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../04/0401_ExtendedDataFormatter.html">データフォーマッタの拡張</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../04/0402_ExtendedFieldType.html">データフォーマッタ機能におけるフィールドタイプの拡張</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../05/index.html">データベースを用いたファイル管理機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../05/index.html#id2">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../05/index.html#id6">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../05/index.html#id7">機能</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../05/index.html#id10">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../05/index.html#id15">使用方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../06/index.html">CAPTCHA機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../06/06_Captcha_guide.html">CAPTCHA機能の組み込み手順</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../06/index.html#id3">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../06/index.html#id4">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../06/index.html#id6">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../06/index.html#id21">使用方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../07/index.html">UserAgent情報取得機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../07/index.html#id1">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../07/index.html#id3">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../07/index.html#id8">設定の記述</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../07/index.html#id11">使用例</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">HTMLメール送信機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">要求</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id14">実装例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../09/index.html">bouncycastleを使用した電子署名つきメールの送信サンプルの使用方法</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../09/index.html#id3">環境準備</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../09/index.html#id4">電子署名付きメール送信機能の構造</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../09/index.html#id5">設定ファイルの準備</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../09/index.html#id7">実行方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../10/index.html">ログ集計サンプルの使用方法</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../10/index.html#id3">提供サンプル一覧</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../11/index.html">メッセージング基盤テストシミュレータサンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../11/index.html#id4">用途</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../11/index.html#id8">特徴</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../11/index.html#id12">要求</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../11/index.html#id15">使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../11/index.html#id18">拡張例</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../nablarch_api/index.html">Nablarch API</a></li>
+</ul>
+
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">∇Nablarch </a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">Nablarch実装例集</a> &raquo;</li>
+      
+    <li>HTMLメール送信機能サンプル</li>
+      <li class="wy-breadcrumbs-aside">
+        <a href="https://github.com/nablarch" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="html">
+<h1>HTMLメール送信機能サンプル<a class="headerlink" href="#html" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="id1">
+<h2>概要<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>HTMLメールを送信する機能の実装サンプルを提供する。</p>
+<p><a class="reference external" href="https://github.com/nablarch/nablarch-biz-sample-all">ソースコード</a></p>
+<p>本機能は、Nablarchアプリケーションフレームワークで提供されるメール送信機能(nablarch.common.mail.MailSender)の定型メールを利用してHTMLメールを送信するサンプルである。
+なお、本機能はサンプル実装のため、導入プロジェクトで使用する際には、ソースコード(プロダクション、テストコード共に）をプロジェクトに取り込み、使用すること。</p>
+<div class="admonition important">
+<p class="first admonition-title">重要</p>
+<p>本サンプルはキャンペーンの通知のようなHTMLメールの一括送信には対応していない。
+下記に当てはまる場合は、プロダクトの利用を推奨する。</p>
+<blockquote class="last">
+<div><ul class="simple">
+<li>キャンペーン通知やメールマガジンなど、一括で大量のメールを送信する。</li>
+<li>配信したメールの開封率、クリックカウントの効果を測定する。</li>
+<li>メールアドレスからクライアント（例えば、フィーチャーフォンか否か）を判別し、送信するメールを切り替える。</li>
+<li>絵文字を利用する。</li>
+<li>デコメールを送信する。</li>
+<li>HTMLメールのコンテンツ作成を支援し、顧客がコンテンツを作成する。
+(本サンプルではドローツールやコンテンツ作成機能は存在しないため、開発者がコンテンツを作成する必要がある。)</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="admonition important">
+<p class="first admonition-title">重要</p>
+<p class="last">一部のクライアントでは期待したとおりにHTMLメールが表示されないことにより、ユーザーがメールを参照しない可能性がある。このため、業務要件としてユーザー通知が重要なメールにはHTMLメールを利用しないこと。</p>
+</div>
+<div class="admonition important">
+<p class="first admonition-title">重要</p>
+<p><strong>HTMLメールのレイアウト</strong></p>
+<blockquote>
+<div><p>メールクライアントによりHTMLメールの表示に差異があるため、HTMLメール標準を策定し、顧客と合意すること。
+HTMLメール標準では下記のような点を含め、PJにて検討すること。</p>
+<ul class="simple">
+<li>テスト対象とするメールクライアントとデバイス、OS。</li>
+<li>HTMLタグ、スタイル(CSSのプロパティ)などの使用範囲。</li>
+<li>フォント、配色などの使用範囲。</li>
+<li>コンテンツの横幅。(PCのみをサポートする場合でも、メールクライアントのプレビュー機能で確認できる程度のサイズ。)</li>
+</ul>
+</div></blockquote>
+<p><strong>コンテンツ作成時の留意点</strong></p>
+<blockquote class="last">
+<div><ul class="simple">
+<li>&lt;head&gt;タグの内容を無視するメールクライアントがあるため、HTMLメールは、一般的にスタイルをCSSファイルや&lt;style&gt;タグに切り出すことが <strong>推奨されていない</strong> 。</li>
+<li>極力シンプルなデザインにすること。</li>
+<li>メールクライアントによってはメディアクエリをサポートしていないため、極力レスポンシブデザインは採用しないこと。</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>要求<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id4">
+<h3>実装済み<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li>HTMLメール(代替テキストを含む)を送信できる。</li>
+<li>本文のプレースホルダー部分の文字列に対して、HTMLエスケープを行う。
+これにより、通常のオンライン画面と同様のセキュリティ対策を行うことができる。</li>
+</ul>
+</div>
+<div class="section" id="id5">
+<h3>取り下げ<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li>メールクライアント毎の差異を吸収できる。
+(具体的にはCSSなどで定義されたスタイルの差異、JavaScriptの使用可否を含めた実装差異を吸収できる。)</li>
+</ul>
+<blockquote>
+<div>HTMLメールを送信したいPJにてHTMLのデザインおよび対象クライアントの選定をするため、
+本要求はコンテンツ作成時に対応するものとし、本サンプルでは提供しない。</div></blockquote>
+<ul>
+<li><p class="first">HTMLメールに画像を埋めこむことができる。</p>
+<p>メールに画像を埋めこむとメール容量が増大し、メールクライアントでHTMLを拒否したユーザーでも受信に時間がかかる。また、メールサーバーへの負荷が増大する。
+コンシューマ向けのWebサービスではURL形式の使用が多いため、本サンプルでは画像の埋めこみ機能を提供しない。</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="id6">
+<h2>構成<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>HTMLメールはコンテンツの内容に応じて、RFC 2557に準拠した下記のパターンのContent-Typeで送信する。</p>
+<p>送信するメールのパターンとデータモデルを示す。</p>
+<div class="section" id="id7">
+<h3>メールの形式<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>本サンプルでは、以下のメールを送信することができる。</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="45%" />
+<col width="16%" />
+<col width="25%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">メール形式</th>
+<th class="head">業務Actionが使用するコンテキストクラス</th>
+<th class="head">添付ファイル</th>
+<th class="head">メール構造のパターン</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td rowspan="2">TEXT</td>
+<td rowspan="2">TemplateMailContext</td>
+<td>無し</td>
+<td>1</td>
+</tr>
+<tr class="row-odd"><td>有り</td>
+<td>2</td>
+</tr>
+<tr class="row-even"><td rowspan="2">HTML</td>
+<td rowspan="2">TemplateHtmlMailContext</td>
+<td>無し</td>
+<td>3</td>
+</tr>
+<tr class="row-odd"><td>有り</td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
+<p><strong>メール構造のパターン１</strong></p>
+<blockquote>
+<div><a class="reference internal image-reference" href="../../_images/Mail_Pattern01.jpg"><img alt="../../_images/Mail_Pattern01.jpg" src="../../_images/Mail_Pattern01.jpg" style="width: 590.8px; height: 27.3px;" /></a>
+</div></blockquote>
+<p><strong>メール構造のパターン２</strong></p>
+<blockquote>
+<div><a class="reference internal image-reference" href="../../_images/Mail_Pattern02.jpg"><img alt="../../_images/Mail_Pattern02.jpg" src="../../_images/Mail_Pattern02.jpg" style="width: 590.8px; height: 90.3px;" /></a>
+</div></blockquote>
+<p><strong>メール構造のパターン３</strong></p>
+<blockquote>
+<div><a class="reference internal image-reference" href="../../_images/Mail_Pattern03.jpg"><img alt="../../_images/Mail_Pattern03.jpg" src="../../_images/Mail_Pattern03.jpg" style="width: 590.8px; height: 90.3px;" /></a>
+</div></blockquote>
+<p><strong>メール構造のパターン４</strong></p>
+<blockquote>
+<div><a class="reference internal image-reference" href="../../_images/Mail_Pattern04.jpg"><img alt="../../_images/Mail_Pattern04.jpg" src="../../_images/Mail_Pattern04.jpg" style="width: 590.8px; height: 153.3px;" /></a>
+</div></blockquote>
+</div>
+<div class="section" id="id8">
+<h3>クラス図<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<blockquote>
+<div><a class="reference internal image-reference" href="../../_images/HtmlMail_ClassDiagram.png"><img alt="../../_images/HtmlMail_ClassDiagram.png" src="../../_images/HtmlMail_ClassDiagram.png" style="width: 60em; height: 30em;" /></a>
+</div></blockquote>
+<div class="section" id="id9">
+<h4>各クラスの責務<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="40%" />
+<col width="60%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">クラス名</th>
+<th class="head">概要</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>please.change.me.common.mail.html.HtmlMailRequester</td>
+<td>MailRequesterを拡張したHTMLメール送信要求を受け付けるクラス。</td>
+</tr>
+<tr class="row-odd"><td>please.change.me.common.mail.html.TemplateHtmlMailContext</td>
+<td>TemplateMailContextを拡張し、HTMLメールに必要な情報を保持するクラス。
+代替テキストを本文に変換することで、HTMLメール用のテンプレートを利用して
+プレーンテキスト形式のメールを送信する機能を実現する。</td>
+</tr>
+<tr class="row-even"><td>please.change.me.common.mail.html.HtmlMailTable</td>
+<td>HTMLメール用のテーブルにアクセスするクラス。</td>
+</tr>
+<tr class="row-odd"><td>please.change.me.common.mail.html.HtmlMailSender</td>
+<td>MailSenderを拡張したHTMLメールの送信をサポートするクラス。HTMLメール用の要求でない場合は、
+親クラスに処理を委譲し、プレーンテキスト形式のメールを送信する。</td>
+</tr>
+<tr class="row-even"><td>please.change.me.common.mail.html.HtmlMailContentCreator</td>
+<td>HTMLメール用のコンテンツを生成するクラス。</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+<div class="section" id="id10">
+<h4>設定の記述<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<blockquote>
+<div><div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- メール送信要求API --&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;mailRequester&quot;</span> <span class="na">class=</span><span class="s">&quot;please.change.me.common.mail.html.HtmlMailRequester&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;mailRequestConfig&quot;</span> <span class="na">ref=</span><span class="s">&quot;mailRequestConfig&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;mailRequestIdGenerator&quot;</span> <span class="na">ref=</span><span class="s">&quot;mailRequestIdGenerator&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;mailRequestTable&quot;</span> <span class="na">ref=</span><span class="s">&quot;mailRequestTable&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;mailRecipientTable&quot;</span> <span class="na">ref=</span><span class="s">&quot;mailRecipientTable&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;mailAttachedFileTable&quot;</span> <span class="na">ref=</span><span class="s">&quot;mailAttachedFileTable&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;mailTemplateTable&quot;</span> <span class="na">ref=</span><span class="s">&quot;mailTemplateTable&quot;</span> <span class="nt">/&gt;</span>
+    <span class="c">&lt;!-- 拡張したテーブルへのアクセス機能を設定する --&gt;</span>
+    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;htmlMailTable&quot;</span> <span class="na">ref=</span><span class="s">&quot;htmlMailTable&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+
+<span class="c">&lt;!--</span>
+<span class="c">Nablarchアプリケーションフレームワークのメール送信機能ではスキーマ定義を行うが、</span>
+<span class="c">本ライブラリではソースコードを直接修正すれば良いため、設定ファイルでの定義は行わない。</span>
+<span class="c">ただし、テーブルアクセスの機能はRequester,Senderで共通のため、コンポーネントの定義を行うこと。</span>
+<span class="c">--&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;htmlMailTable&quot;</span> <span class="na">class=</span><span class="s">&quot;please.change.me.common.mail.html.HtmlMailTable&quot;</span> <span class="nt">/&gt;</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="id11">
+<h3>データモデル<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>メール機能からの拡張部分を示す。</p>
+<p>本サンプルではメール関連テーブルにHTML用の拡張テーブルを関連付けることで
+TEXT+HTMLメールとして動作させる方式を採用している。</p>
+<div class="admonition tip">
+<p class="first admonition-title">ちなみに</p>
+<p class="last">下記に示すデータモデルのDDLはテスト資源に含まれている。</p>
+</div>
+<div class="section" id="id12">
+<h4>HTMLメール用代替テキストテンプレートテーブル<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>HTML用定型メールの代替テキストを管理するメールテンプレートの関連テーブル。</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="11%" />
+<col width="73%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">定義</th>
+<th class="head">Javaの型</th>
+<th class="head">備考</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>メールテンプレートID</td>
+<td>java.lang.String</td>
+<td><div class="first last line-block">
+<div class="line">PK</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td>言語</td>
+<td>java.lang.String</td>
+<td><div class="first last line-block">
+<div class="line">PK</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td>代替テキスト</td>
+<td>java.lang.String</td>
+<td><div class="first last line-block">
+<div class="line">HTMLメールを表示できないメーラーのためのテキスト。</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+<div class="section" id="id13">
+<h4>HTMLメール用代替テキストテーブル<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>HTMLメール用の代替テキストを管理するメール送信要求の関連テーブル。</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="11%" />
+<col width="74%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">定義</th>
+<th class="head">Javaの型</th>
+<th class="head">備考</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>メール送信要求ID</td>
+<td>java.lang.String</td>
+<td><div class="first last line-block">
+<div class="line">PK</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td>代替テキスト</td>
+<td>java.lang.String</td>
+<td><div class="first last line-block">
+<div class="line">HTMLメールを表示できないメーラーのためのテキスト。</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+</div>
+</div>
+<div class="section" id="id14">
+<h2>実装例<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id15">
+<h3>HTMLメールの送信<a class="headerlink" href="#id15" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>本サンプルを利用した実装は、Nablarchアプリケーションフレームワークのメール送信機能の定型メール送信と同様である。</p>
+<p>業務アクションで利用するコンテキストクラスが異なるだけなので、実装例は省略する。</p>
+</div>
+<div class="section" id="id16">
+<h3>コンテンツの動的な切替<a class="headerlink" href="#id16" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>HTML用のテンプレートを利用して、業務アクションなどから動的にHTML形式とTEXT形式を切り替える実装のサンプルを提示する。</p>
+<div class="section" id="id17">
+<h4>切替方法<a class="headerlink" href="#id17" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<blockquote>
+<div><p>メール送信要求時、TemplateHtmlMailContextのcontentTypeに <strong>プレーンテキスト</strong> を指定した場合、
+代替テキストを本文に差し替える。</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="26%" />
+<col width="16%" />
+<col width="43%" />
+<col width="16%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">コンテキストクラス</th>
+<th class="head">指定されたType</th>
+<th class="head">本文への移送元</th>
+<th class="head">Content-Type</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>TemplateMailContext</td>
+<td>-</td>
+<td>メールテンプレート.本文</td>
+<td>text/plain</td>
+</tr>
+<tr class="row-odd"><td rowspan="2">TemplateHtmlMailContext</td>
+<td><em>text/plain</em></td>
+<td><em>代替テキストテンプレート.代替テキスト</em></td>
+<td><em>text/plain</em></td>
+</tr>
+<tr class="row-even"><td>text/html</td>
+<td>メールテンプレート.本文</td>
+<td>text/html</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="n">HttpResponse</span> <span class="nf">doSendMail</span><span class="o">(</span><span class="n">HttpRequest</span> <span class="n">req</span><span class="o">,</span> <span class="n">ExecutionContext</span> <span class="n">ctx</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">MailSampleForm</span> <span class="n">form</span> <span class="o">=</span> <span class="n">MailSampleForm</span><span class="o">.</span><span class="na">validate</span><span class="o">(</span><span class="n">req</span><span class="o">,</span> <span class="s">&quot;mail&quot;</span><span class="o">);</span>
+    <span class="n">TemplateHtmlMailContext</span> <span class="n">mail</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TemplateHtmlMailContext</span><span class="o">();</span>
+    <span class="c1">// このとき、ユーザーがContentType.PLAINを選択していれば、代替テキストが本文に切り替わる。</span>
+    <span class="n">mail</span><span class="o">.</span><span class="na">setContentType</span><span class="o">(</span><span class="n">form</span><span class="o">.</span><span class="na">getType</span><span class="o">());</span>
+    <span class="c1">// その他のプロパティを設定し、MailRequesterを呼び出す。</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="id18">
+<h3>電子署名の併用<a class="headerlink" href="#id18" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>電子署名を利用する場合は、電子署名の拡張サンプルとHTMLメールサンプルを併用する。</p>
+<blockquote>
+<div><ul class="simple">
+<li>メール送信要求の登録処理は本サンプルを利用する。</li>
+<li>メール送信バッチについては、本サンプルが提供するHtmlMailContentCreatorクラスを利用して、HTMLメールのコンテンツを作成できるように電子署名の拡張サンプル(SMIMESignedMailSender)を拡張し、利用する。</li>
+</ul>
+</div></blockquote>
+<p>実装イメージを下記に示す。</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@Override</span>
+<span class="kd">protected</span> <span class="kt">void</span> <span class="nf">addBodyContent</span><span class="o">(</span><span class="n">MimeMessage</span> <span class="n">mimeMessage</span><span class="o">,</span> <span class="n">MailRequestTable</span><span class="o">.</span><span class="na">MailRequest</span> <span class="n">mailRequest</span><span class="o">,</span>
+        <span class="n">List</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">MailAttachedFileTable</span><span class="o">.</span><span class="na">MailAttachedFile</span><span class="o">&gt;</span> <span class="n">attachedFiles</span><span class="o">,</span> <span class="n">ExecutionContext</span> <span class="n">context</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">MessagingException</span> <span class="o">{</span>
+
+    <span class="n">String</span> <span class="n">mailSendPatternId</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="na">getSessionScopedVar</span><span class="o">(</span><span class="s">&quot;mailSendPatternId&quot;</span><span class="o">);</span>
+    <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">CertificateWrapper</span><span class="o">&gt;</span> <span class="n">certificateChain</span> <span class="o">=</span> <span class="n">SystemRepository</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">CERTIFICATE_REPOSITORY_KEY</span><span class="o">);</span>
+    <span class="n">CertificateWrapper</span> <span class="n">certificateWrapper</span> <span class="o">=</span> <span class="n">certificateChain</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">mailSendPatternId</span><span class="o">);</span>
+
+    <span class="k">try</span> <span class="o">{</span>
+        <span class="c1">// 電子署名を生成するジェネレータの設定を行う。</span>
+        <span class="n">SMIMESignedGenerator</span> <span class="n">smimeSignedGenerator</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SMIMESignedGenerator</span><span class="o">();</span>
+        <span class="c1">// ---中略---</span>
+
+        <span class="c1">// HTMLメールとの分岐</span>
+        <span class="n">MimeBodyPart</span> <span class="n">bodyPart</span><span class="o">;</span>
+        <span class="n">HtmlMailTable</span> <span class="n">htmlTable</span> <span class="o">=</span> <span class="n">SystemRepository</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;htmlMailTable&quot;</span><span class="o">);</span>
+        <span class="n">SqlRow</span> <span class="n">alternativeText</span> <span class="o">=</span> <span class="n">htmlTable</span><span class="o">.</span><span class="na">findAlternativeText</span><span class="o">(</span><span class="n">mailRequest</span><span class="o">.</span><span class="na">getMailRequestId</span><span class="o">());</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">alternativeText</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">bodyPart</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MimeBodyPart</span><span class="o">();</span>
+            <span class="n">bodyPart</span><span class="o">.</span><span class="na">setContent</span><span class="o">(</span><span class="n">HtmlMailContentCreator</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">mailRequest</span><span class="o">.</span><span class="na">getMailBody</span><span class="o">(),</span> <span class="n">mailRequest</span><span class="o">.</span><span class="na">getCharset</span><span class="o">(),</span>
+                                                              <span class="n">alternativeText</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="s">&quot;alternativeText&quot;</span><span class="o">),</span> <span class="n">attachedFiles</span><span class="o">));</span>
+            <span class="n">mimeMessage</span><span class="o">.</span><span class="na">setContent</span><span class="o">(</span><span class="n">smimeSignedGenerator</span><span class="o">.</span><span class="na">generate</span><span class="o">(</span><span class="n">bodyPart</span><span class="o">));</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+          <span class="c1">// SMIMESignedMailSenderの実装</span>
+          <span class="n">bodyPart</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MimeBodyPart</span><span class="o">();</span>
+          <span class="n">bodyPart</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="n">mailRequest</span><span class="o">.</span><span class="na">getMailBody</span><span class="o">(),</span> <span class="n">mailRequest</span><span class="o">.</span><span class="na">getCharset</span><span class="o">());</span>
+          <span class="c1">// ---後略---</span>
+    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">MailConfig</span> <span class="n">mailConfig</span> <span class="o">=</span> <span class="n">SystemRepository</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;mailConfig&quot;</span><span class="o">);</span>
+        <span class="n">String</span> <span class="n">mailRequestId</span> <span class="o">=</span> <span class="n">mailRequest</span><span class="o">.</span><span class="na">getMailRequestId</span><span class="o">();</span>
+
+        <span class="k">throw</span> <span class="k">new</span> <span class="n">TransactionAbnormalEnd</span><span class="o">(</span>
+                <span class="n">mailConfig</span><span class="o">.</span><span class="na">getAbnormalEndExitCode</span><span class="o">(),</span> <span class="n">e</span><span class="o">,</span>
+                <span class="n">mailConfig</span><span class="o">.</span><span class="na">getSendFailureCode</span><span class="o">(),</span> <span class="n">mailRequestId</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id19">
+<h3>タグを埋めこむ<a class="headerlink" href="#id19" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="admonition important">
+<p class="first admonition-title">重要</p>
+<p>タグの埋めこみは、下記の点から提供時には実装しておらず、推奨もしていない。</p>
+<blockquote>
+<div><ul class="simple">
+<li>HTMLメールのレイアウト確認が困難になる</li>
+<li>セキュリティ対策もPJにて実施する必要がある</li>
+</ul>
+</div></blockquote>
+<p class="last">そのため、安易に利用せず、テンプレートを複数用意することで対応できないか検討すること。
+※テンプレートの作成コストでセキュリティ上のリスクを補填できる点も考慮すること。</p>
+</div>
+<p>Nablarchが提供するサンプルでは、HTMLエスケープを強制するため、動的にHTMLタグをテンプレートに埋めこむことはできない。</p>
+<p>動的に埋めこむ必要がある場合は、PJにてTemplateHtmlMailContextを修正し、TemplateMailContext#setReplaceKeyValueを呼び出すAPIを追加すること。</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="c1">// HTMLエスケープをせずにタグを埋めこむ。</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setReplaceKeyRawValue</span><span class="o">(</span><span class="n">String</span> <span class="n">key</span><span class="o">,</span> <span class="n">String</span> <span class="n">tag</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">super</span><span class="o">.</span><span class="na">setReplaceKeyValue</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">tag</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">ちなみに</p>
+<p>HTMLメールのテストは通常のメールと同様のテストを行う。</p>
+<blockquote class="last">
+<div><ul class="simple">
+<li>HTMLテキストはメール送信要求のテーブルを検証する。</li>
+<li>実際のメールクライアントでのレイアウト確認は送信バッチを利用して、メールを送信して確認する。</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+
+    <hr/>
+
+    <div role="contentinfo">
+        <p>
+            &copy; Copyright 2010-2017, TIS Inc.
+        </p>
+    </div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'5u8',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/custom.js"></script>
+      <script type="text/javascript" src="../../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

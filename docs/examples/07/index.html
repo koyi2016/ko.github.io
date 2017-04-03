@@ -1,0 +1,868 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>UserAgent情報取得機能サンプル &mdash; ∇Nablarch  5u8 ドキュメント</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="索引"
+              href="../../genindex.html"/>
+        <link rel="search" title="検索" href="../../search.html"/>
+    <link rel="top" title="∇Nablarch  5u8 ドキュメント" href="../../index.html"/>
+        <link rel="up" title="Nablarch実装例集" href="../index.html"/>
+        <link rel="next" title="UserAgent情報取得機能設定サンプル" href="useragent_sample.html"/>
+        <link rel="prev" title="CAPTCHA機能の組み込み手順" href="../06/06_Captcha_guide.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+  
+  <a href="../../index.html" id="sidebar-title" class="icon"> ∇Nablarch 
+  
+
+  
+    <div id="sidebar-version">Version: 5u8</div>
+  </a>
+
+  <div role="search">
+    <form id="google-search-form" class="wy-form" method="get" action="https://www.google.co.jp/search">
+      <input type="hidden" id="document-version" value="5u8" />
+      <input type="text" name="text" placeholder="Search docs on google" id="text"/>
+      <input type="hidden" name="q" id="q"/>
+    </form>
+  </div>
+    
+    
+
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+  
+  
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../about_nablarch/index.html">Nablarchについて</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../about_nablarch/concept.html">Nablarchのコンセプト</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../about_nablarch/concept.html#robustness">Robustness</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../about_nablarch/concept.html#testability">Testability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../about_nablarch/concept.html#ready-to-use">Ready-to-Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../about_nablarch/mvn_module.html">Nablarch のモジュール一覧</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../about_nablarch/license.html">Nablarchのライセンスについて</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../application_framework/index.html">Nablarchアプリケーションフレームワーク</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../application_framework/application_framework/index.html">アプリケーションフレームワーク</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/nablarch/index.html">1. Nablarchアプリケーションフレームワークとは</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/web/index.html">2. ウェブアプリケーション編</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/web_service/index.html">3. ウェブサービス編</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/batch/index.html">4. バッチアプリケーション編</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/messaging/index.html">5. メッセージング編</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/handlers/index.html">6. Nablarchの提供する標準ハンドラ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/libraries/index.html">7. Nablarchが提供するライブラリ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/blank_project/index.html">8. ブランクプロジェクト</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/setting_guide/index.html">9. Nablarchアプリケーションフレームワーク設定ガイド</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../application_framework/adaptors/index.html">アダプタ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/log_adaptor.html">logアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/router_adaptor.html">ルーティングアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/webspheremq_adaptor.html">IBM WebSphere MQアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/jaxrs_adaptor.html">JAX-RSアダプタ</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../application_framework/example/index.html">Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/example/index.html#id1">環境構築手順について</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/example/index.html#id2">アプリケーションの実行手順について</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../extension_components/index.html">Nablarch拡張コンポーネント</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../extension_components/report/index.html">1. 帳票ライブラリ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../extension_components/report/index.html#id2">1.1. 概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../extension_components/report/index.html#id3">1.2. 要求</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../extension_components/report/index.html#id7">1.3. 構造</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../extension_components/report/index.html#report-template">1.4. 実装例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../extension_components/workflow/index.html">2. ワークフロー</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../extension_components/workflow/doc/index.html">2.1. ワークフローライブラリ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../extension_components/workflow/sample_application/doc/index.html">2.2. ワークフローアプリケーション実装ガイド</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../extension_components/workflow/tool/doc/index.html">2.3. ワークフロー定義データ生成ツール</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../extension_components/etl/index.html">3. ETL</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../extension_components/etl/index.html#id3">3.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../extension_components/etl/index.html#id4">3.2. ETLの各フェーズの仕様</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../extension_components/etl/index.html#id5">3.3. 使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../extension_components/etl/index.html#id7">3.4. 拡張例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../extension_components/etl/etl_maven_plugin.html">4. ETL Mavenプラグイン</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../extension_components/etl/etl_maven_plugin.html#id2">4.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../extension_components/etl/etl_maven_plugin.html#id3">4.2. 使用方法</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../development_tools/index.html">Nablarch開発ツール</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../development_tools/java_static_analysis/index.html">1. 効率的なJava静的チェック</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/java_static_analysis/index.html#code-analysis">1.1. 構文チェックを行う</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/java_static_analysis/index.html#code-format">1.2. フォーマットを統一する</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/java_static_analysis/index.html#api">1.3. 許可していないAPIが使用されていないかチェックする</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../development_tools/ui_dev/index.html">2. フロントエンド上級者向けのUI開発基盤</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/ui_dev/doc/index.html">2.1. Nablarch UI開発基盤 解説書</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/ui_dev/guide/index.html">2.2. JSP/HTML作成ガイド</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/ui_dev/guide/widget_usage/widget_list.html">2.3. UI部品の実装サンプルで提供しているウィジェットの一覧</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../development_tools/testing_framework/index.html">3. 大規模開発向け重厚なテスティングフレームワーク</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/index.html">3.1. 単体テスト実施方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/testing_framework/guide/development_guide/06_TestFWGuide/index.html">3.2. 自動テストフレームワークの使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/testing_framework/guide/development_guide/08_TestTools/index.html">3.3. プログラミング工程で使用するツール</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../development_tools/toolbox/index.html">4. アプリケーション開発時に使える便利なツール</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/toolbox/UnpublishedMethodDetector/UnpublishedApi.html">4.1. 使用不許可APIチェックツール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/toolbox/PublishedApi/PublishedApiConfigGenerator.html">4.2. 使用許可API一覧作成ツール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/toolbox/JspStaticAnalysis/index.html">4.3. JSP静的解析ツール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/toolbox/SqlExecutor/SqlExecutor.html">4.4. Nablarch SQL Executor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/toolbox/JspVerifier/JspVerifier.html">4.5. 業務画面JSP検証ツール</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Nablarch実装例集</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../01/index.html">データベースを用いたパスワード認証機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../01/0101_PBKDF2PasswordEncryptor.html">PBKDF2を用いたパスワード暗号化機能サンプル</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../01/index.html#id3">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../01/index.html#id4">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../01/index.html#id6">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../01/index.html#id12">使用方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../02/index.html">バリデーション機能の拡張</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../02/index.html#id3">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../02/index.html#extendedvalidation-mailaddressvalidator">メールアドレスバリデーション</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../02/index.html#extendedvalidation-japanesetelnumbervalidator">日本電話番号バリデーション</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../02/index.html#id12">コード値精査</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../03/index.html">検索結果の一覧表示</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#id3">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#id4">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#id5">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#id8">使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#listsearchinfo">ListSearchInfoクラス</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#listsearchresult">listSearchResultタグ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#listsearchresult-sort">検索結果の並び替え</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#listsearchresult-nopaging">1画面にすべての検索結果を一覧表示する場合の実装方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#listsearchresult-defaultcondition">デフォルトの検索条件で検索した結果を初期表示する場合の実装方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#listsearchresult-setting">検索結果の一覧表示機能のデフォルト値設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#listsearchresult-customize">業務アプリケーションへのサンプル実装(タグファイル)の取り込み方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#listsearchresult-tagreference">タグリファレンス</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../04/index.html">フォーマッタ機能の拡張</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../04/0401_ExtendedDataFormatter.html">データフォーマッタの拡張</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../04/0402_ExtendedFieldType.html">データフォーマッタ機能におけるフィールドタイプの拡張</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../05/index.html">データベースを用いたファイル管理機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../05/index.html#id2">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../05/index.html#id6">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../05/index.html#id7">機能</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../05/index.html#id10">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../05/index.html#id15">使用方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../06/index.html">CAPTCHA機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../06/06_Captcha_guide.html">CAPTCHA機能の組み込み手順</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../06/index.html#id3">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../06/index.html#id4">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../06/index.html#id6">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../06/index.html#id21">使用方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">UserAgent情報取得機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">設定の記述</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">使用例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../08/index.html">HTMLメール送信機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../08/index.html#id1">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../08/index.html#id3">要求</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../08/index.html#id6">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../08/index.html#id14">実装例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../09/index.html">bouncycastleを使用した電子署名つきメールの送信サンプルの使用方法</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../09/index.html#id3">環境準備</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../09/index.html#id4">電子署名付きメール送信機能の構造</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../09/index.html#id5">設定ファイルの準備</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../09/index.html#id7">実行方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../10/index.html">ログ集計サンプルの使用方法</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../10/index.html#id3">提供サンプル一覧</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../11/index.html">メッセージング基盤テストシミュレータサンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../11/index.html#id4">用途</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../11/index.html#id8">特徴</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../11/index.html#id12">要求</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../11/index.html#id15">使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../11/index.html#id18">拡張例</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../nablarch_api/index.html">Nablarch API</a></li>
+</ul>
+
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">∇Nablarch </a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">Nablarch実装例集</a> &raquo;</li>
+      
+    <li>UserAgent情報取得機能サンプル</li>
+      <li class="wy-breadcrumbs-aside">
+        <a href="https://github.com/nablarch" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="useragent">
+<h1>UserAgent情報取得機能サンプル<a class="headerlink" href="#useragent" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="id1">
+<h2>概要<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>UserAgent情報取得機能はHTTPヘッダ(User-Agent)より取得した値を設定ファイルに記述された内容に従って解析を行い、以下の情報を取得する。</p>
+<ul class="simple">
+<li>OSタイプ</li>
+<li>OS名称</li>
+<li>OSバージョン</li>
+<li>ブラウザタイプ</li>
+<li>ブラウザ名称</li>
+<li>ブラウザバージョン</li>
+</ul>
+<p>アプリケーションからは、<code class="docutils literal"><span class="pre">HttpRequest#getUserAgent()</span></code>により取得できる。</p>
+<div class="toctree-wrapper compound">
+</div>
+<p><a class="reference external" href="https://github.com/nablarch/nablarch-biz-sample-all">ソースコード</a></p>
+</div>
+<div class="section" id="id3">
+<h2>構成<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id4">
+<h3>クラス図<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<img alt="../../_images/UserAgent_ClassDiagram.png" src="../../_images/UserAgent_ClassDiagram.png" />
+</div>
+<div class="section" id="id5">
+<h3>各クラスの責務<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id6">
+<h4>インタフェース定義<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="40%" />
+<col width="60%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">クラス名</th>
+<th class="head">概要</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>please.change.me.fw.web.useragent.UserAgentValueConvertor</td>
+<td><div class="first last line-block">
+<div class="line">取得した値（ブラウザ名、バージョン番号等）を変換するインタフェース。</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id7">
+<h4>クラス定義<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>a) nablarch.fw.web.UserAgentParserの実装クラス</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="40%" />
+<col width="60%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">クラス名</th>
+<th class="head">概要</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>please.change.me.fw.web.useragent.RegexUserAgentParser</td>
+<td><div class="first last line-block">
+<div class="line">正規表現によりOSおよびブラウザの各種情報を取得するUserAgent解析クラス。</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>b) nablarch.fw.web.useragent.UserAgentValueConvertorの実装クラス</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="40%" />
+<col width="60%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">クラス名</th>
+<th class="head">概要</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>please.change.me.fw.web.useragent.UserAgentNameConvertor</td>
+<td><div class="first last line-block">
+<div class="line">名称項目の整形を行うコンバータ。</div>
+<div class="line">任意の文字列を置換する機能を持つ。</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td>please.change.me.fw.web.useragent.UserAgentVersionConvertor</td>
+<td><div class="first last line-block">
+<div class="line">バージョン項目の整形を行うコンバータ。</div>
+<div class="line">バージョン項目を分割し、各項目を任意の文字列でパディングする機能を持つ。</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>c) その他のクラス</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="36%" />
+<col width="64%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">クラス名</th>
+<th class="head">概要</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>nablarch.fw.web.HttpRequest</td>
+<td><div class="first last line-block">
+<div class="line">HTTPプロトコルにおけるリクエストメッセージを格納するデータオブジェクト。</div>
+<div class="line">アプリケーションでは本クラスの <code class="docutils literal"><span class="pre">getUserAgent</span></code> メソッドよりUserAgentクラスを取得する。</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td>nablarch.fw.web.useragent.UserAgent</td>
+<td><div class="first last line-block">
+<div class="line">UserAgent解析クラスにより解析された結果を保持するクラス。</div>
+<div class="line">UserAgent解析クラスをカスタマイズし、任意の項目を取得したい場合、本クラスを拡張する。</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td>please.change.me.fw.web.useragent.UserAgentPatternSetting</td>
+<td><div class="first last line-block">
+<div class="line">解析パターンのリストやデフォルト値などの設定項目を保持するクラス。</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td>please.change.me.fw.web.useragent.TypePattern</td>
+<td><div class="first last line-block">
+<div class="line">種別(OS/ブラウザ)を判定するための、解析パターンの正規表現を保持するクラス。</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td>please.change.me.fw.web.useragent.ItemPattern</td>
+<td><div class="first last line-block">
+<div class="line">項目(具体的なブラウザ名等)を判定するための、解析パターンの正規表現やコンバータなどを保持するクラス。</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<div><div class="admonition tip">
+<p class="first admonition-title">ちなみに</p>
+<p><strong>UserAgentVersionConvertorについての補足説明</strong></p>
+<p>サンプル提供されている<code class="docutils literal"><span class="pre">UserAgentValueConvertor</span></code>クラスの使用用途について説明をする。
+本クラスは、文字列を「D(数字以外)」で分割し、それぞれの要素をパディングし、スペース区切りで結合した値を変換値とする。
+（例：「34.0.1847.116」→「_34 __0 ___1847」）</p>
+<p>なぜこのような変換を行うかというと、変換後のブラウザバージョン番号をCSSクラス名として使用するためである。</p>
+<p>ある特定のブラウザ、端末に対してのみ特別な表示制御が必要となることがあるが、この制御を行うのには様々な方法がある。
+この制御方法がアプリケーション全体で統一されていなければ、
+場当たり的な判定処理、制御処理が散在してしまい保守性が損なわれてしまう。</p>
+<p class="last">この制御方法を統一する方法として、「ユーザエージェント値から取得したブラウザバージョン番号をCSSクラス名とし、特定のブラウザ、端末に対する制御はこのCSS指定により行う」という方法を提供する。本クラスは、その表示制御用途に使用することを意図している。</p>
+</div>
+</div></blockquote>
+</div>
+</div>
+</div>
+<div class="section" id="id8">
+<h2>設定の記述<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="line-block">
+<div class="line">UserAgent情報取得機能は、システムリポジトリ機能を利用して設定を行うことができる。</div>
+</div>
+<div class="section" id="id9">
+<h3>UserAgent解析クラスの設定<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id10">
+<h4>設定内容詳細<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="section" id="please-change-me-fw-web-useragent-regexuseragentparser">
+<h5>please.change.me.fw.web.useragent.RegexUserAgentParserの設定<a class="headerlink" href="#please-change-me-fw-web-useragent-regexuseragentparser" title="このヘッドラインへのパーマリンク">¶</a></h5>
+<div class="toctree-wrapper compound">
+</div>
+<p>RegexUserAgentParserの設定例と設定項目詳細は下記の通り。また、<a class="reference internal" href="useragent_sample.html"><span class="doc">UserAgent情報取得機能設定サンプル</span></a> に、より具体的な設定および利用例を示す。</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="nt">&lt;component-configuration</span> <span class="na">xmlns=</span><span class="s">&quot;http://tis.co.jp/nablarch/component-configuration&quot;</span>
+                         <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><span class="nt">&gt;</span>
+
+  <span class="c">&lt;!-- OSのパターンマッピング設定 --&gt;</span>
+  <span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;userAgentParser&quot;</span> <span class="na">class=</span><span class="s">&quot;please.change.me.fw.web.useragent.RegexUserAgentParser&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;osSetting&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;please.change.me.fw.web.useragent.UserAgentPatternSetting&quot;</span><span class="nt">&gt;</span>
+        <span class="c">&lt;!-- OSタイプを取得するためのパターン設定 --&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;typePatternList&quot;</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;list&gt;</span>
+            <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;please.change.me.fw.web.useragent.TypePattern&quot;</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;name&quot;</span>             <span class="na">value=</span><span class="s">&quot;desktop&quot;</span> <span class="nt">/&gt;</span>
+              <span class="c">&lt;!-- OSタイプの抽出パターン(正規表現) --&gt;</span>
+              <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;pattern&quot;</span>          <span class="na">value=</span><span class="s">&quot;(?i).*(windows|mac os x).*&quot;</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;/component&gt;</span>
+          <span class="nt">&lt;/list&gt;</span>
+        <span class="nt">&lt;/property&gt;</span>
+        <span class="c">&lt;!-- OS情報を取得するためのパターン設定 --&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;itemPatternList&quot;</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;list&gt;</span>
+
+            <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;please.change.me.fw.web.useragent.ItemPattern&quot;</span><span class="nt">&gt;</span>
+              <span class="c">&lt;!-- OS情報の抽出パターン(正規表現) --&gt;</span>
+              <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;pattern&quot;</span>          <span class="na">value=</span><span class="s">&quot;(?i).*(windows|mac os x)[\D+]*([\d\._]*).*&quot;</span> <span class="nt">/&gt;</span>
+              <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;nameIndex&quot;</span>        <span class="na">value=</span><span class="s">&quot;1&quot;</span> <span class="nt">/&gt;</span>  <span class="c">&lt;!-- １つ目のキャプチャグループをOS名にする --&gt;</span>
+              <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;versionIndex&quot;</span>     <span class="na">value=</span><span class="s">&quot;2&quot;</span> <span class="nt">/&gt;</span>  <span class="c">&lt;!-- ２つ目のキャプチャグループをOSバージョンにする --&gt;</span>
+              <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;nameConvertor&quot;</span>    <span class="na">ref=</span><span class="s">&quot;osNameConvertor&quot;</span> <span class="nt">/&gt;</span>
+              <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;versionConvertor&quot;</span> <span class="na">ref=</span><span class="s">&quot;deviceVersionConvertor&quot;</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;/component&gt;</span>
+          <span class="nt">&lt;/list&gt;</span>
+        <span class="nt">&lt;/property&gt;</span>
+      <span class="nt">&lt;/component&gt;</span>
+    <span class="nt">&lt;/property&gt;</span>
+    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;browserSetting&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;please.change.me.fw.web.useragent.UserAgentPatternSetting&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;typePatternList&quot;</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;list&gt;</span>
+            <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;please.change.me.fw.web.useragent.TypePattern&quot;</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;name&quot;</span>             <span class="na">value=</span><span class="s">&quot;Gecko&quot;</span> <span class="nt">/&gt;</span>
+              <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;pattern&quot;</span>          <span class="na">value=</span><span class="s">&quot;.*Gecko.*&quot;</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;/component&gt;</span>
+          <span class="nt">&lt;/list&gt;</span>
+        <span class="nt">&lt;/property&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;itemPatternList&quot;</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;list&gt;</span>
+            <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;please.change.me.fw.web.useragent.ItemPattern&quot;</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;pattern&quot;</span>          <span class="na">value=</span><span class="s">&quot;(?i).*(msie\s|trident.+rv:)([\d\.]*).*&quot;</span> <span class="nt">/&gt;</span>
+              <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;name&quot;</span>             <span class="na">value=</span><span class="s">&quot;ie&quot;</span> <span class="nt">/&gt;</span> <span class="c">&lt;!-- グループインデックスが指定されない場合に使用するブラウザ名 --&gt;</span>
+              <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;versionIndex&quot;</span>     <span class="na">value=</span><span class="s">&quot;2&quot;</span> <span class="nt">/&gt;</span>
+              <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;versionConvertor&quot;</span> <span class="na">ref=</span><span class="s">&quot;browserVersionConvertor&quot;</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;/component&gt;</span>
+          <span class="nt">&lt;/list&gt;</span>
+        <span class="nt">&lt;/property&gt;</span>
+      <span class="nt">&lt;/component&gt;</span>
+    <span class="nt">&lt;/property&gt;</span>
+  <span class="nt">&lt;/component&gt;</span>
+<span class="nt">&lt;/component-configuration&gt;</span>
+</pre></div>
+</div>
+<p>RegexUserAgentParserのプロパティ値を以下に示す。</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="23%" />
+<col width="77%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">property名</th>
+<th class="head">設定内容</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>osSetting</td>
+<td><div class="first last line-block">
+<div class="line">OS情報の解析パターン設定を定義する。</div>
+<div class="line">設定可能な値はUserAgentPatternSettingである。</div>
+<div class="line">指定が無い場合、OSに関する情報は全てnullとなる。</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td>browserSetting</td>
+<td><div class="first last line-block">
+<div class="line">ブラウザ情報の解析パターン設定を定義する。</div>
+<div class="line">設定可能な値はUserAgentPatternSettingである。</div>
+<div class="line">指定が無い場合、ブラウザに関する情報は全てnullとなる。</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>UserAgentPatternSettingのプロパティ値を以下に示す。</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="87%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">property名</th>
+<th class="head">設定内容</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>defaultType</td>
+<td><div class="first last line-block">
+<div class="line">デフォルトの項目タイプを定義する。</div>
+<div class="line">UserAgentがいずれのパターンにもマッチしない場合、または判定中にエラーが発生した場合に使用される。</div>
+<div class="line">指定がない場合、項目タイプは&#8221;UnknownType&#8221;となる。</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td>defaultName</td>
+<td><div class="first last line-block">
+<div class="line">デフォルトの項目名称を定義する。</div>
+<div class="line">UserAgentがいずれのパターンにもマッチしない場合、または判定中にエラーが発生した場合に使用される。</div>
+<div class="line">指定がない場合、項目名称は&#8221;UnknownName&#8221;となる。</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td>defaultVersion</td>
+<td><div class="first last line-block">
+<div class="line">デフォルトのバージョンを定義する。</div>
+<div class="line">UserAgentがいずれのパターンにもマッチしない場合、または判定中にエラーが発生した場合に使用される。</div>
+<div class="line">指定がない場合、バージョンは&#8221;UnknownVersion&#8221;となる。</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td>typePatternList</td>
+<td><div class="first last line-block">
+<div class="line">UserAgentから項目タイプを取得するための解析パターンをListで定義する。</div>
+<div class="line">Listの要素はUserAgentPatternとする。</div>
+<div class="line">パターンの解析はこのリストの定義順に行われ、マッチした時点で該当グループの解析を終了する。</div>
+<div class="line">指定がない場合、解析が行われない。</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td>itemPatternList</td>
+<td><div class="first last line-block">
+<div class="line">UserAgentから項目名称、バージョンを取得するための解析パターンをListで定義する。</div>
+<div class="line">Listの要素はUserAgentPatternとする。</div>
+<div class="line">パターンの解析はこのリストの定義順に行われ、マッチした時点で該当グループの解析を終了する。</div>
+<div class="line">指定がない場合、解析が行われない。</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>TypePatternのプロパティ値を以下に示す。</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="87%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">property名</th>
+<th class="head">設定内容</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>name</td>
+<td><div class="first last line-block">
+<div class="line">このパターンの項目名を定義する。</div>
+<div class="line">本値は他のパターンと同じ値を設定してもよい。</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td>pattern</td>
+<td><div class="first last line-block">
+<div class="line">解析パターンを正規表現で定義する。</div>
+<div class="line">不正なパターンが指定された場合、初期化時にIllegalArgumentExceptionが送出される。</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>ItemPatternのプロパティ値を以下に示す。</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="87%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">property名</th>
+<th class="head">設定内容</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>name</td>
+<td><div class="first last line-block">
+<div class="line">このパターンの項目名を定義する。</div>
+<div class="line">本値は他のパターンと同じ値を設定してもよい。</div>
+<div class="line">本値はnameIndexでキャプチャするグループ番号を指定しない場合に使用される。</div>
+<div class="line">指定がない場合、項目タイプはdefaultTypeで指定された値となる。</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td>pattern</td>
+<td><div class="first last line-block">
+<div class="line">解析パターンを正規表現で定義する。</div>
+<div class="line">nameIndexおよびversionIndexで指定されるグループ番号で値をキャプチャできるようグループを設定する必要がある。</div>
+<div class="line">不正なパターンが指定された場合、初期化時にIllegalArgumentExceptionが送出される。</div>
+<div class="line">指定がない場合、解析が行われない。</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td>nameIndex</td>
+<td><div class="first last line-block">
+<div class="line">解析パターンから項目名称としてキャプチャするグループ番号を定義する。</div>
+<div class="line">不正なインデックスが指定された場合、初期化時にIllegalArgumentExceptionが送出される。</div>
+<div class="line">指定がない場合、項目名称は項目タイプと同値となる。</div>
+<div class="line">項目タイプも指定されていない場合、defaultNameで指定された値となる。</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td>versionIndex</td>
+<td><div class="first last line-block">
+<div class="line">解析パターンからバージョンとしてキャプチャするグループ番号を定義する。</div>
+<div class="line">不正なインデックスが指定された場合、初期化時にIllegalArgumentExceptionが送出される。</div>
+<div class="line">指定がない場合、バージョンはdefaultVersionで指定された値となる。</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td>nameConvertor</td>
+<td><div class="first last line-block">
+<div class="line">項目名称抽出後に文字列変換を行うUserAgentValueConvertorの実装クラスを定義する。</div>
+<div class="line">標準の実装としてUserAgentNameConvertorが提供される。</div>
+<div class="line">UserAgentNameConvertorは、指定された置換前文字列を置換後文字列に単純に置き換える。</div>
+<div class="line">また、toLowerCaseプロパティが設定されている場合は置換前に文字列を小文字化する。</div>
+<div class="line">例）「mac os x」→「mac_os_x」</div>
+<div class="line">指定がない場合、変換を行わない。</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td>versionConvertor</td>
+<td><div class="first last line-block">
+<div class="line">バージョン抽出後に文字列変換を行うUserAgentValueConvertorの実装クラスを定義する。</div>
+<div class="line">標準の実装としてUserAgentVersionConvertorが提供される。</div>
+<div class="line">UserAgentVersionConvertorは、文字列を「\D(数字以外)」で分割し、３つの要素にする。それぞれの要素をパディングし、スペース区切りで結合した値を変換値とする。</div>
+<div class="line">例）「34.0.1847.116」→「_34 __0 ___1847」</div>
+<div class="line">指定がない場合、変換を行わない。</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>UserAgentNameConvertorのプロパティ値を以下に示す。</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="87%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">property名</th>
+<th class="head">設定内容</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>toLowerCase</td>
+<td><div class="first last line-block">
+<div class="line">文字列の小文字化フラグを定義する。</div>
+<div class="line">指定がない場合、小文字化を行う。</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td>replaceFrom</td>
+<td><div class="first last line-block">
+<div class="line">置換前文字列を定義する。</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td>replaceTo</td>
+<td><div class="first last line-block">
+<div class="line">置換後文字列を定義する。</div>
+<div class="line">replaceFromおよびreplaceToの両方が指定されない場合、変換を行わない。</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>UserAgentVersionConvertorのプロパティ値を以下に示す。</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="87%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">property名</th>
+<th class="head">設定内容</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>padding</td>
+<td><div class="first last line-block">
+<div class="line">パディング文字列を定義する。</div>
+<div class="line">指定がない場合、変換を行わない。</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id11">
+<h2>使用例<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="n">HttpResponse</span> <span class="nf">doUserAgentJudgment</span><span class="o">(</span><span class="n">HttpRequest</span> <span class="n">req</span><span class="o">,</span> <span class="n">ExecutionContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+
+    <span class="n">UserAgent</span> <span class="n">userAgent</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="na">getUserAgent</span><span class="o">();</span>
+
+    <span class="k">if</span> <span class="o">(</span><span class="n">userAgent</span><span class="o">.</span><span class="na">getOsType</span><span class="o">().</span><span class="na">equals</span><span class="o">(</span><span class="s">&quot;android&quot;</span><span class="o">))</span> <span class="o">{</span>
+        <span class="o">...</span> <span class="c1">// クライアントがandroidの場合に行う処理</span>
+    <span class="o">}</span>
+
+    <span class="k">if</span> <span class="o">(</span><span class="n">userAgent</span><span class="o">.</span><span class="na">getBrowserName</span><span class="o">().</span><span class="na">equals</span><span class="o">(</span><span class="s">&quot;chrome&quot;</span><span class="o">))</span> <span class="o">{</span>
+        <span class="o">...</span> <span class="c1">// ブラウザがchromeの場合に行う処理</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+
+    <hr/>
+
+    <div role="contentinfo">
+        <p>
+            &copy; Copyright 2010-2017, TIS Inc.
+        </p>
+    </div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'5u8',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/custom.js"></script>
+      <script type="text/javascript" src="../../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

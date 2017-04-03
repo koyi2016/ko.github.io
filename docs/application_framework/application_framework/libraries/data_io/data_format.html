@@ -1,0 +1,1130 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>7.4.2. 汎用データフォーマット &mdash; ∇Nablarch  5u8 ドキュメント</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="索引"
+              href="../../../../genindex.html"/>
+        <link rel="search" title="検索" href="../../../../search.html"/>
+    <link rel="top" title="∇Nablarch  5u8 ドキュメント" href="../../../../index.html"/>
+        <link rel="up" title="7.4. 様々なフォーマットのデータへのアクセス" href="../data_converter.html"/>
+        <link rel="next" title="7.4.2.3.1.1. フォーマット定義ファイルの記述ルール" href="data_format/format_definition.html"/>
+        <link rel="prev" title="7.4.1. データバインド" href="data_bind.html"/> 
+
+  
+  <script src="../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+  
+  <a href="../../../../index.html" id="sidebar-title" class="icon"> ∇Nablarch 
+  
+
+  
+    <div id="sidebar-version">Version: 5u8</div>
+  </a>
+
+  <div role="search">
+    <form id="google-search-form" class="wy-form" method="get" action="https://www.google.co.jp/search">
+      <input type="hidden" id="document-version" value="5u8" />
+      <input type="text" name="text" placeholder="Search docs on google" id="text"/>
+      <input type="hidden" name="q" id="q"/>
+    </form>
+  </div>
+    
+    
+
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+  
+  
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../about_nablarch/index.html">Nablarchについて</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../about_nablarch/concept.html">Nablarchのコンセプト</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../about_nablarch/concept.html#robustness">Robustness</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../about_nablarch/concept.html#testability">Testability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../about_nablarch/concept.html#ready-to-use">Ready-to-Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../about_nablarch/mvn_module.html">Nablarch のモジュール一覧</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../about_nablarch/license.html">Nablarchのライセンスについて</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Nablarchアプリケーションフレームワーク</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">アプリケーションフレームワーク</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../nablarch/index.html">1. Nablarchアプリケーションフレームワークとは</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../web/index.html">2. ウェブアプリケーション編</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../web_service/index.html">3. ウェブサービス編</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../batch/index.html">4. バッチアプリケーション編</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../messaging/index.html">5. メッセージング編</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../handlers/index.html">6. Nablarchの提供する標準ハンドラ</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">7. Nablarchが提供するライブラリ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../blank_project/index.html">8. ブランクプロジェクト</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../setting_guide/index.html">9. Nablarchアプリケーションフレームワーク設定ガイド</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../adaptors/index.html">アダプタ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/log_adaptor.html">logアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/router_adaptor.html">ルーティングアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/webspheremq_adaptor.html">IBM WebSphere MQアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/jaxrs_adaptor.html">JAX-RSアダプタ</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../example/index.html">Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../example/index.html#id1">環境構築手順について</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../example/index.html#id2">アプリケーションの実行手順について</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../extension_components/index.html">Nablarch拡張コンポーネント</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/report/index.html">1. 帳票ライブラリ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/report/index.html#id2">1.1. 概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/report/index.html#id3">1.2. 要求</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/report/index.html#id7">1.3. 構造</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/report/index.html#report-template">1.4. 実装例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/workflow/index.html">2. ワークフロー</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html">2.1. ワークフローライブラリ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/sample_application/doc/index.html">2.2. ワークフローアプリケーション実装ガイド</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/tool/doc/index.html">2.3. ワークフロー定義データ生成ツール</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/etl/index.html">3. ETL</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id3">3.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id4">3.2. ETLの各フェーズの仕様</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id5">3.3. 使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id7">3.4. 拡張例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html">4. ETL Mavenプラグイン</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html#id2">4.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html#id3">4.2. 使用方法</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../development_tools/index.html">Nablarch開発ツール</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../development_tools/java_static_analysis/index.html">1. 効率的なJava静的チェック</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/java_static_analysis/index.html#code-analysis">1.1. 構文チェックを行う</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/java_static_analysis/index.html#code-format">1.2. フォーマットを統一する</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/java_static_analysis/index.html#api">1.3. 許可していないAPIが使用されていないかチェックする</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../development_tools/ui_dev/index.html">2. フロントエンド上級者向けのUI開発基盤</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/ui_dev/doc/index.html">2.1. Nablarch UI開発基盤 解説書</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/ui_dev/guide/index.html">2.2. JSP/HTML作成ガイド</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/ui_dev/guide/widget_usage/widget_list.html">2.3. UI部品の実装サンプルで提供しているウィジェットの一覧</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../development_tools/testing_framework/index.html">3. 大規模開発向け重厚なテスティングフレームワーク</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/index.html">3.1. 単体テスト実施方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/testing_framework/guide/development_guide/06_TestFWGuide/index.html">3.2. 自動テストフレームワークの使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/testing_framework/guide/development_guide/08_TestTools/index.html">3.3. プログラミング工程で使用するツール</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../development_tools/toolbox/index.html">4. アプリケーション開発時に使える便利なツール</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/toolbox/UnpublishedMethodDetector/UnpublishedApi.html">4.1. 使用不許可APIチェックツール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/toolbox/PublishedApi/PublishedApiConfigGenerator.html">4.2. 使用許可API一覧作成ツール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/toolbox/JspStaticAnalysis/index.html">4.3. JSP静的解析ツール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/toolbox/SqlExecutor/SqlExecutor.html">4.4. Nablarch SQL Executor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/toolbox/JspVerifier/JspVerifier.html">4.5. 業務画面JSP検証ツール</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/index.html">Nablarch実装例集</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/01/index.html">データベースを用いたパスワード認証機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/01/0101_PBKDF2PasswordEncryptor.html">PBKDF2を用いたパスワード暗号化機能サンプル</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/01/index.html#id3">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/01/index.html#id4">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/01/index.html#id6">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/01/index.html#id12">使用方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/02/index.html">バリデーション機能の拡張</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/02/index.html#id3">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/02/index.html#extendedvalidation-mailaddressvalidator">メールアドレスバリデーション</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/02/index.html#extendedvalidation-japanesetelnumbervalidator">日本電話番号バリデーション</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/02/index.html#id12">コード値精査</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/03/index.html">検索結果の一覧表示</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#id3">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#id4">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#id5">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#id8">使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#listsearchinfo">ListSearchInfoクラス</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#listsearchresult">listSearchResultタグ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#listsearchresult-sort">検索結果の並び替え</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#listsearchresult-nopaging">1画面にすべての検索結果を一覧表示する場合の実装方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#listsearchresult-defaultcondition">デフォルトの検索条件で検索した結果を初期表示する場合の実装方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#listsearchresult-setting">検索結果の一覧表示機能のデフォルト値設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#listsearchresult-customize">業務アプリケーションへのサンプル実装(タグファイル)の取り込み方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#listsearchresult-tagreference">タグリファレンス</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/04/index.html">フォーマッタ機能の拡張</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/04/0401_ExtendedDataFormatter.html">データフォーマッタの拡張</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/04/0402_ExtendedFieldType.html">データフォーマッタ機能におけるフィールドタイプの拡張</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/05/index.html">データベースを用いたファイル管理機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/05/index.html#id2">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/05/index.html#id6">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/05/index.html#id7">機能</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/05/index.html#id10">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/05/index.html#id15">使用方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/06/index.html">CAPTCHA機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/06/06_Captcha_guide.html">CAPTCHA機能の組み込み手順</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/06/index.html#id3">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/06/index.html#id4">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/06/index.html#id6">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/06/index.html#id21">使用方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/07/index.html">UserAgent情報取得機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/07/index.html#id1">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/07/index.html#id3">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/07/index.html#id8">設定の記述</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/07/index.html#id11">使用例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/08/index.html">HTMLメール送信機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/08/index.html#id1">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/08/index.html#id3">要求</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/08/index.html#id6">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/08/index.html#id14">実装例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/09/index.html">bouncycastleを使用した電子署名つきメールの送信サンプルの使用方法</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/09/index.html#id3">環境準備</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/09/index.html#id4">電子署名付きメール送信機能の構造</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/09/index.html#id5">設定ファイルの準備</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/09/index.html#id7">実行方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/10/index.html">ログ集計サンプルの使用方法</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/10/index.html#id3">提供サンプル一覧</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/11/index.html">メッセージング基盤テストシミュレータサンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/11/index.html#id4">用途</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/11/index.html#id8">特徴</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/11/index.html#id12">要求</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/11/index.html#id15">使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/11/index.html#id18">拡張例</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nablarch_api/index.html">Nablarch API</a></li>
+</ul>
+
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">∇Nablarch </a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../index.html">Nablarchアプリケーションフレームワーク</a> &raquo;</li>
+      
+          <li><a href="../../index.html">アプリケーションフレームワーク</a> &raquo;</li>
+      
+          <li><a href="../index.html">7. Nablarchが提供するライブラリ</a> &raquo;</li>
+      
+          <li><a href="../data_converter.html">7.4. 様々なフォーマットのデータへのアクセス</a> &raquo;</li>
+      
+    <li>7.4.2. 汎用データフォーマット</li>
+      <li class="wy-breadcrumbs-aside">
+        <a href="https://github.com/nablarch" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="data-format">
+<span id="id1"></span><h1>7.4.2. 汎用データフォーマット<a class="headerlink" href="#data-format" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="contents local topic" id="id2">
+<p class="topic-title first">目次</p>
+<ul class="simple">
+<li><a class="reference internal" href="#id3" id="id18">機能概要</a><ul>
+<li><a class="reference internal" href="#data-format-support-type" id="id19">標準でサポートするフォーマットが豊富</a></li>
+<li><a class="reference internal" href="#id5" id="id20">様々な文字セットや文字種、データ形式に対応</a></li>
+<li><a class="reference internal" href="#data-format-value-convertor" id="id21">パディングやトリミングなどの変換処理に対応</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id7" id="id22">モジュール一覧</a></li>
+<li><a class="reference internal" href="#id8" id="id23">使用方法</a><ul>
+<li><a class="reference internal" href="#data-format-format-definition-file" id="id24">入出力データのフォーマットを定義する</a></li>
+<li><a class="reference internal" href="#id10" id="id25">ファイルにデータを出力する</a></li>
+<li><a class="reference internal" href="#data-format-file-download" id="id26">ファイルダウンロードで使用する</a></li>
+<li><a class="reference internal" href="#data-format-load-upload-file" id="id27">アップロードしたファイルを読み込む</a></li>
+<li><a class="reference internal" href="#jsonxml" id="id28">JSONやXMLの階層構造のデータを読み書きする</a></li>
+<li><a class="reference internal" href="#xml" id="id29">XMLで名前空間を使う</a></li>
+<li><a class="reference internal" href="#id13" id="id30">XMLで属性を持つ要素にコンテンツを定義する</a></li>
+<li><a class="reference internal" href="#data-format-replacement" id="id31">文字の置き換え(寄せ字)を行う</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id15" id="id32">拡張例</a><ul>
+<li><a class="reference internal" href="#data-format-field-type-add" id="id33">フィールドタイプを追加する</a></li>
+<li><a class="reference internal" href="#data-format-xml-content-name-change" id="id34">XMLで属性を持つ要素のコンテンツ名を変更する</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<p>システムで扱う多様なデータ形式に対応した汎用の入出力ライブラリ機能を提供する。</p>
+<p>本機能の大まかな構成は以下のとおり。</p>
+<img alt="../../../../_images/structure.png" src="../../../../_images/structure.png" />
+<div class="section" id="id3">
+<h2><a class="toc-backref" href="#id18">7.4.2.1. 機能概要</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="data-format-support-type">
+<span id="id4"></span><h3><a class="toc-backref" href="#id19">7.4.2.1.1. 標準でサポートするフォーマットが豊富</a><a class="headerlink" href="#data-format-support-type" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>標準では、以下の形式のフォーマットに対応している。</p>
+<p>固定長と可変長のデータ形式では、レコード毎にレイアウトの異なるマルチレイアウトデータにも対応している。
+(XMLとJSONには、レコードという概念が存在しない。)</p>
+<ul class="simple">
+<li>固定長</li>
+<li>可変長(csvやtsvなど)</li>
+<li>JSON</li>
+<li>XML</li>
+</ul>
+<div class="admonition important">
+<p class="first admonition-title">重要</p>
+<p>本機能には、以下のデメリットがある。</p>
+<ul>
+<li><p class="first">複雑な <a class="reference internal" href="#data-format-format-definition-file"><span class="std std-ref">フォーマット定義ファイル</span></a> を作成する必要がある。</p>
+</li>
+<li><p class="first">入出力が <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html" title="java.util.Map">Map</a> に限定されており、実装誤りを起こしやすい。</p>
+<ul class="simple">
+<li>フィールド名を文字列で指定する必要があり、IDEの補完も使えないなど、実装時にミスを起こしやすい。</li>
+<li>アプリケーション側で、Mapから取り出した値をダウンキャストする必要がある。(誤ると、実行時に例外が送出される。)</li>
+</ul>
+</li>
+<li><p class="first">データとJavaオブジェクトのマッピングに <a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/core/beans/BeanUtil.html" title="nablarch.core.beans.BeanUtil">BeanUtil</a> を使用していないため、他の機能とはマッピング方法が異なる。</p>
+</li>
+<li><p class="first">出力対象の <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html" title="java.util.Map">Map</a> の扱い方がフォーマットによって異なる。このため、同じデータを複数のフォーマットに対応させる機能を使用した場合に、フォーマットによっては例外が発生するなど正常に動作しない場合がある。</p>
+<p>例えば、下のケースで問題がある。</p>
+<dl class="docutils">
+<dt>XMLとJSONで必須項目にnullを指定した場合：</dt>
+<dd><ul class="first last simple">
+<li>XML：値を空文字として出力</li>
+<li>JSON：必須の例外を送出</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">出力対象のデータによってはJSONの仕様を満たせない場合がある。</p>
+<p>例えば、 <a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/core/dataformat/convertor/datatype/JsonNumber.html" title="nablarch.core.dataformat.convertor.datatype.JsonNumber">数値型</a> や <a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/core/dataformat/convertor/datatype/JsonBoolean.html" title="nablarch.core.dataformat.convertor.datatype.JsonBoolean">真偽値型</a> を使用し、出力対象のデータ型がこれらの型に対応していない場合に不正なJSONが出力される。</p>
+<p>例：数値型を指定し、出力対象が「data」などの文字列の場合、{&#8220;number&#8221;:data}のような不正なJSONが出力される。</p>
+</li>
+<li><p class="first">データ形式によって使用できる <a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/core/dataformat/convertor/datatype/DataType.html" title="nablarch.core.dataformat.convertor.datatype.DataType">データタイプ</a> の実装クラスが異なるため拡張しづらい。また、この設定の誤りは実行時まで検知できない。</p>
+</li>
+</ul>
+<p>このため原則本機能はやむを得ない場合を除き非推奨とする。
+なお、 <a class="reference internal" href="../../messaging/index.html#messaging"><span class="std std-ref">メッセージング編</span></a> は、内部で本機能を利用しているため、代替機能を使用することはできない。</p>
+<dl class="last docutils">
+<dt>本機能の代替機能</dt>
+<dd><table class="first last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">固定長:</th><td class="field-body">固定長の代替機能は存在しない。本機能を使用すること。</td>
+</tr>
+<tr class="field-even field"><th class="field-name">可変長:</th><td class="field-body"><a class="reference internal" href="data_bind.html#data-bind"><span class="std std-ref">データバインド</span></a> を使用すること。</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">XML:</th><td class="field-body"><a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/javax/xml/bind/package-summary.html" title="javax.xml.bind.package-summary">JAXB</a> を推奨する。</td>
+</tr>
+<tr class="field-even field"><th class="field-name">JSON:</th><td class="field-body">OSSの使用を推奨する。例えば、 <a class="reference external" href="https://github.com/FasterXML/jackson">Jackson(外部サイト、英語)</a> が広く使われている。</td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="id5">
+<h3><a class="toc-backref" href="#id20">7.4.2.1.2. 様々な文字セットや文字種、データ形式に対応</a><a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>文字列や10進数数値だけでなく、ホストでよく扱われるパック数値やゾーン10進数形式などに対応している。
+また、UTF-8やShift_JISだけではなくEBCDICなどの文字セットにも対応している。</p>
+<div class="admonition tip">
+<p class="first admonition-title">ちなみに</p>
+<p class="last">文字セットについては、実行環境のJVMでサポートされているものが使用できる。</p>
+</div>
+</div>
+<div class="section" id="data-format-value-convertor">
+<span id="id6"></span><h3><a class="toc-backref" href="#id21">7.4.2.1.3. パディングやトリミングなどの変換処理に対応</a><a class="headerlink" href="#data-format-value-convertor" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>固定長ファイルで多く利用されるスペースやゼロ(0)パディング及びトリミングに対応している。
+このため、アプリケーション側でパディング処理やトリミング処理を行わなくて良い。</p>
+<p>パディングやトリミングの詳細は、 <a class="reference internal" href="data_format/format_definition.html#data-format-field-convertor-list"><span class="std std-ref">フィールドコンバータ一覧</span></a> を参照。</p>
+</div>
+</div>
+<div class="section" id="id7">
+<h2><a class="toc-backref" href="#id22">7.4.2.2. モジュール一覧</a><a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="#data-format-upload-helper"><span class="std std-ref">アップロードヘルパー</span></a> を使用する場合は、 <code class="docutils literal"><span class="pre">nablarch-fw-web-extension</span></code> を追加する。</li>
+<li><a class="reference internal" href="#data-format-file-download"><span class="std std-ref">ファイルダウンロード</span></a> を使用する場合は、 <code class="docutils literal"><span class="pre">nablarch-fw-web-extension</span></code> を追加する。</li>
+</ul>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- 汎用データフォーマット --&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.nablarch.framework<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>nablarch-core-dataformat<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+
+<span class="c">&lt;!--</span>
+<span class="c">アップロードヘルパーを使用する場合、ダウンロードを使用する場合は以下を追加する</span>
+<span class="c"> --&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.nablarch.framework<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>nablarch-fw-web-extension<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id8">
+<h2><a class="toc-backref" href="#id23">7.4.2.3. 使用方法</a><a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="data-format-format-definition-file">
+<span id="id9"></span><h3><a class="toc-backref" href="#id24">7.4.2.3.1. 入出力データのフォーマットを定義する</a><a class="headerlink" href="#data-format-format-definition-file" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>入出力対象データのフォーマット定義は、フォーマット定義ファイルに行う。</p>
+<p>フォーマット定義ファイルは、以下のようなテキストファイル形式で作成する。
+詳細な仕様は、 <a class="reference internal" href="data_format/format_definition.html"><span class="doc">フォーマット定義ファイルの記述ルール</span></a> を参照。</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>file-type:        <span class="s2">&quot;Variable&quot;</span> <span class="c1"># 可変長</span>
+text-encoding:    <span class="s2">&quot;MS932&quot;</span>    <span class="c1"># 文字列型フィールドの文字エンコーディング</span>
+record-separator: <span class="s2">&quot;\r\n&quot;</span>     <span class="c1"># 改行コード(crlf)</span>
+field-separator:  <span class="s2">&quot;,&quot;</span>        <span class="c1"># csv</span>
+
+<span class="c1"># レコード識別フィールドの定義</span>
+<span class="o">[</span>Classifier<span class="o">]</span>
+<span class="m">1</span> dataKbn X     <span class="c1"># 1つめのフィールド</span>
+<span class="m">3</span> <span class="nb">type</span>    X     <span class="c1"># 3つめのフィールド</span>
+
+<span class="o">[</span>parentData<span class="o">]</span>
+<span class="nv">dataKbn</span> <span class="o">=</span> <span class="s2">&quot;1&quot;</span>
+<span class="nb">type</span>    <span class="o">=</span> <span class="s2">&quot;01&quot;</span>
+<span class="m">1</span> dataKbn X
+<span class="m">2</span> ?filler X
+<span class="m">3</span> <span class="nb">type</span>    X
+<span class="m">4</span> data    X
+
+<span class="o">[</span>childData<span class="o">]</span>
+<span class="nv">dataKbn</span> <span class="o">=</span> <span class="s2">&quot;1&quot;</span>
+<span class="nb">type</span>    <span class="o">=</span> <span class="s2">&quot;02&quot;</span>
+<span class="m">1</span> dataKbn X
+<span class="m">2</span> ?filler X
+<span class="m">3</span> <span class="nb">type</span>    X
+<span class="m">4</span> data    X
+</pre></div>
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+<div class="section" id="id10">
+<h3><a class="toc-backref" href="#id25">7.4.2.3.2. ファイルにデータを出力する</a><a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>データレコードの内容をファイルに出力する方法について説明する。</p>
+<p>ファイルへのデータ出力は、 <a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/common/io/FileRecordWriterHolder.html" title="nablarch.common.io.FileRecordWriterHolder">FileRecordWriterHolder</a> を使用することで実現できる。</p>
+<p>以下に実装例を示す。</p>
+<dl class="docutils">
+<dt>ポイント</dt>
+<dd><ul class="first last simple">
+<li>ファイルに書き込むデータは <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html" title="java.util.Map">Map</a> として準備する。</li>
+<li><a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html" title="java.util.Map">Map</a> のキー値は、 <a class="reference internal" href="#data-format-format-definition-file"><span class="std std-ref">入出力データのフォーマットを定義する</span></a> で定義したフィールド名を設定する。(大文字、小文字は区別しない)</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/common/io/FileRecordWriterHolder.html" title="nablarch.common.io.FileRecordWriterHolder">FileRecordWriterHolder</a> の <cite>open</cite> メソッドを呼び出して、ファイルリソースを書き込み可能状態にする。</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/common/io/FileRecordWriterHolder.html" title="nablarch.common.io.FileRecordWriterHolder">FileRecordWriterHolder</a> の <cite>write</cite> メソッドを呼び出して、データをファイルに書き込む。</li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="c1">// 書き込み対象のデータ</span>
+<span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">user</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;();</span>
+<span class="n">user</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;name&quot;</span><span class="o">,</span> <span class="s">&quot;名前&quot;</span><span class="o">);</span>
+<span class="n">user</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;age&quot;</span><span class="o">,</span> <span class="mi">20</span><span class="o">);</span>
+
+<span class="c1">// 書き込み対象のファイルを開く</span>
+<span class="n">FileRecordWriterHolder</span><span class="o">.</span><span class="na">open</span><span class="o">(</span><span class="s">&quot;users.csv&quot;</span><span class="o">,</span> <span class="s">&quot;user_csv_format&quot;</span><span class="o">);</span>
+
+<span class="c1">// データを書き込む</span>
+<span class="n">FileRecordWriterHolder</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">user</span><span class="o">,</span> <span class="s">&quot;user.csv&quot;</span><span class="o">);</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">ちなみに</p>
+<p><a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/common/io/FileRecordWriterHolder.html" title="nablarch.common.io.FileRecordWriterHolder">FileRecordWriterHolder</a> を使用するためには、
+<a class="reference internal" href="#data-format-format-definition-file"><span class="std std-ref">フォーマット定義ファイル</span></a> の配置ディレクトリや出力先ディレクトリを
+<a class="reference internal" href="../file_path_management.html#file-path-management"><span class="std std-ref">ファイルパス管理</span></a> に設定する必要がある。</p>
+<p class="last">必要となるディレクトリの設定値については、 <a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/common/io/FileRecordWriterHolder.html" title="nablarch.common.io.FileRecordWriterHolder">FileRecordWriterHolder</a> を参照。</p>
+</div>
+<div class="admonition important">
+<p class="first admonition-title">重要</p>
+<p class="last"><a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/common/io/FileRecordWriterHolder.html" title="nablarch.common.io.FileRecordWriterHolder">FileRecordWriterHolder</a> で開いたファイルリソースは、
+<a class="reference internal" href="../../handlers/common/file_record_writer_dispose_handler.html#file-record-writer-dispose-handler"><span class="std std-ref">出力ファイル開放ハンドラ</span></a> にて自動的に開放される。
+このため、 <a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/common/io/FileRecordWriterHolder.html" title="nablarch.common.io.FileRecordWriterHolder">FileRecordWriterHolder</a> を使用する場合には、
+必ず <a class="reference internal" href="../../handlers/common/file_record_writer_dispose_handler.html#file-record-writer-dispose-handler"><span class="std std-ref">出力ファイル開放ハンドラ</span></a> をハンドラキュー上に設定すること。</p>
+</div>
+</div>
+<div class="section" id="data-format-file-download">
+<span id="id11"></span><h3><a class="toc-backref" href="#id26">7.4.2.3.3. ファイルダウンロードで使用する</a><a class="headerlink" href="#data-format-file-download" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>データレコードの内容をファイルダウンロード形式でクライアントに応答する方法について解説する。</p>
+<p>ファイルダウンロード形式のレスポンスは、 <a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/common/web/download/DataRecordResponse.html" title="nablarch.common.web.download.DataRecordResponse">DataRecordResponse</a> を使用することで実現できる。</p>
+<p>以下に実装例を示す。</p>
+<dl class="docutils">
+<dt>ポイント</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/common/web/download/DataRecordResponse.html" title="nablarch.common.web.download.DataRecordResponse">DataRecordResponse</a> 生成時に、
+フォーマット定義ファイルが格納された論理パス名と、フォーマット定義ファイル名を指定する。</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/common/web/download/DataRecordResponse.html#write(java.util.Map)" title="nablarch.common.web.download.DataRecordResponse.write(java.util.Map)">DataRecordResponse#write</a> を使って、
+データを出力する。(複数のレコードをダウンロードする場合には、繰り返し出力する)</li>
+<li><cite>Content-Type</cite> 及び <cite>Content-Disposition</cite> を設定する。</li>
+<li>業務アクションから <a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/common/web/download/DataRecordResponse.html" title="nablarch.common.web.download.DataRecordResponse">DataRecordResponse</a> を返却する。</li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="n">HttpResponse</span> <span class="nf">download</span><span class="o">(</span><span class="n">HttpRequest</span> <span class="n">request</span><span class="o">,</span> <span class="n">ExecutionContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+
+  <span class="c1">// 業務処理</span>
+
+  <span class="c1">// ダウンロードデータを格納したMapの作成する。</span>
+  <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">user</span> <span class="o">=</span> <span class="k">new</span> <span class="n">hashMap</span><span class="o">&lt;&gt;()</span>
+  <span class="n">user</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;name&quot;</span><span class="o">,</span> <span class="s">&quot;なまえ&quot;</span><span class="o">);</span>
+  <span class="n">user</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;age&quot;</span><span class="o">,</span> <span class="mi">30</span><span class="o">);</span>
+
+  <span class="c1">// フォーマット定義ファイルが格納された論理パス名と</span>
+  <span class="c1">// フォーマット定義ファイル名を指定してDataRecordResponseを生成する。</span>
+  <span class="n">DataRecordResponse</span> <span class="n">response</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DataRecordResponse</span><span class="o">(</span><span class="s">&quot;format&quot;</span><span class="o">,</span> <span class="s">&quot;users_csv&quot;</span><span class="o">);</span>
+
+  <span class="c1">// ダウンロードデータを出力する。</span>
+  <span class="n">response</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+
+  <span class="c1">// Content-Typeヘッダ、Content-Dispositionヘッダを設定する</span>
+  <span class="n">response</span><span class="o">.</span><span class="na">setContentType</span><span class="o">(</span><span class="s">&quot;text/csv; charset=Shift_JIS&quot;</span><span class="o">);</span>
+  <span class="n">response</span><span class="o">.</span><span class="na">setContentDisposition</span><span class="o">(</span><span class="s">&quot;メッセージ一覧.csv&quot;</span><span class="o">);</span>
+
+  <span class="k">return</span> <span class="n">response</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">ちなみに</p>
+<p class="last">フォーマット定義ファイルの格納パスは、 <a class="reference internal" href="../file_path_management.html#file-path-management"><span class="std std-ref">ファイルパス管理</span></a> に設定する必要がある。</p>
+</div>
+</div>
+<div class="section" id="data-format-load-upload-file">
+<span id="id12"></span><h3><a class="toc-backref" href="#id27">7.4.2.3.4. アップロードしたファイルを読み込む</a><a class="headerlink" href="#data-format-load-upload-file" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>アップロードしたファイルを読み込む方法について解説する。</p>
+<p>この機能では、以下の2種類の方法でアップロードしたファイルを読み込むことが出来る。
+<a class="reference internal" href="#data-format-upload-helper"><span class="std std-ref">アップロードヘルパーを使った読み込み</span></a> に記載のある通り、
+<a class="reference internal" href="#data-format-native-upload-file-load"><span class="std std-ref">汎用データフォーマット(本機能)のみを使った読み込み</span></a> の使用を推奨する。</p>
+<ul class="simple">
+<li><a class="reference internal" href="#data-format-native-upload-file-load"><span class="std std-ref">汎用データフォーマット(本機能)のみを使った読み込み</span></a></li>
+<li><a class="reference internal" href="#data-format-upload-helper"><span class="std std-ref">アップロードヘルパーを使った読み込み</span></a></li>
+</ul>
+<dl class="docutils" id="data-format-native-upload-file-load">
+<dt>汎用データフォーマット(本機能)のみを使ったアップロードファイルの読み込み</dt>
+<dd><p class="first">後述のアップロードヘルパーを使わずに本機能のAPIを使用したアップロードファイルのロード処理について解説する。</p>
+<p>以下に実装例を示す。</p>
+<dl class="docutils">
+<dt>ポイント</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/fw/web/HttpRequest.html#getPart(java.lang.String)" title="nablarch.fw.web.HttpRequest.getPart(java.lang.String)">HttpRequest#getPart</a> を呼び出してアップロードされたファイルを取得する。</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/fw/web/HttpRequest.html#getPart(java.lang.String)" title="nablarch.fw.web.HttpRequest.getPart(java.lang.String)">HttpRequest#getPart</a> の引数には、パラメータ名を指定する。</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/core/util/FilePathSetting.html" title="nablarch.core.util.FilePathSetting">FilePathSetting</a> からフォーマット定義ファイルの <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/io/File.html" title="java.io.File">File</a> オブジェクトを取得する。</li>
+<li>フォーマット定義ファイルを指定し、 <a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/core/dataformat/FormatterFactory.html" title="nablarch.core.dataformat.FormatterFactory">FormatterFactory</a>
+から <a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/core/dataformat/DataRecordFormatter.html" title="nablarch.core.dataformat.DataRecordFormatter">DataRecordFormatter</a> を生成する。</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/core/dataformat/DataRecordFormatter.html" title="nablarch.core.dataformat.DataRecordFormatter">DataRecordFormatter</a> にアップロードファイルを読み込むための <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/io/InputStream.html" title="java.io.InputStream">InputStream</a> を設定する。
+設定する <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/io/InputStream.html" title="java.io.InputStream">InputStream</a> の実装クラスは、 <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/io/InputStream.html#mark-int-" title="java.io.InputStream.mark(int)">mark</a>/<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/io/InputStream.html#reset--" title="java.io.InputStream.reset()">reset</a> がサポートされている必要がある。</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/core/dataformat/DataRecordFormatter.html" title="nablarch.core.dataformat.DataRecordFormatter">DataRecordFormatter</a> のAPIを呼び出し、アップロードファイルのレコードを読み込む。</li>
+</ul>
+</dd>
+</dl>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="n">HttpResponse</span> <span class="nf">upload</span><span class="o">(</span><span class="n">HttpRequest</span> <span class="n">req</span><span class="o">,</span> <span class="n">ExecutionContext</span> <span class="n">ctx</span><span class="o">)</span> <span class="o">{</span>
+
+  <span class="c1">// アップロードしたファイルの情報を取得</span>
+  <span class="kd">final</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">PartInfo</span><span class="o">&gt;</span> <span class="n">partInfoList</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="na">getPart</span><span class="o">(</span><span class="s">&quot;users&quot;</span><span class="o">);</span>
+
+  <span class="c1">// フォーマット定義ファイルのFileオブジェクトを取得する</span>
+  <span class="kd">final</span> <span class="n">File</span> <span class="n">format</span> <span class="o">=</span> <span class="n">FilePathSetting</span><span class="o">.</span><span class="na">getInstance</span><span class="o">()</span>
+                                     <span class="o">.</span><span class="na">getFile</span><span class="o">(</span><span class="s">&quot;format&quot;</span><span class="o">,</span> <span class="s">&quot;users-layout&quot;</span><span class="o">);</span>
+
+  <span class="c1">// フォーマット定義ファイルを取得し、アップロードファイルを読み込むためのフォーマッターを生成する。</span>
+  <span class="k">try</span> <span class="o">(</span><span class="kd">final</span> <span class="n">DataRecordFormatter</span> <span class="n">formatter</span> <span class="o">=</span> <span class="n">FormatterFactory</span><span class="o">.</span><span class="na">getInstance</span><span class="o">()</span>
+                                                             <span class="o">.</span><span class="na">createFormatter</span><span class="o">(</span><span class="n">format</span><span class="o">))</span> <span class="o">{</span>
+
+    <span class="c1">// アップロードファイルを読み込むためのInputStreamをフォーマッターに設定し初期化する。</span>
+    <span class="c1">// mark/resetがサポートされている必要が有るため、BufferedInputStreamでラップする。</span>
+    <span class="n">formatter</span><span class="o">.</span><span class="na">setInputStream</span><span class="o">(</span><span class="k">new</span> <span class="n">BufferedInputStream</span><span class="o">(</span><span class="n">partInfoList</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">).</span><span class="na">getInputStream</span><span class="o">()))</span>
+             <span class="o">.</span><span class="na">initialize</span><span class="o">();</span>
+
+    <span class="c1">// レコードが終わるまで繰り返し処理を行う。</span>
+    <span class="k">while</span> <span class="o">(</span><span class="n">formatter</span><span class="o">.</span><span class="na">hasNext</span><span class="o">())</span> <span class="o">{</span>
+      <span class="c1">// レコードを読み込む。</span>
+      <span class="kd">final</span> <span class="n">DataRecord</span> <span class="n">record</span> <span class="o">=</span> <span class="n">formatter</span><span class="o">.</span><span class="na">readRecord</span><span class="o">();</span>
+
+      <span class="c1">// レコードに対する処理を行う</span>
+      <span class="kd">final</span> <span class="n">Users</span> <span class="n">users</span> <span class="o">=</span> <span class="n">BeanUtil</span><span class="o">.</span><span class="na">createAndCopy</span><span class="o">(</span><span class="n">Users</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">record</span><span class="o">);</span>
+
+      <span class="c1">// 以下省略</span>
+    <span class="o">}</span>
+  <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="n">RuntimeException</span><span class="o">(</span><span class="n">e</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<dl class="docutils" id="data-format-upload-helper">
+<dt>アップロードヘルパーを使用したアップロードファイルの読み込み</dt>
+<dd><p class="first">アップロードヘルパー( <a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/fw/web/upload/util/UploadHelper.html" title="nablarch.fw.web.upload.util.UploadHelper">UploadHelper</a> )を使用すると、
+ファイルの読み込み、バリデーション、データベースへの保存を簡易的に実行出来る。</p>
+<p>しかし、この機能では以下の制限(デメリット)があるため、 <a class="reference internal" href="#data-format-native-upload-file-load"><span class="std std-ref">汎用データフォーマット(本機能)のみを使ったアップロードファイルの読み込み</span></a>
+を使用することを推奨する。</p>
+<ul class="simple">
+<li>入力値のチェックは <a class="reference internal" href="../validation/nablarch_validation.html#nablarch-validation"><span class="std std-ref">Nablarch Validation</span></a> に限定される。(推奨される <a class="reference internal" href="../validation/bean_validation.html#bean-validation"><span class="std std-ref">Bean Validation</span></a> が使用できない。)</li>
+<li>拡張可能ではあるが、難易度が高く容易に要件を満たす実装ができない。</li>
+</ul>
+<p>以下にシングルレイアウトのアップロードファイルに対して、入力チェックを行いデータベースに登録する例を示す。</p>
+<dl class="docutils">
+<dt>ポイント</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/fw/web/HttpRequest.html#getPart(java.lang.String)" title="nablarch.fw.web.HttpRequest.getPart(java.lang.String)">HttpRequest#getPart</a> を呼び出してアップロードされたファイルを取得する。</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/fw/web/HttpRequest.html#getPart(java.lang.String)" title="nablarch.fw.web.HttpRequest.getPart(java.lang.String)">HttpRequest#getPart</a> の引数には、パラメータ名を指定する。</li>
+<li>取得したアップロードファイルを元に <a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/fw/web/upload/util/UploadHelper.html" title="nablarch.fw.web.upload.util.UploadHelper">UploadHelper</a> を生成する。</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/fw/web/upload/util/UploadHelper.html#applyFormat(java.lang.String)" title="nablarch.fw.web.upload.util.UploadHelper.applyFormat(java.lang.String)">UploadHelper#applyFormat</a> を使って、フォーマット定義ファイルを設定する。</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/fw/web/upload/util/BulkValidator.html#setUpMessageIdOnError(java.lang.String, java.lang.String, java.lang.String)" title="nablarch.fw.web.upload.util.BulkValidator.setUpMessageIdOnError(java.lang.String, java.lang.String, java.lang.String)">setUpMessageIdOnError</a> を使って、バリデーションエラー用のメッセージIDを設定する。</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/fw/web/upload/util/BulkValidator.ErrorHandlingBulkValidator.html#validateWith(java.lang.Class,%20java.lang.String)" title="nablarch.fw.web.upload.util.BulkValidator.ErrorHandlingBulkValidator.validateWith(java.lang.Class,%20java.lang.String)">validateWith</a> を使って、バリデーションを実行するJava Beansクラスとバリデーションメソッドを設定する。</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/fw/web/upload/util/BulkValidationResult.html#importWith(nablarch.core.db.support.DbAccessSupport, java.lang.String)" title="nablarch.fw.web.upload.util.BulkValidationResult.importWith(nablarch.core.db.support.DbAccessSupport, java.lang.String)">importWith</a> を使って、バリデーション実行後のJava Beansオブジェクトの内容をデータベースに登録する。</li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="n">HttpResponse</span> <span class="nf">upload</span><span class="o">(</span><span class="n">HttpRequest</span> <span class="n">req</span><span class="o">,</span> <span class="n">ExecutionContext</span> <span class="n">ctx</span><span class="o">)</span> <span class="o">{</span>
+
+  <span class="n">PartInfo</span> <span class="n">partInfo</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="na">getPart</span><span class="o">(</span><span class="s">&quot;fileToSave&quot;</span><span class="o">).</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+
+  <span class="c1">// 全件一括登録</span>
+  <span class="n">UploadHelper</span> <span class="n">helper</span> <span class="o">=</span> <span class="k">new</span> <span class="n">UploadHelper</span><span class="o">(</span><span class="n">partInfo</span><span class="o">);</span>
+  <span class="kt">int</span> <span class="n">cnt</span> <span class="o">=</span> <span class="n">helper</span>
+      <span class="o">.</span><span class="na">applyFormat</span><span class="o">(</span><span class="s">&quot;N11AC002&quot;</span><span class="o">)</span>                     <span class="c1">// フォーマットを適用する</span>
+      <span class="o">.</span><span class="na">setUpMessageIdOnError</span><span class="o">(</span><span class="s">&quot;format.error&quot;</span><span class="o">,</span>       <span class="c1">// 形式エラー時のメッセージIDを指定する</span>
+                             <span class="s">&quot;validation.error&quot;</span><span class="o">,</span>   <span class="c1">// バリデーションエラー時のメッセージIDを指定する</span>
+                             <span class="s">&quot;file.empty.error&quot;</span><span class="o">)</span>   <span class="c1">// ファイルが空の場合のメッセージIDを指定する</span>
+      <span class="o">.</span><span class="na">validateWith</span><span class="o">(</span><span class="n">UserInfoTempEntity</span><span class="o">.</span><span class="na">class</span><span class="o">,</span>      <span class="c1">// バリデーションメソッドを指定する</span>
+                    <span class="s">&quot;validateRegister&quot;</span><span class="o">)</span>
+      <span class="o">.</span><span class="na">importWith</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="s">&quot;INSERT_SQL&quot;</span><span class="o">);</span>             <span class="c1">// INSERT文のSQLIDを指定する</span>
+
+<span class="o">}</span>
+</pre></div>
+</div>
+<div class="last admonition tip">
+<p class="first admonition-title">ちなみに</p>
+<p class="last"><a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/fw/web/upload/util/package-summary.html" title="nablarch.fw.web.upload.util.package-summary">nablarch.fw.web.upload.util</a> パッケージ内のクラスのドキュメントを合わせて参照すること。</p>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="jsonxml">
+<span id="data-format-structured-data"></span><h3><a class="toc-backref" href="#id28">7.4.2.3.5. JSONやXMLの階層構造のデータを読み書きする</a><a class="headerlink" href="#jsonxml" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>JSONやXMLの階層構造データを読み書きする際のMapの構造について解説する。</p>
+<p>JSONやXMLのような階層構造のデータを読み込んだ場合、Mapのキー値は各階層の要素名をドット( <code class="docutils literal"><span class="pre">.</span></code> )で囲んだ値となる。</p>
+<p>以下に例を示す。</p>
+<dl class="docutils">
+<dt>フォーマット定義ファイル</dt>
+<dd><p class="first">JSONの場合には、 <cite>file-type</cite> を <code class="docutils literal"><span class="pre">JSON</span></code> に読み替えること。
+階層構造を表すフォーマット定義ファイルの定義方法は、 <a class="reference internal" href="data_format/format_definition.html#data-format-nest-object"><span class="std std-ref">階層構造の定義</span></a> を参照。</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>file-type:        <span class="s2">&quot;XML&quot;</span>
+text-encoding:    <span class="s2">&quot;UTF-8&quot;</span>
+
+<span class="o">[</span>users<span class="o">]</span>              <span class="c1"># ルート要素</span>
+<span class="m">1</span> user    <span class="o">[</span><span class="m">0</span>..*<span class="o">]</span> OB
+
+<span class="o">[</span>user<span class="o">]</span>               <span class="c1"># ネストした要素</span>
+<span class="m">1</span> name    <span class="o">[</span><span class="m">0</span>..1<span class="o">]</span> N   <span class="c1"># 最下層の要素</span>
+<span class="m">2</span> age     <span class="o">[</span><span class="m">0</span>..1<span class="o">]</span> X9
+<span class="m">3</span> address <span class="o">[</span><span class="m">0</span>..1<span class="o">]</span> N
+</pre></div>
+</div>
+<div class="last admonition important">
+<p class="first admonition-title">重要</p>
+<p class="last">親要素が任意であり、親要素が存在する場合のみ子要素を必須、といった設定には対応していない。
+そのため、階層構造のデータをフォーマット定義ファイルに定義する際は、全て任意項目として定義することを推奨する。</p>
+</div>
+</dd>
+<dt>Mapの構造</dt>
+<dd><p class="first">上記フォーマット定義ファイルを使って、XML及びJSONにデータを出力するMapの構造は以下のようになる。</p>
+<dl class="docutils">
+<dt>ポイント</dt>
+<dd><ul class="first last simple">
+<li>階層構造の場合、「親要素名 + &#8221;.&#8221; + 子要素名」形式でMapに値を設定する。</li>
+<li>階層構造が深い場合は、更に <code class="docutils literal"><span class="pre">.</span></code> で要素名が連結される。</li>
+<li>最上位の要素名は、キーに含める必要はない</li>
+<li>配列要素の場合添字(0から開始)を設定する。</li>
+</ul>
+</dd>
+</dl>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">data</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;();</span>
+
+<span class="c1">// user配列要素の1要素目</span>
+<span class="n">data</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;user[0].name&quot;</span><span class="o">,</span> <span class="s">&quot;なまえ1&quot;</span><span class="o">);</span>
+<span class="n">data</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;user[0].address&quot;</span><span class="o">,</span> <span class="s">&quot;住所1&quot;</span><span class="o">);</span>
+<span class="n">data</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;user[0].age&quot;</span><span class="o">,</span> <span class="mi">30</span><span class="o">);</span>
+
+<span class="c1">// user配列要素の2要素目</span>
+<span class="n">data</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;user[1].name&quot;</span><span class="o">,</span> <span class="s">&quot;なまえ2&quot;</span><span class="o">);</span>
+<span class="n">data</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;user[1].address&quot;</span><span class="o">,</span> <span class="s">&quot;住所2&quot;</span><span class="o">);</span>
+<span class="n">data</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;user[1].age&quot;</span><span class="o">,</span> <span class="mi">31</span><span class="o">);</span>
+</pre></div>
+</div>
+</dd>
+<dt>XMLおよびJSONの構造</dt>
+<dd><p class="first">上記フォーマット定義ファイルに対応したXML及びJSONの構造は以下のとおり。</p>
+<dl class="last docutils">
+<dt>XML</dt>
+<dd><div class="first last highlight-xml"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="nt">&lt;users&gt;</span>
+  <span class="nt">&lt;user&gt;</span>
+    <span class="nt">&lt;name&gt;</span>なまえ1<span class="nt">&lt;/name&gt;</span>
+    <span class="nt">&lt;address&gt;</span>住所1<span class="nt">&lt;/address&gt;</span>
+    <span class="nt">&lt;age&gt;</span>30<span class="nt">&lt;/age&gt;</span>
+  <span class="nt">&lt;/user&gt;</span>
+  <span class="nt">&lt;user&gt;</span>
+    <span class="nt">&lt;name&gt;</span>なまえ2<span class="nt">&lt;/name&gt;</span>
+    <span class="nt">&lt;address&gt;</span>住所2<span class="nt">&lt;/address&gt;</span>
+    <span class="nt">&lt;age&gt;</span>31<span class="nt">&lt;/age&gt;</span>
+  <span class="nt">&lt;/user&gt;</span>
+<span class="nt">&lt;/users&gt;</span>
+</pre></div>
+</div>
+</dd>
+<dt>JSON</dt>
+<dd><div class="first last highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;user&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;なまえ1&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;address&quot;</span><span class="p">:</span> <span class="s2">&quot;住所1&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;age&quot;</span><span class="p">:</span> <span class="mi">30</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;ななえ2&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;address&quot;</span><span class="p">:</span> <span class="s2">&quot;住所2&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;age&quot;</span><span class="p">:</span> <span class="mi">31</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd>
+</dl>
+</div>
+<div class="section" id="xml">
+<h3><a class="toc-backref" href="#id29">7.4.2.3.6. XMLで名前空間を使う</a><a class="headerlink" href="#xml" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>接続先システムとの接続要件で、名前空間を使用しなければならない場合がある。
+この場合は、フォーマット定義ファイルにて名前空間を定義することで対応できる。</p>
+<p>以下に例を示す。</p>
+<dl class="docutils">
+<dt>ポイント</dt>
+<dd><ul class="first last simple">
+<li>名前空間は、名前空間を使用する要素に「&#8221;?&#64;xmlns:&#8221; + 名前空間」として定義する。
+タイプは、 <code class="docutils literal"><span class="pre">X</span></code> とし、フィールドコンバータ部にURIを指定する。</li>
+<li>名前空間は、「名前空間 + &#8221;:&#8221; + 要素名」形式で表す。</li>
+<li>入出力対象データのMapのキー値は、「名前空間＋要素名(先頭大文字)」となる。</li>
+</ul>
+</dd>
+<dt>フォーマット定義ファイル</dt>
+<dd><div class="first last highlight-bash"><div class="highlight"><pre><span></span>file-type:        <span class="s2">&quot;XML&quot;</span>
+text-encoding:    <span class="s2">&quot;UTF-8&quot;</span>
+
+<span class="o">[</span>testns:data<span class="o">]</span>
+<span class="c1"># 名前空間の定義</span>
+<span class="m">1</span> ?@xmlns:testns X <span class="s2">&quot;http://testns.hoge.jp/apply&quot;</span>
+<span class="m">2</span> testns:key1 X
+</pre></div>
+</div>
+</dd>
+<dt>XMLデータ</dt>
+<dd><p class="first">上記フォーマット定義ファイルに対応したXMLは以下のとおり。</p>
+<div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="nt">&lt;testns:data</span> <span class="na">xmlns:testns=</span><span class="s">&quot;http://testns.hoge.jp/apply&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;testns:key1&gt;</span>value1<span class="nt">&lt;/testns:key1&gt;</span>
+<span class="nt">&lt;/testns:data&gt;</span>
+</pre></div>
+</div>
+</dd>
+<dt>Mapデータ</dt>
+<dd><p class="first">入出力対象のMapの構造は以下のとおり。</p>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">data</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;();</span>
+<span class="n">data</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;testnsKey1&quot;</span><span class="o">,</span> <span class="s">&quot;value1&quot;</span><span class="o">);</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="id13">
+<h3><a class="toc-backref" href="#id30">7.4.2.3.7. XMLで属性を持つ要素にコンテンツを定義する</a><a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>XMLで属性を持つ要素にコンテンツを定義したい場合は、
+フォーマット定義ファイルにコンテンツを表すフィールドを定義する。</p>
+<p>設定例を以下に示す。</p>
+<dl class="docutils">
+<dt>ポイント</dt>
+<dd><ul class="first last simple">
+<li>コンテンツを表すフィールド名には <code class="docutils literal"><span class="pre">body</span></code> を指定する。
+コンテンツを表すフィールド名をデフォルトから変更したい場合は、 <a class="reference internal" href="#data-format-xml-content-name-change"><span class="std std-ref">XMLで属性を持つ要素のコンテンツ名を変更する</span></a> を参照。</li>
+</ul>
+</dd>
+<dt>フォーマット定義ファイル</dt>
+<dd><div class="first last highlight-bash"><div class="highlight"><pre><span></span>file-type:        <span class="s2">&quot;XML&quot;</span>
+text-encoding:    <span class="s2">&quot;UTF-8&quot;</span>
+
+<span class="o">[</span>parent<span class="o">]</span>
+<span class="m">1</span> child   OB
+
+<span class="o">[</span>child<span class="o">]</span>
+<span class="m">1</span> @attr   X
+<span class="m">2</span> body    X
+</pre></div>
+</div>
+</dd>
+<dt>XMLデータ</dt>
+<dd><p class="first">上記フォーマット定義ファイルに対応したXMLは以下のとおり。</p>
+<div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="nt">&lt;parent&gt;</span>
+  <span class="nt">&lt;child</span> <span class="na">attr=</span><span class="s">&quot;value1&quot;</span><span class="nt">&gt;</span>value2<span class="nt">&lt;/child&gt;</span>
+<span class="nt">&lt;/parent&gt;</span>
+</pre></div>
+</div>
+</dd>
+<dt>Mapデータ</dt>
+<dd><p class="first">入出力対象のMapの構造は以下のとおり。</p>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">data</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;();</span>
+<span class="n">data</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;child.attr&quot;</span><span class="o">,</span> <span class="s">&quot;value1&quot;</span><span class="o">);</span>
+<span class="n">data</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;child.body&quot;</span><span class="o">,</span> <span class="s">&quot;value2&quot;</span><span class="o">);</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="data-format-replacement">
+<span id="id14"></span><h3><a class="toc-backref" href="#id31">7.4.2.3.8. 文字の置き換え(寄せ字)を行う</a><a class="headerlink" href="#data-format-replacement" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>寄せ字機能を使うことで、外部からデータを読み込む際に、システムで利用可能な文字に置き換えることが出来る。</p>
+<p>以下に使用方法を示す。</p>
+<dl class="docutils">
+<dt>置き換えルールを定義したプロパティを作成する</dt>
+<dd><p class="first">プロパティファイルには、「置き換え前の文字=置き換え後の文字」形式で、置き換えルールを定義する。</p>
+<p>置き換え前、置き換え後の文字に定義できる値は、ともに1文字のみである。
+また、サロゲートペアには対応していない。</p>
+<p>コメントなどの記述ルールは、 <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/Properties.html" title="java.util.Properties">java.util.Properties</a> を参照。</p>
+<div class="highlight-properties"><div class="highlight"><pre><span></span><span class="na">髙</span><span class="o">=</span><span class="s">高</span>
+<span class="na">﨑</span><span class="o">=</span><span class="s">崎</span>
+<span class="na">唖</span><span class="o">=</span><span class="s">■</span>
+</pre></div>
+</div>
+<div class="last admonition tip">
+<p class="first admonition-title">ちなみに</p>
+<p class="last">接続先ごとに置き換えルールを定義する場合には、複数のコンフィグファイルを作成する。</p>
+</div>
+</dd>
+<dt>置き換えルールの設定をコンポーネント設定ファイルに追加する</dt>
+<dd><dl class="first docutils">
+<dt>ポイント</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/core/dataformat/CharacterReplacementManager.html" title="nablarch.core.dataformat.CharacterReplacementManager">CharacterReplacementManager</a> をコンポーネント名 <code class="docutils literal"><span class="pre">characterReplacementManager</span></code> で設定する。</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/core/dataformat/CharacterReplacementManager.html#setConfigList(java.util.List)" title="nablarch.core.dataformat.CharacterReplacementManager.setConfigList(java.util.List)">configList</a> プロパティにリスト形式で <a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/core/dataformat/CharacterReplacementConfig.html" title="nablarch.core.dataformat.CharacterReplacementConfig">CharacterReplacementConfig</a> を設定する。</li>
+<li>複数のプロパティファイルを定義する場合は、 <a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/core/dataformat/CharacterReplacementConfig.html#setTypeName(java.lang.String)" title="nablarch.core.dataformat.CharacterReplacementConfig.setTypeName(java.lang.String)">typeName</a> プロパティに異なる名前を設定する。</li>
+</ul>
+</dd>
+</dl>
+<div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;characterReplacementManager&quot;</span>
+    <span class="na">class=</span><span class="s">&quot;nablarch.core.dataformat.CharacterReplacementManager&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;configList&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;list&gt;</span>
+      <span class="c">&lt;!-- Aシステムとの寄せ字ルール --&gt;</span>
+      <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.dataformat.CharacterReplacementConfig&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;typeName&quot;</span> <span class="na">value=</span><span class="s">&quot;a_system&quot;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;filePath&quot;</span> <span class="na">value=</span><span class="s">&quot;classpath:a-system.properties&quot;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;encoding&quot;</span> <span class="na">value=</span><span class="s">&quot;UTF-8&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;/component&gt;</span>
+      <span class="c">&lt;!-- Bシステムとの寄せ字ルール --&gt;</span>
+      <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.dataformat.CharacterReplacementConfig&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;typeName&quot;</span> <span class="na">value=</span><span class="s">&quot;b_system&quot;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;filePath&quot;</span> <span class="na">value=</span><span class="s">&quot;classpath:b-system.properties&quot;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;encoding&quot;</span> <span class="na">value=</span><span class="s">&quot;UTF-8&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;/component&gt;</span>
+    <span class="nt">&lt;/list&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+</dd>
+<dt>フォーマット定義ファイルにどの置き換えルールを使用するかを定義する</dt>
+<dd><p class="first">入出力時に文字の置き換えを行う場合は、 <a class="reference internal" href="data_format/format_definition.html#data-format-replacement-convertor"><span class="std std-ref">replacement</span></a> を使用する。</p>
+<p><cite>replacement</cite> の引数には、上記で設定した置き換えルールの <cite>typeName</cite> を設定する。</p>
+<div class="last highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># Aシステムとの置き換えルールを適用</span>
+<span class="m">1</span> name N<span class="o">(</span><span class="m">100</span><span class="o">)</span> replacement<span class="o">(</span><span class="s2">&quot;a_system&quot;</span><span class="o">)</span>
+
+<span class="c1"># Bシステムとの置き換えルールを適用</span>
+<span class="m">1</span> name N<span class="o">(</span><span class="m">100</span><span class="o">)</span> replacement<span class="o">(</span><span class="s2">&quot;b_system&quot;</span><span class="o">)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="id15">
+<h2><a class="toc-backref" href="#id32">7.4.2.4. 拡張例</a><a class="headerlink" href="#id15" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="data-format-field-type-add">
+<span id="id16"></span><h3><a class="toc-backref" href="#id33">7.4.2.4.1. フィールドタイプを追加する</a><a class="headerlink" href="#data-format-field-type-add" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p><a class="reference internal" href="data_format/format_definition.html#data-format-field-type-list"><span class="std std-ref">Nablarchが提供する標準データタイプ</span></a> では要件を満たせない場合がある。
+例えば、文字列タイプのパディング文字がバイナリの場合などが該当する。</p>
+<p>このような場合は、プロジェクト固有のフィールドタイプを定義することで対応する。</p>
+<p>以下に手順を示す。</p>
+<ol class="arabic simple">
+<li>フィールドタイプを処理するための <a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/core/dataformat/convertor/datatype/DataType.html" title="nablarch.core.dataformat.convertor.datatype.DataType">DataType</a> 実装クラスを作成する。</li>
+<li>設定ファイルにフィールドタイプ定義を行う。</li>
+</ol>
+<p>詳細な手順は以下のとおり。</p>
+<dl class="docutils">
+<dt>フィールドタイプに対応したデータタイプ実装の追加</dt>
+<dd><p class="first"><a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/core/dataformat/convertor/datatype/DataType.html" title="nablarch.core.dataformat.convertor.datatype.DataType">DataType</a> を実装したクラスを作成する。</p>
+<div class="last admonition tip">
+<p class="first admonition-title">ちなみに</p>
+<p class="last">標準のフィールドタイプ実装は、 <a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/core/dataformat/convertor/datatype/package-summary.html" title="nablarch.core.dataformat.convertor.datatype.package-summary">nablarch.core.dataformat.convertor.datatype</a> パッケージ配下に配置されている。
+実装を追加する際には、これらのクラスを参考にすると良い。</p>
+</div>
+</dd>
+<dt>設定ファイルへの追加</dt>
+<dd><p class="first">追加したフィールドタイプを有効にするために、設定ファイルにフィールドタイプの設定を追加する。</p>
+<p>フィールドタイプは、各フォーマットタイプに応じた設定クラスの <cite>convertorTable</cite> プロパティに対して行う。
+以下にフォーマットタイプ毎の設定クララスを示す。</p>
+<table border="1" class="colwidths-given white-space-normal docutils">
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="34%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">データタイプ</th>
+<th class="head">クラス名(コンポーネント名)</th>
+<th class="head">デフォルトタイプ定義クラス</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Fixed(固定長)</td>
+<td><a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/core/dataformat/convertor/FixedLengthConvertorSetting.html" title="nablarch.core.dataformat.convertor.FixedLengthConvertorSetting">FixedLengthConvertorSetting</a>
+(fixedLengthConvertorSetting)</td>
+<td><a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/core/dataformat/convertor/FixedLengthConvertorFactory.html" title="nablarch.core.dataformat.convertor.FixedLengthConvertorFactory">FixedLengthConvertorFactory</a></td>
+</tr>
+<tr class="row-odd"><td>Variable(可変長)</td>
+<td><a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/core/dataformat/convertor/VariableLengthConvertorSetting.html" title="nablarch.core.dataformat.convertor.VariableLengthConvertorSetting">VariableLengthConvertorSetting</a>
+(variableLengthConvertorSetting)</td>
+<td><a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/core/dataformat/convertor/VariableLengthConvertorFactory.html" title="nablarch.core.dataformat.convertor.VariableLengthConvertorFactory">VariableLengthConvertorFactory</a></td>
+</tr>
+<tr class="row-even"><td>JSON</td>
+<td><a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/core/dataformat/convertor/JsonDataConvertorSetting.html" title="nablarch.core.dataformat.convertor.JsonDataConvertorSetting">JsonDataConvertorSetting</a>
+(jsonDataConvertorSetting)</td>
+<td><a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/core/dataformat/convertor/JsonDataConvertorFactory.html" title="nablarch.core.dataformat.convertor.JsonDataConvertorFactory">JsonDataConvertorFactory</a></td>
+</tr>
+<tr class="row-odd"><td>XML</td>
+<td><a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/core/dataformat/convertor/XmlDataConvertorSetting.html" title="nablarch.core.dataformat.convertor.XmlDataConvertorSetting">XmlDataConvertorSetting</a>
+(xmlDataConvertorSetting)</td>
+<td><a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/core/dataformat/convertor/XmlDataConvertorFactory.html" title="nablarch.core.dataformat.convertor.XmlDataConvertorFactory">XmlDataConvertorFactory</a></td>
+</tr>
+</tbody>
+</table>
+<p>以下にFixed(固定長)の場合の例を示す。</p>
+<p>コンポーネント名は、上記表のコンポーネント名を設定する。固定長の場合は、 <cite>fixedLengthConvertorSetting</cite> となる。</p>
+<p>追加したフィールドタイプを設定する際には、デフォルトのフィールドタイプ及びフィールドコンバータの設定を合わせて設定する。
+デフォルトのフィールドタイプ及びフィールドコンバータの設定は、上記表のデフォルトタイプ定義クラスの実装から転記すること。</p>
+<div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;fixedLengthConvertorSetting&quot;</span>
+    <span class="na">class=</span><span class="s">&quot;nablarch.core.dataformat.convertor.FixedLengthConvertorSetting&quot;</span><span class="nt">&gt;</span>
+
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;convertorTable&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;map&gt;</span>
+      <span class="c">&lt;!-- デフォルトの設定ここから --&gt;</span>
+      <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;X&quot;</span> <span class="na">value=</span><span class="s">&quot;nablarch.core.dataformat.convertor.datatype.SingleByteCharacterString&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;N&quot;</span> <span class="na">value=</span><span class="s">&quot;nablarch.core.dataformat.convertor.datatype.DoubleByteCharacterString&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;XN&quot;</span> <span class="na">value=</span><span class="s">&quot;nablarch.core.dataformat.convertor.datatype.ByteStreamDataString&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;Z&quot;</span> <span class="na">value=</span><span class="s">&quot;nablarch.core.dataformat.convertor.datatype.ZonedDecimal&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;SZ&quot;</span> <span class="na">value=</span><span class="s">&quot;nablarch.core.dataformat.convertor.datatype.SignedZonedDecimal&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;P&quot;</span> <span class="na">value=</span><span class="s">&quot;nablarch.core.dataformat.convertor.datatype.PackedDecimal&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;SP&quot;</span> <span class="na">value=</span><span class="s">&quot;nablarch.core.dataformat.convertor.datatype.SignedPackedDecimal&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;X9&quot;</span> <span class="na">value=</span><span class="s">&quot;nablarch.core.dataformat.convertor.datatype.NumberStringDecimal&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;SX9&quot;</span> <span class="na">value=</span><span class="s">&quot;nablarch.core.dataformat.convertor.datatype.SignedNumberStringDecimal&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;B&quot;</span> <span class="na">value=</span><span class="s">&quot;nablarch.core.dataformat.convertor.datatype.Bytes&quot;</span> <span class="nt">/&gt;</span>
+
+      <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;pad&quot;</span> <span class="na">value=</span><span class="s">&quot;nablarch.core.dataformat.convertor.value.Padding&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;encoding&quot;</span> <span class="na">value=</span><span class="s">&quot;nablarch.core.dataformat.convertor.value.UseEncoding&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;_LITERAL_&quot;</span> <span class="na">value=</span><span class="s">&quot;nablarch.core.dataformat.convertor.value.DefaultValue&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;number&quot;</span> <span class="na">value=</span><span class="s">&quot;nablarch.core.dataformat.convertor.value.NumberString&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;signed_number&quot;</span> <span class="na">value=</span><span class="s">&quot;nablarch.core.dataformat.convertor.value.SignedNumberString&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;replacement&quot;</span> <span class="na">value=</span><span class="s">&quot;nablarch.core.dataformat.convertor.value.CharacterReplacer&quot;</span> <span class="nt">/&gt;</span>
+
+      <span class="c">&lt;!-- 追加したフィールドタイプの定義 --&gt;</span>
+      <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;SAMPLE_TYPE&quot;</span> <span class="na">value=</span><span class="s">&quot;sample.SampleType&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/map&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="data-format-xml-content-name-change">
+<span id="id17"></span><h3><a class="toc-backref" href="#id34">7.4.2.4.2. XMLで属性を持つ要素のコンテンツ名を変更する</a><a class="headerlink" href="#data-format-xml-content-name-change" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>属性を持つ要素のコンテンツ名を変更するには、
+以下のクラスをコンポーネント設定ファイルに設定し、<code class="docutils literal"><span class="pre">contentName</span></code> プロパティに変更後のコンテンツ名をそれぞれ設定する。</p>
+<ul class="simple">
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/core/dataformat/XmlDataParser.html" title="nablarch.core.dataformat.XmlDataParser">XmlDataParser</a></li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/core/dataformat/XmlDataBuilder.html" title="nablarch.core.dataformat.XmlDataBuilder">XmlDataBuilder</a></li>
+</ul>
+<p>コンポーネント設定ファイルの設定例を以下に示す。</p>
+<dl class="docutils">
+<dt>ポイント</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/core/dataformat/XmlDataParser.html" title="nablarch.core.dataformat.XmlDataParser">XmlDataParser</a> のコンポーネント名は <code class="docutils literal"><span class="pre">XmlDataParser</span></code> とすること</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/core/dataformat/XmlDataBuilder.html" title="nablarch.core.dataformat.XmlDataBuilder">XmlDataBuilder</a> のコンポーネント名は <code class="docutils literal"><span class="pre">XmlDataBuilder</span></code> とすること</li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;XmlDataParser&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.dataformat.XmlDataParser&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;contentName&quot;</span> <span class="na">value=</span><span class="s">&quot;change&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;XmlDataBuilder&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.dataformat.XmlDataBuilder&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;contentName&quot;</span> <span class="na">value=</span><span class="s">&quot;change&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+
+    <hr/>
+
+    <div role="contentinfo">
+        <p>
+            &copy; Copyright 2010-2017, TIS Inc.
+        </p>
+    </div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../',
+            VERSION:'5u8',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../../_static/custom.js"></script>
+      <script type="text/javascript" src="../../../../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

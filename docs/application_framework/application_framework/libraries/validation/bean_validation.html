@@ -1,0 +1,979 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>7.10.1. Bean Validation &mdash; ∇Nablarch  5u8 ドキュメント</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="索引"
+              href="../../../../genindex.html"/>
+        <link rel="search" title="検索" href="../../../../search.html"/>
+    <link rel="top" title="∇Nablarch  5u8 ドキュメント" href="../../../../index.html"/>
+        <link rel="up" title="7.10. 入力値のチェック" href="../validation.html"/>
+        <link rel="next" title="7.10.2. Nablarch Validation" href="nablarch_validation.html"/>
+        <link rel="prev" title="7.10. 入力値のチェック" href="../validation.html"/> 
+
+  
+  <script src="../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+  
+  <a href="../../../../index.html" id="sidebar-title" class="icon"> ∇Nablarch 
+  
+
+  
+    <div id="sidebar-version">Version: 5u8</div>
+  </a>
+
+  <div role="search">
+    <form id="google-search-form" class="wy-form" method="get" action="https://www.google.co.jp/search">
+      <input type="hidden" id="document-version" value="5u8" />
+      <input type="text" name="text" placeholder="Search docs on google" id="text"/>
+      <input type="hidden" name="q" id="q"/>
+    </form>
+  </div>
+    
+    
+
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+  
+  
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../about_nablarch/index.html">Nablarchについて</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../about_nablarch/concept.html">Nablarchのコンセプト</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../about_nablarch/concept.html#robustness">Robustness</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../about_nablarch/concept.html#testability">Testability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../about_nablarch/concept.html#ready-to-use">Ready-to-Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../about_nablarch/mvn_module.html">Nablarch のモジュール一覧</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../about_nablarch/license.html">Nablarchのライセンスについて</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Nablarchアプリケーションフレームワーク</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">アプリケーションフレームワーク</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../nablarch/index.html">1. Nablarchアプリケーションフレームワークとは</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../web/index.html">2. ウェブアプリケーション編</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../web_service/index.html">3. ウェブサービス編</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../batch/index.html">4. バッチアプリケーション編</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../messaging/index.html">5. メッセージング編</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../handlers/index.html">6. Nablarchの提供する標準ハンドラ</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">7. Nablarchが提供するライブラリ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../blank_project/index.html">8. ブランクプロジェクト</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../setting_guide/index.html">9. Nablarchアプリケーションフレームワーク設定ガイド</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../adaptors/index.html">アダプタ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/log_adaptor.html">logアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/router_adaptor.html">ルーティングアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/webspheremq_adaptor.html">IBM WebSphere MQアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/jaxrs_adaptor.html">JAX-RSアダプタ</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../example/index.html">Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../example/index.html#id1">環境構築手順について</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../example/index.html#id2">アプリケーションの実行手順について</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../extension_components/index.html">Nablarch拡張コンポーネント</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/report/index.html">1. 帳票ライブラリ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/report/index.html#id2">1.1. 概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/report/index.html#id3">1.2. 要求</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/report/index.html#id7">1.3. 構造</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/report/index.html#report-template">1.4. 実装例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/workflow/index.html">2. ワークフロー</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html">2.1. ワークフローライブラリ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/sample_application/doc/index.html">2.2. ワークフローアプリケーション実装ガイド</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/tool/doc/index.html">2.3. ワークフロー定義データ生成ツール</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/etl/index.html">3. ETL</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id3">3.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id4">3.2. ETLの各フェーズの仕様</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id5">3.3. 使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id7">3.4. 拡張例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html">4. ETL Mavenプラグイン</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html#id2">4.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html#id3">4.2. 使用方法</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../development_tools/index.html">Nablarch開発ツール</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../development_tools/java_static_analysis/index.html">1. 効率的なJava静的チェック</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/java_static_analysis/index.html#code-analysis">1.1. 構文チェックを行う</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/java_static_analysis/index.html#code-format">1.2. フォーマットを統一する</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/java_static_analysis/index.html#api">1.3. 許可していないAPIが使用されていないかチェックする</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../development_tools/ui_dev/index.html">2. フロントエンド上級者向けのUI開発基盤</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/ui_dev/doc/index.html">2.1. Nablarch UI開発基盤 解説書</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/ui_dev/guide/index.html">2.2. JSP/HTML作成ガイド</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/ui_dev/guide/widget_usage/widget_list.html">2.3. UI部品の実装サンプルで提供しているウィジェットの一覧</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../development_tools/testing_framework/index.html">3. 大規模開発向け重厚なテスティングフレームワーク</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/index.html">3.1. 単体テスト実施方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/testing_framework/guide/development_guide/06_TestFWGuide/index.html">3.2. 自動テストフレームワークの使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/testing_framework/guide/development_guide/08_TestTools/index.html">3.3. プログラミング工程で使用するツール</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../development_tools/toolbox/index.html">4. アプリケーション開発時に使える便利なツール</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/toolbox/UnpublishedMethodDetector/UnpublishedApi.html">4.1. 使用不許可APIチェックツール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/toolbox/PublishedApi/PublishedApiConfigGenerator.html">4.2. 使用許可API一覧作成ツール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/toolbox/JspStaticAnalysis/index.html">4.3. JSP静的解析ツール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/toolbox/SqlExecutor/SqlExecutor.html">4.4. Nablarch SQL Executor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/toolbox/JspVerifier/JspVerifier.html">4.5. 業務画面JSP検証ツール</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/index.html">Nablarch実装例集</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/01/index.html">データベースを用いたパスワード認証機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/01/0101_PBKDF2PasswordEncryptor.html">PBKDF2を用いたパスワード暗号化機能サンプル</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/01/index.html#id3">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/01/index.html#id4">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/01/index.html#id6">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/01/index.html#id12">使用方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/02/index.html">バリデーション機能の拡張</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/02/index.html#id3">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/02/index.html#extendedvalidation-mailaddressvalidator">メールアドレスバリデーション</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/02/index.html#extendedvalidation-japanesetelnumbervalidator">日本電話番号バリデーション</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/02/index.html#id12">コード値精査</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/03/index.html">検索結果の一覧表示</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#id3">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#id4">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#id5">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#id8">使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#listsearchinfo">ListSearchInfoクラス</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#listsearchresult">listSearchResultタグ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#listsearchresult-sort">検索結果の並び替え</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#listsearchresult-nopaging">1画面にすべての検索結果を一覧表示する場合の実装方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#listsearchresult-defaultcondition">デフォルトの検索条件で検索した結果を初期表示する場合の実装方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#listsearchresult-setting">検索結果の一覧表示機能のデフォルト値設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#listsearchresult-customize">業務アプリケーションへのサンプル実装(タグファイル)の取り込み方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#listsearchresult-tagreference">タグリファレンス</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/04/index.html">フォーマッタ機能の拡張</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/04/0401_ExtendedDataFormatter.html">データフォーマッタの拡張</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/04/0402_ExtendedFieldType.html">データフォーマッタ機能におけるフィールドタイプの拡張</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/05/index.html">データベースを用いたファイル管理機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/05/index.html#id2">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/05/index.html#id6">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/05/index.html#id7">機能</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/05/index.html#id10">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/05/index.html#id15">使用方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/06/index.html">CAPTCHA機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/06/06_Captcha_guide.html">CAPTCHA機能の組み込み手順</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/06/index.html#id3">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/06/index.html#id4">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/06/index.html#id6">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/06/index.html#id21">使用方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/07/index.html">UserAgent情報取得機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/07/index.html#id1">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/07/index.html#id3">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/07/index.html#id8">設定の記述</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/07/index.html#id11">使用例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/08/index.html">HTMLメール送信機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/08/index.html#id1">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/08/index.html#id3">要求</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/08/index.html#id6">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/08/index.html#id14">実装例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/09/index.html">bouncycastleを使用した電子署名つきメールの送信サンプルの使用方法</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/09/index.html#id3">環境準備</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/09/index.html#id4">電子署名付きメール送信機能の構造</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/09/index.html#id5">設定ファイルの準備</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/09/index.html#id7">実行方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/10/index.html">ログ集計サンプルの使用方法</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/10/index.html#id3">提供サンプル一覧</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/11/index.html">メッセージング基盤テストシミュレータサンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/11/index.html#id4">用途</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/11/index.html#id8">特徴</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/11/index.html#id12">要求</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/11/index.html#id15">使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/11/index.html#id18">拡張例</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nablarch_api/index.html">Nablarch API</a></li>
+</ul>
+
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">∇Nablarch </a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../index.html">Nablarchアプリケーションフレームワーク</a> &raquo;</li>
+      
+          <li><a href="../../index.html">アプリケーションフレームワーク</a> &raquo;</li>
+      
+          <li><a href="../index.html">7. Nablarchが提供するライブラリ</a> &raquo;</li>
+      
+          <li><a href="../validation.html">7.10. 入力値のチェック</a> &raquo;</li>
+      
+    <li>7.10.1. Bean Validation</li>
+      <li class="wy-breadcrumbs-aside">
+        <a href="https://github.com/nablarch" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="bean-validation">
+<span id="id1"></span><h1>7.10.1. Bean Validation<a class="headerlink" href="#bean-validation" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="contents local topic" id="id2">
+<p class="topic-title first">目次</p>
+<ul class="simple">
+<li><a class="reference internal" href="#id3" id="id22">機能概要</a><ul>
+<li><a class="reference internal" href="#id4" id="id23">ドメインバリデーションができる</a></li>
+<li><a class="reference internal" href="#bean-validation-validator" id="id24">よく使われるバリデータが提供されている</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id6" id="id25">モジュール一覧</a></li>
+<li><a class="reference internal" href="#id7" id="id26">使用方法</a><ul>
+<li><a class="reference internal" href="#bean-validation-configuration" id="id27">Bean Validationを使うための設定を行う</a></li>
+<li><a class="reference internal" href="#id9" id="id28">バリデーションエラー時のエラーメッセージを定義する</a></li>
+<li><a class="reference internal" href="#id10" id="id29">バリデーションルールの設定方法</a></li>
+<li><a class="reference internal" href="#bean-validation-domain-validation" id="id30">ドメインバリデーションを使う</a></li>
+<li><a class="reference internal" href="#bean-validation-system-char-validator" id="id31">文字種バリデーションを行う</a></li>
+<li><a class="reference internal" href="#bean-validation-correlation-validation" id="id32">相関バリデーションを行う</a></li>
+<li><a class="reference internal" href="#bean-validation-database-validation" id="id33">データベースとの相関バリデーションを行う</a></li>
+<li><a class="reference internal" href="#bean-validation-create-message-for-property" id="id34">特定の項目に紐づくバリデーションエラーのメッセージを作りたい</a></li>
+<li><a class="reference internal" href="#bean" id="id35">一括登録のようなBeanの複数入力を行う機能でバリデーションを行う</a></li>
+<li><a class="reference internal" href="#id16" id="id36">ネストしたBeanをバリデーションする際の注意点</a></li>
+<li><a class="reference internal" href="#bean-validation-web-application" id="id37">ウェブアプリケーションのユーザ入力値のチェックを行う</a></li>
+<li><a class="reference internal" href="#bean-validation-property-name" id="id38">バリデーションエラー時のメッセージに項目名を含めたい</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id19" id="id39">拡張例</a><ul>
+<li><a class="reference internal" href="#id20" id="id40">プロジェクト固有のアノテーションとバリデーションロジックを追加したい</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<p>この章では、Java EE7のBean Validation(JSR349)に準拠したバリデーション機能の解説を行う。</p>
+<div class="admonition important">
+<p class="first admonition-title">重要</p>
+<p>この機能は、Bean Validationのエンジンを実装しているわけではない。</p>
+<p class="last">Java EE環境(WebLogicやWildFlyなど)では、そのサーバ内にバンドルされているBean Validationの実装が利用される。
+Java EE環境外で利用するには、別途Bean Validationの実装を参照ライブラリに追加する必要がある。
+(参照実装である <a class="reference external" href="http://hibernate.org/validator/">Hibernate Validator(外部サイト、英語)</a> を利用することを推奨する。)</p>
+</div>
+<div class="section" id="id3">
+<h2><a class="toc-backref" href="#id22">7.10.1.1. 機能概要</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id4">
+<h3><a class="toc-backref" href="#id23">7.10.1.1.1. ドメインバリデーションができる</a><a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>ドメインごとにバリデーションルールを定義できる機能を提供する。</p>
+<p>ドメインバリデーションを使うと、Beanのプロパティにはドメイン名の指定だけを行えばよく、バリデーションルールの変更が容易になる。</p>
+<p>詳細は、 <a class="reference internal" href="#id11">ドメインバリデーションを使う</a> を参照。</p>
+</div>
+<div class="section" id="bean-validation-validator">
+<span id="id5"></span><h3><a class="toc-backref" href="#id24">7.10.1.1.2. よく使われるバリデータが提供されている</a><a class="headerlink" href="#bean-validation-validator" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Nablarchでは、よく使われるバリデータが提供されているため、基本的なバリデーションは何かを作りこむことなく利用できる。</p>
+<p>Nablarchで提供しているバリデータは以下のパッケージ内のアノテーション(注釈型)を参照。</p>
+<ul class="simple">
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/core/validation/ee/package-summary.html" title="nablarch.core.validation.ee.package-summary">nablarch.core.validation.ee</a></li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/common/code/validator/ee/package-summary.html" title="nablarch.common.code.validator.ee.package-summary">nablarch.common.code.validator.ee</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id6">
+<h2><a class="toc-backref" href="#id25">7.10.1.2. モジュール一覧</a><a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.nablarch.framework<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>nablarch-core-validation-ee<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+
+<span class="c">&lt;!--</span>
+<span class="c"> メッセージ管理を使用してメッセージを構築する場合のみ</span>
+<span class="c"> デフォルトでは、メッセージ管理が使用される</span>
+<span class="c"> --&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.nablarch.framework<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>nablarch-core-message<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+
+<span class="c">&lt;!-- コード値のバリデータを使用する場合のみ --&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.nablarch.framework<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>nablarch-common-code<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+
+<span class="c">&lt;!-- ウェブアプリケーションで使用する場合 --&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.nablarch.framework<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>nablarch-fw-web<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id7">
+<h2><a class="toc-backref" href="#id26">7.10.1.3. 使用方法</a><a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="bean-validation-configuration">
+<span id="id8"></span><h3><a class="toc-backref" href="#id27">7.10.1.3.1. Bean Validationを使うための設定を行う</a><a class="headerlink" href="#bean-validation-configuration" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Bean Validationを使うために必要となる設定を以下に示す。</p>
+<dl class="docutils">
+<dt>MessageInterpolatorの設定</dt>
+<dd><p class="first">Bean Validationでバリデーションエラーが発生した際のメッセージを構築するクラス( <a class="reference external" href="http://docs.oracle.com/javaee/7/api/javax/validation/MessageInterpolator.html" title="javax.validation.MessageInterpolator">MessageInterpolator</a> を実装したクラス)を設定する。</p>
+<p>設定を省略した場合(デフォルト)は、 <a class="reference internal" href="../message.html#message"><span class="std std-ref">メッセージ管理</span></a> を使用する <a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/core/validation/ee/NablarchMessageInterpolator.html" title="nablarch.core.validation.ee.NablarchMessageInterpolator">NablarchMessageInterpolator</a> が使用される。</p>
+<p>例えば、Hibernate Validatorのプロパティファイルからメッセージを構築する実装を使用する場合には、以下のように設定する。</p>
+<div class="admonition important">
+<p class="first admonition-title">重要</p>
+<p class="last">componentの名前は、必ず <strong>messageInterpolator</strong> とすること。</p>
+</div>
+<div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- コンポーネント名にmessageInterpolatorを指定し、MessageInterpolatorの実装クラスを設定する --&gt;</span>
+<span class="nt">&lt;compnent</span> <span class="na">name=</span><span class="s">&quot;messageInterpolator&quot;</span>
+    <span class="na">class=</span><span class="s">&quot;org.hibernate.validator.messageinterpolation.ResourceBundleMessageInterpolator&quot;</span><span class="nt">/&gt;</span>
+</pre></div>
+</div>
+</dd>
+<dt>ドメインバリデーション用の設定</dt>
+<dd><a class="reference internal" href="#bean-validation-domain-validation"><span class="std std-ref">ドメインバリデーションを使う</span></a> を参照</dd>
+<dt>ウェブアプリケーションでBean Validationを使うための設定</dt>
+<dd><a class="reference internal" href="#bean-validation-web-application"><span class="std std-ref">ウェブアプリケーションのユーザ入力値のチェックを行う</span></a> を参照</dd>
+</dl>
+</div>
+<div class="section" id="id9">
+<h3><a class="toc-backref" href="#id28">7.10.1.3.2. バリデーションエラー時のエラーメッセージを定義する</a><a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p><a class="reference internal" href="#bean-validation-configuration"><span class="std std-ref">Bean Validationを使うための設定を行う</span></a> で説明したように、デフォルトでは <a class="reference internal" href="../message.html#message"><span class="std std-ref">メッセージ管理</span></a> を使用してバリデーションエラー時のメッセージを構築する。
+このため、メッセージの定義場所などの詳細は、 <a class="reference internal" href="../message.html#message"><span class="std std-ref">メッセージ管理</span></a> を参照すること。</p>
+<p>デフォルトの <a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/core/validation/ee/NablarchMessageInterpolator.html" title="nablarch.core.validation.ee.NablarchMessageInterpolator">NablarchMessageInterpolator</a> を使用した場合のメッセージ定義ルールは以下のとおり。</p>
+<ul class="simple">
+<li>アノテーションの <code class="docutils literal"><span class="pre">message</span></code> 属性に指定された値が <code class="docutils literal"><span class="pre">{</span></code> 、<code class="docutils literal"><span class="pre">}</span></code> で囲まれていた場合のみ <a class="reference internal" href="../message.html#message"><span class="std std-ref">メッセージ管理</span></a> を使用してメッセージを構築する。</li>
+<li>メッセージテキスト内には、バリデーションのアノテーションの属性情報を埋め込むためのプレースホルダを使用できる。
+プレースホルダは、アノテーションの属性名を <code class="docutils literal"><span class="pre">{</span></code> 、 <code class="docutils literal"><span class="pre">}</span></code> で囲んで定義する。</li>
+<li>メッセージを動的に組み立てる式(例えばEL式)は使用できない。</li>
+</ul>
+<p>以下に例を示す。</p>
+<dl class="docutils">
+<dt>Java実装例</dt>
+<dd><div class="first last highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SampleForm</span> <span class="o">{</span>
+
+  <span class="nd">@Length</span><span class="o">(</span><span class="n">max</span> <span class="o">=</span> <span class="mi">10</span><span class="o">)</span>
+  <span class="nd">@SystemChar</span><span class="o">(</span><span class="n">charsetDef</span> <span class="o">=</span> <span class="s">&quot;全角文字&quot;</span><span class="o">)</span>
+  <span class="nd">@Required</span>
+  <span class="kd">private</span> <span class="n">String</span> <span class="n">userName</span><span class="o">;</span>
+
+  <span class="nd">@Length</span><span class="o">(</span><span class="n">min</span> <span class="o">=</span> <span class="mi">8</span><span class="o">,</span> <span class="n">max</span> <span class="o">=</span> <span class="mi">8</span><span class="o">)</span>
+  <span class="nd">@SystemChar</span><span class="o">(</span><span class="n">charsetDef</span> <span class="o">=</span> <span class="s">&quot;半角数字&quot;</span><span class="o">)</span>
+  <span class="kd">private</span> <span class="n">String</span> <span class="n">birthday</span><span class="o">;</span>
+
+  <span class="c1">// getter、setterは省略</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</dd>
+<dt>メッセージ定義例</dt>
+<dd><p class="first">アノテーションで指定されているメッセージIDをキーにメッセージを定義する。
+アノテーションのmessage属性を指定していない場合は、デフォルト値がメッセージIDとなる。</p>
+<div class="last highlight-properties"><div class="highlight"><pre><span></span><span class="c"># Lengthアノテーションに対応したメッセージ</span>
+<span class="c"># Lengthアノテーションのminやmax属性に指定した値をメッセージに埋め込むことが出来る</span>
+<span class="na">nablarch.core.validation.ee.Length.min.message</span><span class="o">=</span><span class="s">{min}文字以上で入力してください。</span>
+<span class="na">nablarch.core.validation.ee.Length.max.message</span><span class="o">=</span><span class="s">{max}文字以内で入力してください。</span>
+<span class="na">nablarch.core.validation.ee.Length.min.max.message</span><span class="o">=</span><span class="s">{min}文字以上{max}文字以内で入力してください。</span>
+
+<span class="c"># SystemCharに対応したメッセージ</span>
+<span class="na">nablarch.core.validation.ee.SystemChar.message</span><span class="o">=</span><span class="s">{charsetDef}を入力してください。</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<div class="admonition tip">
+<p class="first admonition-title">ちなみに</p>
+<p class="last"><a class="reference internal" href="#bean-validation-configuration"><span class="std std-ref">Bean Validationを使うための設定を行う</span></a> で、デフォルト動作を変更している場合には、
+<a class="reference external" href="http://docs.oracle.com/javaee/7/api/javax/validation/MessageInterpolator.html" title="javax.validation.MessageInterpolator">MessageInterpolator</a> の実装に従いメッセージを定義すること。</p>
+</div>
+</div>
+<div class="section" id="id10">
+<h3><a class="toc-backref" href="#id29">7.10.1.3.3. バリデーションルールの設定方法</a><a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>バリデーションルールは、アノテーションをFieldかProperty(getter)に設定することで指定できる。
+なお、setterにはアノテーションを指定できないので注意すること。(指定しても意味が無い(無視する))</p>
+<div class="admonition tip" id="bean-validation-form-property">
+<p class="first admonition-title">ちなみに</p>
+<p>Beanクラスのプロパティの型は全てStringとして定義すること。</p>
+<p>Bean Validationでは、入力値をBeanに変換した後でバリデーションが実施される。
+このため、外部からどのような値が入力値として送られてきても、必ずBeanに変換する必要がある。</p>
+<p>もし、String以外のプロパティが存在していて、不正な値が送信された場合（例えば、数値型に対して英字が送信された場合)に、
+バリデーション実施前に行うBeanへの変換処理が失敗し、予期せぬ例外が送出され障害となってしまう。</p>
+<p>本来であれば、どのような値が入力されたとしても障害とするのではなく、バリデーションの結果を外部（例えば画面）に対して通知すべきである。</p>
+<p>外部からの値をString以外の型に変換したい場合には、バリデーション実施後に変換すること。</p>
+<p class="last">クライアントサイドでJavaScriptを用いてバリデーションを行っている場合でも、
+サーバサイドにはバリデーション済みの値が送信される保証はないため、プロパティは必ず <cite>String</cite> とすること。
+なぜなら、クライアントサイドではユーザによりJavaScriptの無効化やブラウザの開発者ツールを用いた改竄が容易に行えるためである。
+このような操作が行われた場合、クライアントサイドバリデーションをすり抜け、サーバサイドに不正な値が送られる可能性がある。</p>
+</div>
+<dl class="docutils">
+<dt>実装例</dt>
+<dd><p class="first"><a class="reference internal" href="#bean-validation-validator"><span class="std std-ref">Nablarchで提供しているバリデータ</span></a> を参照し、アノテーションを設定する。</p>
+<div class="admonition tip">
+<p class="first admonition-title">ちなみに</p>
+<p class="last">個別にアノテーションを設定した場合、実装時のミスが増えたりメンテナンスコストが大きくなるため、
+後述する <a class="reference internal" href="#bean-validation-domain-validation"><span class="std std-ref">ドメインバリデーション</span></a> を使うことを推奨する。</p>
+</div>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SampleForm</span> <span class="o">{</span>
+
+  <span class="nd">@Length</span><span class="o">(</span><span class="n">max</span> <span class="o">=</span> <span class="mi">10</span><span class="o">)</span>
+  <span class="nd">@SystemChar</span><span class="o">(</span><span class="n">charsetDef</span> <span class="o">=</span> <span class="s">&quot;全角文字&quot;</span><span class="o">)</span>
+  <span class="nd">@Required</span>
+  <span class="kd">private</span> <span class="n">String</span> <span class="n">userName</span><span class="o">;</span>
+
+  <span class="nd">@Length</span><span class="o">(</span><span class="n">min</span> <span class="o">=</span> <span class="mi">8</span><span class="o">,</span> <span class="n">max</span> <span class="o">=</span> <span class="mi">8</span><span class="o">)</span>
+  <span class="nd">@SystemChar</span><span class="o">(</span><span class="n">charsetDef</span> <span class="o">=</span> <span class="s">&quot;半角数字&quot;</span><span class="o">)</span>
+  <span class="kd">private</span> <span class="n">String</span> <span class="n">birthday</span><span class="o">;</span>
+
+  <span class="c1">// getter、setterは省略</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="bean-validation-domain-validation">
+<span id="id11"></span><h3><a class="toc-backref" href="#id30">7.10.1.3.4. ドメインバリデーションを使う</a><a class="headerlink" href="#bean-validation-domain-validation" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>ドメインバリデーションを使うための設定や実装例を示す。</p>
+<dl class="docutils">
+<dt>ドメインごとのバリデーションルールを定義したBeanの作成</dt>
+<dd><p class="first">ドメインバリデーションを利用するには、まずドメインごとのバリデーションルールを持つBean(ドメインBean)を作成する。</p>
+<p>このBeanクラスには、ドメインごとのフィールドを定義し、フィールドに対してアノテーションを設定する。
+フィールド名がドメイン名となる。以下の例では <code class="docutils literal"><span class="pre">name</span></code> と <code class="docutils literal"><span class="pre">date</span></code> の２つのドメインが定義されている。</p>
+<div class="admonition tip">
+<p class="first admonition-title">ちなみに</p>
+<p class="last">必須項目を表す <a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/core/validation/ee/Required.html" title="nablarch.core.validation.ee.Required">&#64;Required</a> アノテーションは、ドメインBeanに設定するのではなく個別のBean側に設定すること。
+必須かどうかはドメイン側で強制できるものではなく、機能の設計によるため。</p>
+</div>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nn">sample</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">nablarch.core.validation.ee.Length</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">nablarch.core.validation.ee.SystemChar</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SampleDomainBean</span> <span class="o">{</span>
+
+    <span class="nd">@Length</span><span class="o">(</span><span class="n">max</span> <span class="o">=</span> <span class="mi">10</span><span class="o">)</span>
+    <span class="nd">@SystemChar</span><span class="o">(</span><span class="n">charsetDef</span> <span class="o">=</span> <span class="s">&quot;全角文字&quot;</span><span class="o">)</span>
+    <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+
+    <span class="nd">@Length</span><span class="o">(</span><span class="n">min</span> <span class="o">=</span> <span class="mi">8</span><span class="o">,</span> <span class="n">max</span> <span class="o">=</span> <span class="mi">8</span><span class="o">)</span>
+    <span class="nd">@SystemChar</span><span class="o">(</span><span class="n">charsetDef</span> <span class="o">=</span> <span class="s">&quot;半角数字&quot;</span><span class="o">)</span>
+    <span class="n">String</span> <span class="n">date</span><span class="o">;</span>
+
+<span class="o">}</span>
+</pre></div>
+</div>
+</dd>
+<dt>ドメインBeanを有効化</dt>
+<dd><p class="first">ドメインBeanを有効化するには、 <a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/core/validation/ee/DomainManager.html" title="nablarch.core.validation.ee.DomainManager">DomainManager</a> 実装クラスを作成する。
+<a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/core/validation/ee/DomainManager.html#getDomainBean()" title="nablarch.core.validation.ee.DomainManager.getDomainBean()">getDomainBean</a> では、ドメインBeanのクラスオブジェクトを返す。</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nn">sample</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SampleDomainManager</span> <span class="kd">implements</span> <span class="n">DomainManager</span><span class="o">&lt;</span><span class="n">SampleDomainBean</span><span class="o">&gt;</span> <span class="o">{</span>
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="n">Class</span><span class="o">&lt;</span><span class="n">SampleDomainBean</span><span class="o">&gt;</span> <span class="nf">getDomainBean</span><span class="o">()</span> <span class="o">{</span>
+      <span class="c1">// ドメインBeanのClassオブジェクトを返す</span>
+      <span class="k">return</span> <span class="n">SampleDomainBean</span><span class="o">.</span><span class="na">class</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p><a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/core/validation/ee/DomainManager.html" title="nablarch.core.validation.ee.DomainManager">DomainManager</a> 実装クラスの <cite>SampleDomainBean</cite> をコンポーネント定義ファイルに設定することで、
+<cite>SampleDomainBean</cite> を使用したドメインバリデーションが有効となる。</p>
+<div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- DomainManager実装クラスは、domainManagerという名前で設定すること --&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;domainManager&quot;</span> <span class="na">class=</span><span class="s">&quot;sample.SampleDomainManager&quot;</span><span class="nt">/&gt;</span>
+</pre></div>
+</div>
+</dd>
+<dt>各Beanでドメインバリデーションを使う</dt>
+<dd><p class="first">Beanのバリデーション対象プロパティに <a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/core/validation/ee/Domain.html" title="nablarch.core.validation.ee.Domain">&#64;Domain</a> アノテーションを設定することで、ドメインバリデーションが行われる。</p>
+<p>この例では、 <cite>userName</cite> に対して <cite>SampleDomainBean</cite> の <cite>name</cite> フィールドに設定したバリデーションが行われる。
+同じように <cite>birthday</cite> に対しては、 <cite>date</cite> フィールドに設定したバリデーションが行われる。</p>
+<p>※userNameは必須項目となる。</p>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SampleForm</span> <span class="o">{</span>
+
+  <span class="nd">@Domain</span><span class="o">(</span><span class="s">&quot;name&quot;</span><span class="o">)</span>
+  <span class="nd">@Required</span>
+  <span class="kd">private</span> <span class="n">String</span> <span class="n">userName</span><span class="o">;</span>
+
+  <span class="nd">@Domain</span><span class="o">(</span><span class="s">&quot;date&quot;</span><span class="o">)</span>
+  <span class="kd">private</span> <span class="n">String</span> <span class="n">birthday</span><span class="o">;</span>
+
+  <span class="c1">// getter、setterは省略</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="bean-validation-system-char-validator">
+<span id="id12"></span><h3><a class="toc-backref" href="#id31">7.10.1.3.5. 文字種バリデーションを行う</a><a class="headerlink" href="#bean-validation-system-char-validator" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>システム許容文字のバリデーション機能を使用することで、文字種によるバリデーションを行うことが出来る。</p>
+<p>文字種によるバリデーションを行うには、文字種毎に許容する文字のセットを定義する。
+例えば、半角数字という文字種には、半角の <code class="docutils literal"><span class="pre">0</span></code> から <code class="docutils literal"><span class="pre">9</span></code> を許容するといった定義が必要となる。</p>
+<p>以下に文字種毎の許容文字セットの定義方法を示す。</p>
+<dl class="docutils">
+<dt>コンポーネント定義に許容文字のセットを定義する</dt>
+<dd><p class="first">許容文字のセットは、以下のクラスの何れかを使って登録する。
+登録する際には、コンポーネント名には文字種を表す任意の名前を設定すること。</p>
+<ul class="simple">
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/core/validation/validator/unicode/RangedCharsetDef.html" title="nablarch.core.validation.validator.unicode.RangedCharsetDef">RangedCharsetDef</a> (範囲で許容文字セットを登録する場合に使用する)</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/core/validation/validator/unicode/LiteralCharsetDef.html" title="nablarch.core.validation.validator.unicode.LiteralCharsetDef">LiteralCharsetDef</a> (リテラルで許容文字を全て登録する場合に使用する)</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/core/validation/validator/unicode/CompositeCharsetDef.html" title="nablarch.core.validation.validator.unicode.CompositeCharsetDef">CompositeCharsetDef</a> (複数のRangedCharsetDefやLiteralCharsetDefからなる許容文字を登録する場合に使用する)</li>
+</ul>
+<p>設定例は以下のとおり。</p>
+<div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- 半角数字 --&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;半角数字&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.validation.validator.unicode.LiteralCharsetDef&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;allowedCharacters&quot;</span> <span class="na">value=</span><span class="s">&quot;01234567890&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;messageId&quot;</span> <span class="na">value=</span><span class="s">&quot;numberString.message&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+
+<span class="c">&lt;!-- ASCII(制御コードを除く) --&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;ascii&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.validation.validator.unicode.RangedCharsetDef&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;startCodePoint&quot;</span> <span class="na">value=</span><span class="s">&quot;U+0020&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;endCodePoint&quot;</span> <span class="na">value=</span><span class="s">&quot;U+007F&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;messageId&quot;</span> <span class="na">value=</span><span class="s">&quot;ascii.message&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+
+<span class="c">&lt;!-- 英数字 --&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;英数字&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.validation.validator.unicode.CompositeCharsetDef&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;charsetDefList&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;list&gt;</span>
+      <span class="c">&lt;!-- 半角数字の定義 --&gt;</span>
+      <span class="nt">&lt;component-ref</span> <span class="na">name=</span><span class="s">&quot;半角数字&quot;</span> <span class="nt">/&gt;</span>
+
+      <span class="c">&lt;!-- 半角英字の定義 --&gt;</span>
+      <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.validation.validator.unicode.LiteralCharsetDef&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;allowedCharacters&quot;</span>
+            <span class="na">value=</span><span class="s">&quot;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/component&gt;</span>
+    <span class="nt">&lt;/list&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;messageId&quot;</span> <span class="na">value=</span><span class="s">&quot;asciiAndNumberString.message&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+</dd>
+<dt>アノテーションで文字種を指定する</dt>
+<dd><p class="first">文字種バリデーションを行うプロパティには、 <a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/core/validation/ee/SystemChar.html" title="nablarch.core.validation.ee.SystemChar">&#64;SystemChar</a> アノテーションを設定する。
+このアノテーションの <a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/core/validation/ee/SystemChar.html#charsetDef()" title="nablarch.core.validation.ee.SystemChar.charsetDef()">charsetDef</a> 属性には、許容する文字種を表す名前を設定する。
+この名前は、上記のコンポーネント定義ファイルに文字種セットを登録した際のコンポーネント名となる。</p>
+<p>この例では、 <code class="docutils literal"><span class="pre">半角数字</span></code> を指定しているので、上記のコンポーネント定義に従い「0123456789」が許容される。</p>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SampleForm</span> <span class="o">{</span>
+
+    <span class="nd">@SystemChar</span><span class="o">(</span><span class="n">charsetDef</span> <span class="o">=</span> <span class="s">&quot;半角数字&quot;</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setAccountNumber</span><span class="o">(</span><span class="n">String</span> <span class="n">accountNumber</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">accountNumber</span> <span class="o">=</span> <span class="n">accountNumber</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<div class="admonition tip">
+<p class="first admonition-title">ちなみに</p>
+<p>許容する文字セットの文字数が大きくなった場合、後方に定義されている文字のチェックには時間を要する。(単純に前方から順に文字セットに含まれるかをチェックするため)
+この問題を解決するために、一度チェックした文字の結果をキャッシュする仕組みを提供している。</p>
+<p>※原則キャッシュ機能は使わずに開発を進め、どうしても文字種バリデーションがボトルネックとなる場合に、キャッシュ機能を使うか否か検討すると良い。</p>
+<p>使い方は単純で、以下のコンポーネント定義のように、オリジナルの文字種セットの定義を、
+キャッシュ用の <a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/core/validation/validator/unicode/CachingCharsetDef.html" title="nablarch.core.validation.validator.unicode.CachingCharsetDef">CachingCharsetDef</a> に設定するだけである。</p>
+<div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;半角数字&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.validation.validator.unicode.CachingCharsetDef&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;charsetDef&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.validation.validator.unicode.LiteralCharsetDef&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;allowedCharacters&quot;</span> <span class="na">value=</span><span class="s">&quot;01234567890&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/component&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;messageId&quot;</span> <span class="na">value=</span><span class="s">&quot;numberString.message&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="bean-validation-correlation-validation">
+<span id="id13"></span><h3><a class="toc-backref" href="#id32">7.10.1.3.6. 相関バリデーションを行う</a><a class="headerlink" href="#bean-validation-correlation-validation" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>複数の項目を使用した相関バリデーションを行うには、Bean Validationの <a class="reference external" href="http://docs.oracle.com/javaee/7/api/javax/validation/constraints/AssertTrue.html" title="javax.validation.constraints.AssertTrue">&#64;AssertTrue</a> アノテーションを使用する。</p>
+<dl class="docutils">
+<dt>実装例</dt>
+<dd><p class="first">この例では、メールアドレスと確認用メールアドレスが一致していることを検証している。
+検証エラーとなった場合は、 <cite>message</cite> プロパティに指定したメッセージがエラーメッセージとなる。</p>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SampleForm</span> <span class="o">{</span>
+  <span class="kd">private</span> <span class="n">String</span> <span class="n">mailAddress</span><span class="o">;</span>
+
+  <span class="kd">private</span> <span class="n">String</span> <span class="n">confirmMailAddress</span><span class="o">;</span>
+
+  <span class="nd">@AssertTrue</span><span class="o">(</span><span class="n">message</span> <span class="o">=</span> <span class="s">&quot;{compareMailAddress}&quot;</span><span class="o">)</span>
+  <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isEqualsMailAddress</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">Objects</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">mailAddress</span><span class="o">,</span> <span class="n">confirmMailAddress</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<div class="admonition important">
+<p class="first admonition-title">重要</p>
+<p>Bean Validationでは、バリデーションの実行順序は保証されないため、
+項目単体のバリデーションよりも前に相関バリデーションが呼び出される場合がある。</p>
+<p>このため、相関バリデーションでは項目単体のバリデーションが実行されていない場合でも、
+予期せぬ例外が発生しないようにバリデーションのロジックを実装する必要がある。</p>
+<p>例えば、上記の例で <cite>mailAddress</cite> 及び <cite>confirmMailAddress</cite> が任意項目の場合は、
+未入力の場合にはバリデーションを実行せずに、結果を戻す必要がある。</p>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="nd">@AssertTrue</span><span class="o">(</span><span class="n">message</span> <span class="o">=</span> <span class="s">&quot;{compareMailAddress}&quot;</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isEqualsMailAddress</span><span class="o">()</span> <span class="o">{</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">StringUtil</span><span class="o">.</span><span class="na">isNullOrEmpty</span><span class="o">(</span><span class="n">mailAddress</span><span class="o">)</span> <span class="o">||</span> <span class="n">StringUtil</span><span class="o">.</span><span class="na">isNullOrEmpty</span><span class="o">(</span><span class="n">confirmMailAddress</span><span class="o">))</span> <span class="o">{</span>
+    <span class="c1">// どちらかが未入力の場合は、相関バリデーションは実施しない。(バリデーションOKとする)</span>
+    <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+  <span class="o">}</span>
+  <span class="k">return</span> <span class="n">Objects</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">mailAddress</span><span class="o">,</span> <span class="n">confirmMailAddress</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="bean-validation-database-validation">
+<span id="id14"></span><h3><a class="toc-backref" href="#id33">7.10.1.3.7. データベースとの相関バリデーションを行う</a><a class="headerlink" href="#bean-validation-database-validation" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>データベースとの相関バリデーションは、以下理由により業務アクション側で実装すること。</p>
+<dl class="docutils">
+<dt>理由</dt>
+<dd><p class="first">Bean Validationを使ってデータベースに対する相関バリデーションを実施した場合、
+バリデーション実施前の安全ではない値を使ってデータベースアクセスを行うことになる。
+(Bean Validation実行中のオブジェクトの値は、安全である保証がない。)
+これは、SQLインジェクションなどの脆弱性の原因となるため、さけるべき実装であるため。</p>
+<p class="last">バリデーション実行後に業務アクションでバリデーションを行うことで、
+バリデーション済みの安全な値を使用してデータベースへアクセスできる。</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="bean-validation-create-message-for-property">
+<span id="id15"></span><h3><a class="toc-backref" href="#id34">7.10.1.3.8. 特定の項目に紐づくバリデーションエラーのメッセージを作りたい</a><a class="headerlink" href="#bean-validation-create-message-for-property" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p><a class="reference internal" href="#bean-validation-database-validation"><span class="std std-ref">データベースとの相関バリデーション</span></a> のようにアクションハンドラで行うバリデーションでエラーが発生した場合に、
+画面上で対象項目をエラーとしてハイライト表示したい場合がある。</p>
+<p>この場合には、下記の実装例のように <a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/core/validation/ValidationUtil.html#createMessageForProperty(java.lang.String, java.lang.String, java.lang.Object...)" title="nablarch.core.validation.ValidationUtil.createMessageForProperty(java.lang.String, java.lang.String, java.lang.Object...)">ValidationUtil#createMessageForProperty</a>
+を使用してエラーメッセージを構築し、 <a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/core/message/ApplicationException.html" title="nablarch.core.message.ApplicationException">ApplicationException</a> を送出する。</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="k">throw</span> <span class="k">new</span> <span class="n">ApplicationException</span><span class="o">(</span>
+        <span class="n">ValidationUtil</span><span class="o">.</span><span class="na">createMessageForProperty</span><span class="o">(</span><span class="s">&quot;form.mailAddress&quot;</span><span class="o">,</span> <span class="s">&quot;duplicate.mailAddress&quot;</span><span class="o">));</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="bean">
+<h3><a class="toc-backref" href="#id35">7.10.1.3.9. 一括登録のようなBeanの複数入力を行う機能でバリデーションを行う</a><a class="headerlink" href="#bean" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>一括登録のように同一の情報を複数入力するケースがある。
+このような場合には、バリデーション対象のBeanに対してネストしたBeanを定義することで対応する。</p>
+<div class="admonition tip">
+<p class="first admonition-title">ちなみに</p>
+<p class="last">これはBean Validationの仕様のため、詳細はBean Validationの仕様を参照すること。</p>
+</div>
+<p>以下に例を示す。</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="c1">// 一括入力された全ての情報を保持するForm</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SampleBulkForm</span> <span class="o">{</span>
+
+  <span class="c1">// ネストしたBeanに対してもバリデーションを実行することを</span>
+  <span class="c1">// しめすValidアノテーションを設定する。</span>
+  <span class="nd">@Valid</span>
+  <span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">SampleForm</span><span class="o">&gt;</span> <span class="n">sampleForm</span><span class="o">;</span>
+
+  <span class="kd">public</span> <span class="nf">SampleBulkForm</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">sampleForm</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
+  <span class="o">}</span>
+
+  <span class="c1">// setter、getterは省略</span>
+<span class="o">}</span>
+
+
+<span class="c1">// 一括入力された情報の1入力分の情報を保持するForm</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SampleForm</span> <span class="o">{</span>
+  <span class="nd">@Domain</span><span class="o">(</span><span class="s">&quot;name&quot;</span><span class="o">)</span>
+  <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+
+  <span class="c1">// setter、getterは省略</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id16">
+<h3><a class="toc-backref" href="#id36">7.10.1.3.10. ネストしたBeanをバリデーションする際の注意点</a><a class="headerlink" href="#id16" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>ブラウザの開発者ツールでhtmlを改竄されたり、Webサービスで不正なJsonやXMLを受信した際にネストしたBeanの情報が送信されない場合がある。
+この場合、ネストしたBeanが未初期化状態(null)となり、バリデーション対象とならない問題がある。
+このため、確実にネストしたBeanの状態がバリデーションされるよう実装を行う必要がある。</p>
+<p>以下に幾つかの実装例を示す。</p>
+<dl class="docutils">
+<dt>親BeanとネストしたBeanが1対Nの場合</dt>
+<dd><p class="first">ネストしたBeanをバリデーション対象にし、親のBean初期化時にネストしたBeanのフィールドも初期化する。
+ネストしたBeanの情報が必須(最低1つは選択 or 入力されていること)の場合は、
+<a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/core/validation/ee/Size.html" title="nablarch.core.validation.ee.Size">Size</a> アノテーションを設定する。</p>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="c1">// Sizeアノテーションを設定することで、必ず1つは選択されていることをバリデーションする。</span>
+<span class="nd">@Valid</span>
+<span class="nd">@Size</span><span class="o">(</span><span class="n">min</span> <span class="o">=</span> <span class="mi">1</span><span class="o">,</span> <span class="n">max</span> <span class="o">=</span> <span class="mi">5</span><span class="o">)</span>
+<span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">SampleNestForm</span><span class="o">&gt;</span> <span class="n">sampleNestForms</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="nf">SampleForm</span><span class="o">()</span> <span class="o">{</span>
+  <span class="c1">// インスタンス作成時にネストしたBeanのフィールドを初期化する</span>
+  <span class="n">sampleNestForms</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</dd>
+<dt>親BeanとネストしたBeanが1対1の場合</dt>
+<dd><p class="first">BeanをネストさせずにフラットなBeanにできないか検討すること。
+接続先からの要求で対応できない場合には、ネストしたBeanに対するバリデーションが確実に実行されるよう実装を行うこと。</p>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="c1">// ネストしたBeanをバリデーション対象にする</span>
+<span class="nd">@Valid</span>
+<span class="kd">private</span> <span class="n">SampleNestForm</span> <span class="n">sampleNestForm</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="nf">SampleForm</span><span class="o">()</span> <span class="o">{</span>
+  <span class="c1">// インスタンス作成時にネストしたBeanのフィールドを初期化する</span>
+  <span class="n">sampleNestForm</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SampleNestForm</span><span class="o">();</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="bean-validation-web-application">
+<span id="id17"></span><h3><a class="toc-backref" href="#id37">7.10.1.3.11. ウェブアプリケーションのユーザ入力値のチェックを行う</a><a class="headerlink" href="#bean-validation-web-application" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>ウェブアプリケーションのユーザ入力値のチェックは <a class="reference internal" href="../../handlers/web_interceptor/InjectForm.html#inject-form-interceptor"><span class="std std-ref">InjectForm インターセプター</span></a> を使用して行う。
+詳細は、 <a class="reference internal" href="../../handlers/web_interceptor/InjectForm.html#inject-form-interceptor"><span class="std std-ref">InjectForm インターセプター</span></a> を参照。</p>
+<p><a class="reference internal" href="../../handlers/web_interceptor/InjectForm.html#inject-form-interceptor"><span class="std std-ref">InjectForm インターセプター</span></a> でBean Validationを使用するためには、コンポーネント定義ファイルへの設定が必要となる。
+以下例のように、 <a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/common/web/validator/BeanValidationStrategy.html" title="nablarch.common.web.validator.BeanValidationStrategy">BeanValidationStrategy</a> を <code class="docutils literal"><span class="pre">validationStrategy</span></code> という名前でコンポーネント定義すること。</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;validationStrategy&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.common.web.validator.BeanValidationStrategy&quot;</span> <span class="nt">/&gt;</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">ちなみに</p>
+<p>BeanValidationStrategyでは、バリデーションエラーのエラーメッセージを、以下の順でソートする。</p>
+<ul class="simple">
+<li>javax.servlet.ServletRequest#getParameterNamesが返す項目名順
+(エラーが発生した項目がリクエストパラメータに存在しない場合は、末尾に移動する)</li>
+</ul>
+<p class="last"><code class="docutils literal"><span class="pre">getParameterNames</span></code> が返す値は実装依存であり、使用するアプリケーションサーバによっては並び順が変わる可能性がある点に注意すること。
+プロジェクトでソート順を変更したい場合は、BeanValidationStrategyを継承し対応すること。</p>
+</div>
+</div>
+<div class="section" id="bean-validation-property-name">
+<span id="id18"></span><h3><a class="toc-backref" href="#id38">7.10.1.3.12. バリデーションエラー時のメッセージに項目名を含めたい</a><a class="headerlink" href="#bean-validation-property-name" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Bean Validation(JSR349)の仕様では、項目名をメッセージに含めることができないが、
+要件などによってはメッセージに項目名を含めたい場合がある。
+このため、NablarchではBean Validationを使用した場合でもメッセージにエラーが発生した項目の項目名を含める機能を提供している。</p>
+<p>以下に使用方法を示す。</p>
+<dl class="docutils">
+<dt>コンポーネント設定ファイル</dt>
+<dd><p class="first">メッセージに項目名を含めるメッセージコンバータを生成するファクトリクラスを設定する。
+コンポーネント名には、 <code class="docutils literal"><span class="pre">constraintViolationConverterFactory</span></code> を設定し、
+クラス名には <a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/core/validation/ee/ItemNamedConstraintViolationConverterFactory.html" title="nablarch.core.validation.ee.ItemNamedConstraintViolationConverterFactory">ItemNamedConstraintViolationConverterFactory</a> を設定する。</p>
+<div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;constraintViolationConverterFactory&quot;</span>
+    <span class="na">class=</span><span class="s">&quot;nablarch.core.validation.ee.ItemNamedConstraintViolationConverterFactory&quot;</span> <span class="nt">/&gt;</span>
+</pre></div>
+</div>
+</dd>
+<dt>バリデーション対象のForm</dt>
+<dd><div class="first last highlight-java"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nn">sample</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">User</span> <span class="o">{</span>
+
+  <span class="nd">@Required</span>
+  <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+
+  <span class="nd">@Required</span>
+  <span class="kd">private</span> <span class="n">String</span> <span class="n">address</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</dd>
+<dt>項目名の定義</dt>
+<dd><p class="first">項目名は、メッセージとして定義する。
+項目名のメッセージIDは、バリデーション対象のクラスの完全修飾名 + &#8221;.&#8221; + 項目のプロパティ名とする。</p>
+<p>上記のFormクラスの場合、 <code class="docutils literal"><span class="pre">sample.User</span></code> が完全修飾名で <code class="docutils literal"><span class="pre">name</span></code> と <code class="docutils literal"><span class="pre">address</span></code> の２つのプロパティがある。
+項目名の定義には、以下のように <code class="docutils literal"><span class="pre">sample.User.name</span></code> と <code class="docutils literal"><span class="pre">sample.User.address</span></code> が必要となる。</p>
+<p>なお、項目名の定義を行わなかった場合、メッセージに項目名は付加されない。</p>
+<div class="last highlight-properties"><div class="highlight"><pre><span></span><span class="c"># Requiredのメッセージ</span>
+<span class="na">nablarch.core.validation.ee.Required.message</span><span class="o">=</span><span class="s">入力してください。</span>
+
+<span class="c"># 項目名の定義</span>
+<span class="na">sample.User.name</span> <span class="o">=</span> <span class="s">ユーザ名</span>
+<span class="na">sample.User.address</span> <span class="o">=</span> <span class="s">住所</span>
+</pre></div>
+</div>
+</dd>
+<dt>生成されるメッセージ</dt>
+<dd><p class="first">生成されるメッセージは、エラーメッセージの先頭に項目名が付加される。
+項目名は <code class="docutils literal"><span class="pre">[</span></code> 、 <code class="docutils literal"><span class="pre">]</span></code> で囲まれる。</p>
+<div class="last highlight-text"><div class="highlight"><pre><span></span>[ユーザ名]入力してください。
+[住所]入力してください。
+</pre></div>
+</div>
+</dd>
+</dl>
+<div class="admonition tip">
+<p class="first admonition-title">ちなみに</p>
+<p class="last">メッセージへの項目名の追加方法を変更したい場合には、 <a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/core/validation/ee/ItemNamedConstraintViolationConverterFactory.html" title="nablarch.core.validation.ee.ItemNamedConstraintViolationConverterFactory">ItemNamedConstraintViolationConverterFactory</a>
+を参考にし、プロジェクト側で実装を追加し対応すること。</p>
+</div>
+</div>
+</div>
+<div class="section" id="id19">
+<h2><a class="toc-backref" href="#id39">7.10.1.4. 拡張例</a><a class="headerlink" href="#id19" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id20">
+<h3><a class="toc-backref" href="#id40">7.10.1.4.1. プロジェクト固有のアノテーションとバリデーションロジックを追加したい</a><a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p><a class="reference internal" href="#bean-validation-validator"><span class="std std-ref">よく使われるバリデータが提供されている</span></a> に記載のバリデータで要件を満たすことができない場合は、
+プロジェクト側でアノテーション及びバリデーションのロジックを追加すること。</p>
+<p>実装方法などの詳細については、以下のリンク先及びNablarchの実装を参照。</p>
+<ul class="simple">
+<li><a class="reference external" href="http://hibernate.org/validator/">Hibernate Validator(外部サイト、英語)</a></li>
+<li><a class="reference external" href="https://jcp.org/en/jsr/detail?id=349">JSR349(外部サイト、英語)</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+
+    <hr/>
+
+    <div role="contentinfo">
+        <p>
+            &copy; Copyright 2010-2017, TIS Inc.
+        </p>
+    </div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../',
+            VERSION:'5u8',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../../_static/custom.js"></script>
+      <script type="text/javascript" src="../../../../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

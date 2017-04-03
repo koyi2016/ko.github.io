@@ -1,4 +1,4 @@
-﻿@import url("css/theme.css");
+@import url("css/theme.css");
 
 /* 重要の色変更 */
 
@@ -40,4 +40,17 @@ dl.function dt code {
 
 ul.simple li code {
     white-space: normal;
+}
+
+/** サイドバーのタイトル */
+#sidebar-title {
+  margin-bottom: 0px;
+}
+/** サイドバーのVersion */
+#sidebar-version {
+  margin-top: 10px;
+}
+/** TOPページのロゴ */
+#top-logo {
+  height: 25px;
 }

@@ -1,0 +1,888 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2.1.80. UI標準修正事例一覧 &mdash; ∇Nablarch  5u8 ドキュメント</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="索引"
+              href="../../../../genindex.html"/>
+        <link rel="search" title="検索" href="../../../../search.html"/>
+    <link rel="top" title="∇Nablarch  5u8 ドキュメント" href="../../../../index.html"/>
+        <link rel="up" title="2.1. Nablarch UI開発基盤 解説書" href="../index.html"/>
+        <link rel="next" title="2.1.81. 標準プロジェクト構成" href="../structure/directory_layout.html"/>
+        <link rel="prev" title="2.1.79. UIプラグイン一覧" href="../reference_ui_plugin/index.html"/> 
+
+  
+  <script src="../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+  
+  <a href="../../../../index.html" id="sidebar-title" class="icon"> ∇Nablarch 
+  
+
+  
+    <div id="sidebar-version">Version: 5u8</div>
+  </a>
+
+  <div role="search">
+    <form id="google-search-form" class="wy-form" method="get" action="https://www.google.co.jp/search">
+      <input type="hidden" id="document-version" value="5u8" />
+      <input type="text" name="text" placeholder="Search docs on google" id="text"/>
+      <input type="hidden" name="q" id="q"/>
+    </form>
+  </div>
+    
+    
+
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+  
+  
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../about_nablarch/index.html">Nablarchについて</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../about_nablarch/concept.html">Nablarchのコンセプト</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../about_nablarch/concept.html#robustness">Robustness</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../about_nablarch/concept.html#testability">Testability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../about_nablarch/concept.html#ready-to-use">Ready-to-Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../about_nablarch/mvn_module.html">Nablarch のモジュール一覧</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../about_nablarch/license.html">Nablarchのライセンスについて</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../application_framework/index.html">Nablarchアプリケーションフレームワーク</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../application_framework/application_framework/index.html">アプリケーションフレームワーク</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../application_framework/application_framework/nablarch/index.html">1. Nablarchアプリケーションフレームワークとは</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../application_framework/application_framework/web/index.html">2. ウェブアプリケーション編</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../application_framework/application_framework/web_service/index.html">3. ウェブサービス編</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../application_framework/application_framework/batch/index.html">4. バッチアプリケーション編</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../application_framework/application_framework/messaging/index.html">5. メッセージング編</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../application_framework/application_framework/handlers/index.html">6. Nablarchの提供する標準ハンドラ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../application_framework/application_framework/libraries/index.html">7. Nablarchが提供するライブラリ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../application_framework/application_framework/blank_project/index.html">8. ブランクプロジェクト</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../application_framework/application_framework/setting_guide/index.html">9. Nablarchアプリケーションフレームワーク設定ガイド</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../application_framework/adaptors/index.html">アダプタ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../application_framework/adaptors/log_adaptor.html">logアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../application_framework/adaptors/router_adaptor.html">ルーティングアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../application_framework/adaptors/webspheremq_adaptor.html">IBM WebSphere MQアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../application_framework/adaptors/jaxrs_adaptor.html">JAX-RSアダプタ</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../application_framework/example/index.html">Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../application_framework/example/index.html#id1">環境構築手順について</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../application_framework/example/index.html#id2">アプリケーションの実行手順について</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../extension_components/index.html">Nablarch拡張コンポーネント</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/report/index.html">1. 帳票ライブラリ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/report/index.html#id2">1.1. 概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/report/index.html#id3">1.2. 要求</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/report/index.html#id7">1.3. 構造</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/report/index.html#report-template">1.4. 実装例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/workflow/index.html">2. ワークフロー</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html">2.1. ワークフローライブラリ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/sample_application/doc/index.html">2.2. ワークフローアプリケーション実装ガイド</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/tool/doc/index.html">2.3. ワークフロー定義データ生成ツール</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/etl/index.html">3. ETL</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id3">3.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id4">3.2. ETLの各フェーズの仕様</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id5">3.3. 使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id7">3.4. 拡張例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html">4. ETL Mavenプラグイン</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html#id2">4.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html#id3">4.2. 使用方法</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Nablarch開発ツール</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../java_static_analysis/index.html">1. 効率的なJava静的チェック</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../java_static_analysis/index.html#code-analysis">1.1. 構文チェックを行う</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../java_static_analysis/index.html#code-format">1.2. フォーマットを統一する</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../java_static_analysis/index.html#api">1.3. 許可していないAPIが使用されていないかチェックする</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">2. フロントエンド上級者向けのUI開発基盤</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">2.1. Nablarch UI開発基盤 解説書</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../guide/index.html">2.2. JSP/HTML作成ガイド</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../guide/widget_usage/widget_list.html">2.3. UI部品の実装サンプルで提供しているウィジェットの一覧</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../testing_framework/index.html">3. 大規模開発向け重厚なテスティングフレームワーク</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../testing_framework/guide/development_guide/05_UnitTestGuide/index.html">3.1. 単体テスト実施方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../testing_framework/guide/development_guide/06_TestFWGuide/index.html">3.2. 自動テストフレームワークの使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../testing_framework/guide/development_guide/08_TestTools/index.html">3.3. プログラミング工程で使用するツール</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../toolbox/index.html">4. アプリケーション開発時に使える便利なツール</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../toolbox/UnpublishedMethodDetector/UnpublishedApi.html">4.1. 使用不許可APIチェックツール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../toolbox/PublishedApi/PublishedApiConfigGenerator.html">4.2. 使用許可API一覧作成ツール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../toolbox/JspStaticAnalysis/index.html">4.3. JSP静的解析ツール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../toolbox/SqlExecutor/SqlExecutor.html">4.4. Nablarch SQL Executor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../toolbox/JspVerifier/JspVerifier.html">4.5. 業務画面JSP検証ツール</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/index.html">Nablarch実装例集</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/01/index.html">データベースを用いたパスワード認証機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/01/0101_PBKDF2PasswordEncryptor.html">PBKDF2を用いたパスワード暗号化機能サンプル</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/01/index.html#id3">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/01/index.html#id4">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/01/index.html#id6">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/01/index.html#id12">使用方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/02/index.html">バリデーション機能の拡張</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/02/index.html#id3">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/02/index.html#extendedvalidation-mailaddressvalidator">メールアドレスバリデーション</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/02/index.html#extendedvalidation-japanesetelnumbervalidator">日本電話番号バリデーション</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/02/index.html#id12">コード値精査</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/03/index.html">検索結果の一覧表示</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#id3">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#id4">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#id5">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#id8">使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#listsearchinfo">ListSearchInfoクラス</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#listsearchresult">listSearchResultタグ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#listsearchresult-sort">検索結果の並び替え</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#listsearchresult-nopaging">1画面にすべての検索結果を一覧表示する場合の実装方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#listsearchresult-defaultcondition">デフォルトの検索条件で検索した結果を初期表示する場合の実装方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#listsearchresult-setting">検索結果の一覧表示機能のデフォルト値設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#listsearchresult-customize">業務アプリケーションへのサンプル実装(タグファイル)の取り込み方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#listsearchresult-tagreference">タグリファレンス</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/04/index.html">フォーマッタ機能の拡張</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/04/0401_ExtendedDataFormatter.html">データフォーマッタの拡張</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/04/0402_ExtendedFieldType.html">データフォーマッタ機能におけるフィールドタイプの拡張</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/05/index.html">データベースを用いたファイル管理機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/05/index.html#id2">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/05/index.html#id6">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/05/index.html#id7">機能</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/05/index.html#id10">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/05/index.html#id15">使用方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/06/index.html">CAPTCHA機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/06/06_Captcha_guide.html">CAPTCHA機能の組み込み手順</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/06/index.html#id3">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/06/index.html#id4">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/06/index.html#id6">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/06/index.html#id21">使用方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/07/index.html">UserAgent情報取得機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/07/index.html#id1">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/07/index.html#id3">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/07/index.html#id8">設定の記述</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/07/index.html#id11">使用例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/08/index.html">HTMLメール送信機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/08/index.html#id1">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/08/index.html#id3">要求</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/08/index.html#id6">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/08/index.html#id14">実装例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/09/index.html">bouncycastleを使用した電子署名つきメールの送信サンプルの使用方法</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/09/index.html#id3">環境準備</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/09/index.html#id4">電子署名付きメール送信機能の構造</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/09/index.html#id5">設定ファイルの準備</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/09/index.html#id7">実行方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/10/index.html">ログ集計サンプルの使用方法</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/10/index.html#id3">提供サンプル一覧</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/11/index.html">メッセージング基盤テストシミュレータサンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/11/index.html#id4">用途</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/11/index.html#id8">特徴</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/11/index.html#id12">要求</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/11/index.html#id15">使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/11/index.html#id18">拡張例</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nablarch_api/index.html">Nablarch API</a></li>
+</ul>
+
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">∇Nablarch </a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../index.html">Nablarch開発ツール</a> &raquo;</li>
+      
+          <li><a href="../../index.html">2. フロントエンド上級者向けのUI開発基盤</a> &raquo;</li>
+      
+          <li><a href="../index.html">2.1. Nablarch UI開発基盤 解説書</a> &raquo;</li>
+      
+    <li>2.1.80. UI標準修正事例一覧</li>
+      <li class="wy-breadcrumbs-aside">
+        <a href="https://github.com/nablarch" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="ui">
+<h1>2.1.80. UI標準修正事例一覧<a class="headerlink" href="#ui" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>本章では、UI標準に対する主要な修正要望に関して、以下の観点で解説している。</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>具体的に何をどのように修正すればよいか。</li>
+<li>修正による影響範囲とコストはどの程度か。</li>
+</ol>
+</div></blockquote>
+<div class="section" id="ui1-1">
+<span id="ui-standard-1-1"></span><h2>2.1.80.1. UI標準1.1. 対応する端末とブラウザ<a class="headerlink" href="#ui1-1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id1">
+<h3>2.1.80.1.1. 対応ブラウザを追加したい<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>この章の冒頭で述べているように、一般的なWEB標準に準拠するブラウザであれば、多少の表示上の差異があっても
+動作上の問題はさほどないと考えられるが、プロジェクト側で対応ブラウザを追加する場合は、
+当該の端末でのテストを十分に実施する必要がある。</p>
+<p>テストの結果、修正を要する問題が検出された場合、当該のソースコード(プラグイン)を直接修正すると、
+既存の対応ブラウザ上の挙動に問題を生じさせる危険性がある。</p>
+<p>このため、ブラウザ固有の特性や不具合に起因する問題への対処は <a class="reference internal" href="../reference_ui_plugin/index.html#nablarch-device-fix"><span class="std std-ref">特定端末向けパッチプラグイン</span></a>
+としてまとめられている。
+これらのプラグインでは <strong>nablarch-device-fix-base</strong> が出力する環境固有のCSSクラスや
+グローバル変数を参照することにより、既存コードに影響しない形で特定環境向けの対応を行なっている。</p>
+<p>新規対応ブラウザ向けの対処を行う場合は、既存の <a class="reference internal" href="../reference_ui_plugin/index.html#nablarch-device-fix"><span class="std std-ref">特定端末向けパッチプラグイン</span></a>
+を参考にして新規にプラグインを追加すること。</p>
+</div>
+<div class="section" id="ie6-7">
+<h3>2.1.80.1.2. どうしてもIE6/7はサポートできないのか?<a class="headerlink" href="#ie6-7" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>現状のUI標準およびUI開発基盤ではIE6/7をサポートしていない。
+だが、プロジェクトの要件としてどうしても必要であれば、
+これらのブラウザをサポートすることは技術的には可能である。</p>
+<p>ただし、IE6/7をサポートする場合、対応コストの増大に加えて、以下の制約が発生する。</p>
+<blockquote>
+<div><dl class="docutils">
+<dt><strong>1. アイコンが表示できない</strong></dt>
+<dd>IE6では <cite>Web Font</cite> をサポートしていないので、アイコンを表示することができない。</dd>
+<dt><strong>2. マウスオーバ時の背景色反転ができない。</strong></dt>
+<dd>UI標準ではボタンやメニュー上にマウスが移動した場合に背景表示色を
+反転させるとしているが、IE6ではリンク要素以外での <cite>:hover</cite> 擬似セレクタをサポートしていないため、
+そのような効果は発生しない。</dd>
+</dl>
+</div></blockquote>
+<p>なお、IE8の制約(ボタンの角丸表現、陰影表現ができない)はIE6/7にも当てはまる。</p>
+</div>
+<div class="section" id="id2">
+<h3>2.1.80.1.3. 表示モードを変更したい<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p><a class="reference internal" href="#ui-standard-2-1"><span class="std std-ref">UI標準2.1. 端末の画面サイズと表示モード</span></a> を参照。</p>
+</div>
+</div>
+<div class="section" id="ui1-2">
+<span id="ui-standard-1-2"></span><h2>2.1.80.2. UI標準1.2. 使用技術<a class="headerlink" href="#ui1-2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="javascript">
+<h3>2.1.80.2.1. 使用するJavaScriptライブラリを追加したい<a class="headerlink" href="#javascript" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>外部のスタイルシートおよびJavaScriptを追加する場合は
+下記のプラグインを修正すること。</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="49%" />
+<col width="51%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">修正内容</th>
+<th class="head">修正対象プラグイン</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>外部スタイルシートの追加</td>
+<td><strong>nablarch-template-head</strong></td>
+</tr>
+<tr class="row-odd"><td>JavaScriptの追加(minifyなし)</td>
+<td><strong>nablarch-template-js_include</strong></td>
+</tr>
+<tr class="row-even"><td>JavaScriptの追加(minifyあり)</td>
+<td><strong>nablarch-dev-tool-ui-build</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="ui2">
+<span id="ui-standard-2"></span><h2>2.1.80.3. UI標準2. 画面構成<a class="headerlink" href="#ui2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id3">
+<h3>2.1.80.3.1. 画面の配色を変更したい<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>画面の全体的な配色は <strong>nablarch-css-color-default</strong> プラグイン内のスタイル定義により
+一括変更することができる。</p>
+<p>デフォルトの配色は以下のような設定になっている。</p>
+<div class="highlight-css"><div class="highlight"><pre><span></span>// Nablarchブランドカラーを基調とした配色設定
+@baseColor  : rgb(255, 255, 255); // 白
+@mainColor1 : rgb(235, 92,  21);  // オレンジ
+@mainColor2 : rgb(76,  42,  26);  // こげ茶
+@subColor   : rgb(170, 10,  10);  // 赤
+</pre></div>
+</div>
+<p>各パラメータの役割は以下のとおり。</p>
+<dl class="docutils">
+<dt><strong>&#64;baseColor</strong></dt>
+<dd>背景色</dd>
+<dt><strong>&#64;mainColor1</strong></dt>
+<dd>前景色1 : メニューや見出し、入力部品などの主要要素の配色として使用</dd>
+<dt><strong>&#64;mainColor2</strong></dt>
+<dd>前景色2 : 主に文字色として使用</dd>
+<dt><strong>&#64;subColor</strong></dt>
+<dd>差し色 : 上記の3色以外で特にアクセントが必要な場合に使用</dd>
+</dl>
+<div class="admonition tip">
+<p class="first admonition-title">ちなみに</p>
+<p><strong>[配色のポイント]</strong></p>
+<p class="last"><strong>&#64;mainColor2</strong> が基本文字色になるので
+<strong>&#64;mainColor1</strong> の <strong>&#64;baseColor</strong> に対するコントラストよりも、
+<strong>&#64;mainColor2</strong> の <strong>&#64;baseColor</strong> に対するコントラストのほうが強くなるように設定するとよい。</p>
+</div>
+<p>以下は配色の調整例である。
+左上のロゴは画像なので、別途差し替えが必要である。</p>
+<div class="highlight-css"><div class="highlight"><pre><span></span>@baseColor  : rgb(255, 255, 255);              // 白
+@mainColor1 : darken(rgb(173, 210,  16), 15%); // 薄い緑
+@mainColor2 : darken(rgb(82,  108,   8), 20%); // 濃い緑
+@subColor   : rgb(348, 99, 8);                 // オレンジ
+</pre></div>
+</div>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="../../../../_images/ui_standard_color_scheme_sample.png"><img alt="../../../../_images/ui_standard_color_scheme_sample.png" src="../../../../_images/ui_standard_color_scheme_sample.png" style="width: 681.8px; height: 399.0px;" /></a>
+</div>
+</div>
+<div class="section" id="id4">
+<h3>2.1.80.3.2. システムロゴ画像を差し替えたい<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>画面左上に表示されるシステムロゴ画像は <strong>nablarch-template-app_header</strong> に含まれているので、
+これを差し替えればよい。</p>
+</div>
+<div class="section" id="id5">
+<h3>2.1.80.3.3. ヘッダー領域の表示内容を修正したい<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>トップナビゲーション部は <strong>nablarch-template-app_nav</strong> プラグインの内容を、
+それ以外の部分は <strong>nablarch-template-app_header</strong>  プラグインの内容をそれぞれ修正すること。</p>
+</div>
+<div class="section" id="id6">
+<h3>2.1.80.3.4. サイドメニュー領域の表示内容を修正したい<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p><strong>nablarch-template-app_aside</strong> プラグインの内容を修正すること。</p>
+<p>省スペース化のため、ナロー、コンパクトモード時にサイドメニューをスライド表示する
+<strong>nablarch-widget-slide_menu</strong> プラグインを用いているが、必要に応じて <strong>nablarch-template-app_aside</strong> との使い分けをすること。</p>
+<div class="admonition important">
+<p class="first admonition-title">重要</p>
+<p class="last"><strong>nablarch-widget-slide_menu</strong> プラグインは <strong>nablarch-template-app_aside</strong> に依存しているため、利用する際には両方のプラグインが必要になる。</p>
+</div>
+</div>
+<div class="section" id="id7">
+<h3>2.1.80.3.5. フッター領域の表示内容を修正したい<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p><strong>nablarch-template-app_aside</strong> プラグインの内容を修正すること。</p>
+</div>
+<div class="section" id="id8">
+<h3>2.1.80.3.6. 共通エラー・メッセージ表示領域の表示を調整したい<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<dl class="docutils">
+<dt><strong>共通エラーメッセージの表示スタイル</strong></dt>
+<dd><strong>nablarch-css-common</strong> プラグインの <strong>ui_public/css/common/nablarch.less</strong> を修正する。</dd>
+<dt><strong>共通エラーメッセージの表示内容</strong></dt>
+<dd><strong>nablarch-template-page</strong> プラグインの <strong>ui_public/include/app_error.jsp</strong> を修正する。</dd>
+<dt><strong>共通エラーメッセージの表示位置</strong></dt>
+<dd><strong>nablarch-template-page</strong> プラグインの <strong>ui_public/WEB-INF/tags/template/page_template.tag</strong> を修正する。
+(上記インクルードファイルの読み込み位置を修正する。)</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="ui2-1">
+<span id="ui-standard-2-1"></span><h2>2.1.80.4. UI標準2.1. 端末の画面サイズと表示モード<a class="headerlink" href="#ui2-1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id9">
+<h3>2.1.80.4.1. 表示モードの切替条件を変更したい<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>デフォルトのUI標準では、デバイスもしくはウィンドウの横幅(論理ピクセル数)によって表示モードを決定する。</p>
+<p>表示モードの切替条件は、<strong>nablarch-device-media_query</strong>プラグイン内のタグファイル
+(<strong>/ui_public/WEB-INF/tags/device/media.tag</strong>)内に<strong>CSS Media Query</strong>の条件として定義されている。
+切替え条件を変更したい場合や特定の表示モードを無効化したい場合などは、
+このプラグインをカスタマイズすること。</p>
+<div class="admonition tip">
+<p class="first admonition-title">ちなみに</p>
+<p class="last"><strong>nablarch-template-head</strong>の<strong>/ui_public/include/html_head.jsp</strong>で使用されることで、
+htmlのheadタグ内にmedia.tagの内容が出力される。</p>
+</div>
+</div>
+<div class="section" id="id10">
+<h3>2.1.80.4.2. 表示モードの切替えを無効化したい<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>PJの要件としてデスクトップ・ラップトップのみをサポートすればよい場合など、
+表示モードの切替え自体が不要な場合は <strong>ui_public/include/html_head.jsp</strong>
+の中で下記の2行以外の全ての <strong>&lt;n:link&gt;</strong> タグとIEコンディショナルコメントを削除すること。</p>
+<p>こうすることで、ウィンドウサイズにかかわらず常にワイドモードで表示するようになる。</p>
+<div class="highlight-jsp"><div class="highlight"><pre><span></span><span class="nt">&lt;n:link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">href=</span><span class="s">&quot;/css/font-awesome.min.css&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;n:link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">href=</span><span class="s">&quot;/css/built/wide-minify.css&quot;</span> <span class="nt">/&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="ui2-2">
+<h2>2.1.80.5. UI標準2.2. ワイド表示モードの画面構成<a class="headerlink" href="#ui2-2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id11">
+<h3>2.1.80.5.1. ワイドモードにおける画面内の要素のサイズを全体的に調整したい<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>ワイドモードにおける画面要素の共通的なサイズは <strong>nablarch-css-conf-wide</strong> プラグイン
+の中で既定されている。</p>
+<ul class="simple">
+<li>1ページ内のグリッド数</li>
+<li>1グリッドの横幅</li>
+<li>グリッド間の間隔</li>
+<li>フォントサイズ</li>
+<li>入力フィールドやテーブルのグリッド数</li>
+</ul>
+<p>これらの設定値を変更することで、全体的なサイズ調整が可能である。</p>
+</div>
+<div class="section" id="id12">
+<h3>2.1.80.5.2. 特定の画面要素についてワイドモードでの表示を調整したい<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>ファイル名の末尾が <strong>-wide.less</strong> となっているスタイル定義はワイドモードでのみ読み込まれる。
+ワイドモードでのみ必要な表示調整を行う場合は、各プラグインに含まれる上記のようなファイルを修正する。</p>
+<p>例えば、以下は <strong>nablarch-template-app_header</strong> の内容である。</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>nablarch-template-app_header/
+   ├── package.json
+   └── ui_public
+          ├── css
+          │     └── template
+          │            ├── header-compact.less
+          │            ├── header.less
+          │            ├── header-narrow.less
+          │            └── header-wide.less
+          └── include
+                 ├── app_header.jsp
+                 └── subwindow_app_header.jsp
+</pre></div>
+</div>
+<p>このプラグインのスタイル定義は、各表示モードで以下のように読み込まれる。</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="30%" />
+<col width="70%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">表示モード</th>
+<th class="head">読み込まれるスタイルファイル</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>ワイド</td>
+<td>header.less <br />
+header-wide.less</td>
+</tr>
+<tr class="row-odd"><td>コンパクト</td>
+<td>header.less <br />
+header-compact.less</td>
+</tr>
+<tr class="row-even"><td>ナロー</td>
+<td>header.less <br />
+header-narrow.less</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="ui2-3">
+<h2>2.1.80.6. UI標準2.3. コンパクト表示モードの画面構成<a class="headerlink" href="#ui2-3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id13">
+<h3>2.1.80.6.1. コンパクトモードでの表示内容を調整したい<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>各プラグイン内のスタイルファイルの内、ファイル名の末尾が <strong>-compact.less</strong> で終わるものは
+コンパクト表示モードでしか読み込まれない。</p>
+<p>コンパクトモードでの表示調整を行う場合は、当該プラグインの上記条件に合致するスタイルファイルを修正すること。
+もし、そのようなスタイルファイルが無い場合は新たに追加してもよい。</p>
+</div>
+</div>
+<div class="section" id="ui2-4">
+<h2>2.1.80.7. UI標準2.4. ナロー表示モードの画面構成<a class="headerlink" href="#ui2-4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id14">
+<h3>2.1.80.7.1. ナローモードでの表示内容を調整したい<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>各プラグイン内のスタイルファイルの内、ファイル名の末尾が <strong>-narrow.less</strong> で終わるものは
+ナロー表示モードでしか読み込まれない。</p>
+<p>ナローモードでの表示調整を行う場合は、当該プラグインの上記条件に合致するスタイルファイルを修正すること。
+もし、そのようなスタイルファイルが無い場合は新たに追加すること。</p>
+</div>
+<div class="section" id="id15">
+<h3>2.1.80.7.2. テーブル表示で横スクロールが発生しないようにしたい<a class="headerlink" href="#id15" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>設定により、ナロー表示時に、カラムの一部をデフォルト非表示にし、
+タップ操作で表示・非表示を切り替えることができる。(下図参照)</p>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="../../../../_images/additional_column1.png"><img alt="../../../../_images/additional_column1.png" src="../../../../_images/additional_column1.png" style="width: 320.0px; height: 216.0px;" /></a>
+</div>
+<p>詳細は <a class="reference internal" href="../reference_jsp_widgets/column_label.html"><span class="doc">ラベル表示用カラムウィジェット</span></a>
+の <strong>additional</strong> 属性の解説を参照すること。</p>
+</div>
+</div>
+<div class="section" id="ui2-5">
+<h2>2.1.80.8. UI標準2.5.画面内の入出力項目に関する共通仕様<a class="headerlink" href="#ui2-5" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id16">
+<h3>2.1.80.8.1. ドメイン型に応じて入出力項目の表示を調整したい<a class="headerlink" href="#id16" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>各入出力項目には設計情報としてドメイン型のIDを指定するための <strong>domain</strong> 属性が定義されている。</p>
+<p>この属性値は当該項目の <strong>class</strong> 属性にそのまま追加されるので、
+ドメインIDと同名のスタイルクラスを定義することにより、
+そのドメイン型の入出力項目のスタイルを一括指定できる。</p>
+<p>例えば、プロジェクトで定める金額のドメイン型が &#8220;Money&#8221; で、その表示を一律右寄せで表示するのであれば、
+以下のようなスタイル定義を追加すればよい。</p>
+<div class="highlight-css"><div class="highlight"><pre><span></span><span class="p">.</span><span class="nc">Money</span> <span class="p">{</span>
+  <span class="n">align</span><span class="p">:</span> <span class="kc">right</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id17">
+<h3>2.1.80.8.2. タブキーによるフォーカス移動順番を制御したい<a class="headerlink" href="#id17" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p><a class="reference internal" href="../internals/jsp_page_templates.html#base-layout-tag"><span class="std std-ref">業務画面ベースレイアウト</span></a>の<strong>tagIndexOrder</strong>属性により指定することができる。
+詳細は当該属性の解説を参照すること。</p>
+<div class="admonition tip">
+<p class="first admonition-title">ちなみに</p>
+<p class="last">各画面ごとにタブ移動順序を定義するのは、特にテスト工数への影響が大きいので、
+顧客側の特段の要望がない限りは、UI標準どおり、ブラウザ既定の動作とすること。</p>
+</div>
+</div>
+<div class="section" id="id18">
+<h3>2.1.80.8.3. 入力内容の注記部分の表示を調整したい<a class="headerlink" href="#id18" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>注記自体の表示については <strong>nablarch-widget-field-hint</strong> プラグインの各ファイルを修正すること。
+フィールド内での注記の表示位置を調整する場合は、 <strong>nablarch-widget-field-base</strong> プラグインの
+<strong>ui_public/WEB-INF/tags/widget/field/inputbase.tag</strong> を修正すること。
+( <strong>&lt;field:internal_hint&gt;</strong> の配置を変更する。)</p>
+</div>
+<div class="section" id="id19">
+<h3>2.1.80.8.4. 必須入力項目の表示形式を変更したい<a class="headerlink" href="#id19" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>必須入力項目の表示は <strong>nablarch-widget-field-base</strong> プラグイン内の
+<strong>ui_public/WEB-INF/tags/widget/base.tag</strong> 内で定義されているので、これを修正すること。</p>
+</div>
+<div class="section" id="id20">
+<h3>2.1.80.8.5. 単項目精査エラーメッセージの表示を変更したい<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>フィールド内におけるエラーメッセージの表示位置を調整する場合は、
+<strong>nablarch-widget-field-base</strong> プラグインの
+<strong>ui_public/WEB-INF/tags/widget/field/inputbase.tag</strong> を修正すること。
+( <strong>&lt;div class=&#8221;fielderror&#8221;&gt;</strong> の配置を変更する。)</p>
+<p>また、エラーメッセージの表示スタイルを変更したい場合は、
+同プラグイン内の <strong>ui_public/css/field/base.less</strong> の当該クラス(<strong>.fielderror</strong>)の内容を修正すること。</p>
+</div>
+<div class="section" id="id21">
+<h3>2.1.80.8.6. ナロー表示モードでのボタン表示順を変更したい<a class="headerlink" href="#id21" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>ナローモードのボタン表示順の制御は <strong>nablarch-widget-button</strong> プラグイン内の
+<strong>ui_public/css/button/base-narrow.less</strong> で行なっているのでこれを修正すること。</p>
+</div>
+<div class="section" id="id22">
+<h3>2.1.80.8.7. 認可権限がない場合のボタン／リンクの表示方法を変更したい<a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>認可権限がない場合のボタン／リンクの表示制御は <strong>nablarch-widet-button</strong> プラグイン内の
+<strong>ui_public/WEB-INF/tags/widget/button/*.tag</strong> にて行っている。</p>
+<p>表示制御を変更する場合はtagファイルの <strong>displayMethod</strong> の内容を修正すること。</p>
+</div>
+</div>
+<div class="section" id="ui2-6-web">
+<h2>2.1.80.9. UI標準2.6. WEB標準に準拠しないブラウザでの表示制約<a class="headerlink" href="#ui2-6-web" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="ie8">
+<h3>2.1.80.9.1. ブラウザ間の表示差異を極小化したい(IE8の表示に他のブラウザをあわせたい)<a class="headerlink" href="#ie8" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>IE8でサポートされていない陰影表現および角丸ボックス表示は、
+<strong>nablarch-css-core</strong> プラグイン内の <strong>ui_public/css/core/css3.less</strong> 内に定義されている。</p>
+<p>ここで定義しているスタイルルール <strong>.border-radius</strong> <strong>.rounded</strong> <strong>.drop-shadow</strong> <strong>.box-shadow</strong>
+の内容をそれぞれ削除することによって、全てのブラウザで陰影表現および角丸ボックス表示が無効化される。</p>
+</div>
+</div>
+<div class="section" id="ui2-11">
+<h2>2.1.80.10. UI標準2.11. 共通エラー画面の構成<a class="headerlink" href="#ui2-11" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id23">
+<h3>2.1.80.10.1. 共通エラー画面の構成を変更したい<a class="headerlink" href="#id23" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>共通エラー画面のテンプレートは <strong>nablarch-template-error</strong> プラグインで定義されているので、
+このプラグイン内の各ファイルを修正すること。</p>
+</div>
+</div>
+<div class="section" id="ui3-ui-ui">
+<h2>2.1.80.11. UI標準3. UI部品 (UI部品カタログ)<a class="headerlink" href="#ui3-ui-ui" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id24">
+<h3>2.1.80.11.1. UI部品の表示・挙動を修正したい<a class="headerlink" href="#id24" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>各UI部品は以下の表にあるプラグインで実装されている。
+UI部品を修正する場合は、対応するプラグインをそれぞれ修正すること。</p>
+<p><strong>データ表示部品</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="52%" />
+<col width="31%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">UI部品</th>
+<th class="head">UIウィジェット</th>
+<th class="head">修正対象プラグイン</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td rowspan="7">テーブル</td>
+<td><a class="reference internal" href="../reference_jsp_widgets/table_plain.html"><span class="doc">一覧テーブルウィジェット</span></a></td>
+<td><strong>nablarch-widget-table-plain</strong></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../reference_jsp_widgets/table_search_result.html"><span class="doc">検索結果テーブルウィジェット</span></a></td>
+<td><strong>nablarch-widget-table-search_result</strong></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../reference_jsp_widgets/table_row.html"><span class="doc">マルチレイアウトテーブル</span></a></td>
+<td><strong>nablarch-widget-table-row</strong></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../reference_jsp_widgets/column_label.html"><span class="doc">ラベル表示用カラムウィジェット</span></a></td>
+<td><strong>nablarch-widget-column-label</strong></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../reference_jsp_widgets/column_link.html"><span class="doc">リンク表示用カラムウィジェット</span></a></td>
+<td><strong>nablarch-widget-column-link</strong></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../reference_jsp_widgets/column_checkbox.html"><span class="doc">テーブル複数行選択用チェックボックスカラムウィジェット</span></a></td>
+<td><strong>nablarch-widget-column-checkbox</strong></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../reference_jsp_widgets/column_radio.html"><span class="doc">テーブル行選択用ラジオボタンカラムウィジェット</span></a></td>
+<td><strong>nablarch-widget-column-radio</strong></td>
+</tr>
+<tr class="row-odd"><td>画像</td>
+<td><a class="reference internal" href="../reference_jsp_widgets/box_img.html"><span class="doc">画像表示ウィジェット</span></a></td>
+<td><strong>nablarch-widget-box-img</strong></td>
+</tr>
+<tr class="row-even"><td>階層(ツリー)表示</td>
+<td><a class="reference internal" href="../reference_jsp_widgets/table_treelist.html"><span class="doc">階層(ツリー)表示テーブルウィジェット</span></a></td>
+<td><strong>nablarch-widget-table-tree</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>入力フォーム部品</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="52%" />
+<col width="31%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">UI部品</th>
+<th class="head">UIウィジェット</th>
+<th class="head">修正対象プラグイン</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td rowspan="2">チェックボックス</td>
+<td><a class="reference internal" href="../reference_jsp_widgets/field_checkbox.html"><span class="doc">チェックボックス入力項目ウィジェット</span></a></td>
+<td rowspan="2"><strong>nablarch-widget-field-checkbox</strong></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../reference_jsp_widgets/field_code_checkbox.html"><span class="doc">コード値チェックボックス入力項目ウィジェット</span></a></td>
+</tr>
+<tr class="row-even"><td rowspan="2">ラジオボタン</td>
+<td><a class="reference internal" href="../reference_jsp_widgets/field_radio.html"><span class="doc">ラジオボタン入力項目ウィジェット</span></a></td>
+<td rowspan="2"><strong>nablarch-widget-field-radio</strong></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../reference_jsp_widgets/field_code_radio.html"><span class="doc">コード値ラジオボタン入力項目ウィジェット</span></a></td>
+</tr>
+<tr class="row-even"><td rowspan="2">プルダウンリスト</td>
+<td><a class="reference internal" href="../reference_jsp_widgets/field_pulldown.html"><span class="doc">プルダウン入力項目ウィジェット</span></a></td>
+<td rowspan="2"><strong>nablarch-widget-field-pulldown</strong></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../reference_jsp_widgets/field_code_pulldown.html"><span class="doc">コード値プルダウン入力項目ウィジェット</span></a></td>
+</tr>
+<tr class="row-even"><td>リストビルダー</td>
+<td><a class="reference internal" href="../reference_jsp_widgets/field_listbuilder.html"><span class="doc">リストビルダー入力項目ウィジェット</span></a></td>
+<td><strong>nablarch-widget-field-listbuilder</strong></td>
+</tr>
+<tr class="row-odd"><td>単行テキスト入力</td>
+<td><a class="reference internal" href="../reference_jsp_widgets/field_text.html"><span class="doc">単行テキスト入力項目ウィジェット</span></a></td>
+<td><strong>nablarch-widget-field-text</strong></td>
+</tr>
+<tr class="row-even"><td>複数行テキスト入力</td>
+<td><a class="reference internal" href="../reference_jsp_widgets/field_textarea.html"><span class="doc">複数行テキスト入力項目ウィジェット</span></a></td>
+<td><strong>nablarch-widget-field-textarea</strong></td>
+</tr>
+<tr class="row-odd"><td>パスワード入力</td>
+<td><a class="reference internal" href="../reference_jsp_widgets/field_password.html"><span class="doc">パスワード入力ウィジェット</span></a></td>
+<td><strong>nablarch-widget-field-password</strong></td>
+</tr>
+<tr class="row-even"><td>ファイル選択</td>
+<td><a class="reference internal" href="../reference_jsp_widgets/field_file.html"><span class="doc">ファイル選択ウィジェット</span></a></td>
+<td><strong>nablarch-widget-field-file</strong></td>
+</tr>
+<tr class="row-odd"><td>カレンダー日付入力</td>
+<td><a class="reference internal" href="../reference_jsp_widgets/field_calendar.html"><span class="doc">カレンダー日付入力ウィジェット</span></a></td>
+<td><strong>nablarch-widget-field-calendar</strong></td>
+</tr>
+<tr class="row-even"><td>自動集計</td>
+<td>&#160;</td>
+<td><strong>nablarch-widget-event-autosum</strong></td>
+</tr>
+<tr class="row-odd"><td>フォーカス移動制御</td>
+<td><a class="reference internal" href="../internals/jsp_page_templates.html#base-layout-tag"><span class="std std-ref">業務画面ベースレイアウト</span></a>
+(<strong>tabIndexOrder</strong> 属性値の解説を参照)</td>
+<td><strong>nablarch-template-base</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>コントロール部品</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="52%" />
+<col width="31%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">UI部品</th>
+<th class="head">UIウィジェット</th>
+<th class="head">修正対象プラグイン</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>ボタン</td>
+<td><a class="reference internal" href="../reference_jsp_widgets/button_block.html"><span class="doc">ボタン配置ブロック</span></a>
+<a class="reference internal" href="../reference_jsp_widgets/button_submit.html"><span class="doc">ボタンウィジェット</span></a></td>
+<td><strong>nablarch-widget-button</strong></td>
+</tr>
+<tr class="row-odd"><td>リンク</td>
+<td><a class="reference internal" href="../reference_jsp_widgets/link_submit.html"><span class="doc">リンクウィジェット</span></a></td>
+<td><strong>nablarch-widget-link</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id25">
+<h2>2.1.80.12. 開閉可能領域<a class="headerlink" href="#id25" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id26">
+<h3>2.1.80.12.1. 精査エラー時の開閉可能領域の制御を変更したい<a class="headerlink" href="#id26" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>開閉可能領域は <strong>nablarch-widget-collapsible</strong> にて実装されている。</p>
+<p>入力項目に紐づくエラー(単項目精査エラーなど)がある場合、その入力項目のform内にある開閉可能領域、
+入力項目に紐づかないエラー(ページ上部のエラー表示)がある場合、業務領域にある開閉可能領域が開くようになっている。</p>
+<p>この制御を変更したい場合は、 <strong>nablarch-widget-collapsible</strong> を修正すること。</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+
+    <hr/>
+
+    <div role="contentinfo">
+        <p>
+            &copy; Copyright 2010-2017, TIS Inc.
+        </p>
+    </div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../',
+            VERSION:'5u8',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../../_static/custom.js"></script>
+      <script type="text/javascript" src="../../../../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

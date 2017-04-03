@@ -1,0 +1,568 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2.1.2.1.1. ワークフロー定義例 &mdash; ∇Nablarch  5u8 ドキュメント</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="索引"
+              href="../../../../genindex.html"/>
+        <link rel="search" title="検索" href="../../../../search.html"/>
+    <link rel="top" title="∇Nablarch  5u8 ドキュメント" href="../../../../index.html"/>
+        <link rel="up" title="2.1. ワークフローライブラリ" href="../index.html"/>
+        <link rel="next" title="2.1.5.1. ワークフローライブラリの全体構造" href="WorkflowArchitecture.html"/>
+        <link rel="prev" title="2.1.1.2.1. ワークフローインスタンス" href="WorkflowInstanceElement.html"/> 
+
+  
+  <script src="../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+  
+  <a href="../../../../index.html" id="sidebar-title" class="icon"> ∇Nablarch 
+  
+
+  
+    <div id="sidebar-version">Version: 5u8</div>
+  </a>
+
+  <div role="search">
+    <form id="google-search-form" class="wy-form" method="get" action="https://www.google.co.jp/search">
+      <input type="hidden" id="document-version" value="5u8" />
+      <input type="text" name="text" placeholder="Search docs on google" id="text"/>
+      <input type="hidden" name="q" id="q"/>
+    </form>
+  </div>
+    
+    
+
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+  
+  
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../about_nablarch/index.html">Nablarchについて</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../about_nablarch/concept.html">Nablarchのコンセプト</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../about_nablarch/concept.html#robustness">Robustness</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../about_nablarch/concept.html#testability">Testability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../about_nablarch/concept.html#ready-to-use">Ready-to-Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../about_nablarch/mvn_module.html">Nablarch のモジュール一覧</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../about_nablarch/license.html">Nablarchのライセンスについて</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../application_framework/index.html">Nablarchアプリケーションフレームワーク</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../application_framework/application_framework/index.html">アプリケーションフレームワーク</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../application_framework/application_framework/nablarch/index.html">1. Nablarchアプリケーションフレームワークとは</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../application_framework/application_framework/web/index.html">2. ウェブアプリケーション編</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../application_framework/application_framework/web_service/index.html">3. ウェブサービス編</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../application_framework/application_framework/batch/index.html">4. バッチアプリケーション編</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../application_framework/application_framework/messaging/index.html">5. メッセージング編</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../application_framework/application_framework/handlers/index.html">6. Nablarchの提供する標準ハンドラ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../application_framework/application_framework/libraries/index.html">7. Nablarchが提供するライブラリ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../application_framework/application_framework/blank_project/index.html">8. ブランクプロジェクト</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../application_framework/application_framework/setting_guide/index.html">9. Nablarchアプリケーションフレームワーク設定ガイド</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../application_framework/adaptors/index.html">アダプタ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../application_framework/adaptors/log_adaptor.html">logアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../application_framework/adaptors/router_adaptor.html">ルーティングアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../application_framework/adaptors/webspheremq_adaptor.html">IBM WebSphere MQアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../application_framework/adaptors/jaxrs_adaptor.html">JAX-RSアダプタ</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../application_framework/example/index.html">Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../application_framework/example/index.html#id1">環境構築手順について</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../application_framework/example/index.html#id2">アプリケーションの実行手順について</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Nablarch拡張コンポーネント</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../report/index.html">1. 帳票ライブラリ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../report/index.html#id2">1.1. 概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../report/index.html#id3">1.2. 要求</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../report/index.html#id7">1.3. 構造</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../report/index.html#report-template">1.4. 実装例</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">2. ワークフロー</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">2.1. ワークフローライブラリ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../sample_application/doc/index.html">2.2. ワークフローアプリケーション実装ガイド</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tool/doc/index.html">2.3. ワークフロー定義データ生成ツール</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../etl/index.html">3. ETL</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../etl/index.html#id3">3.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../etl/index.html#id4">3.2. ETLの各フェーズの仕様</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../etl/index.html#id5">3.3. 使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../etl/index.html#id7">3.4. 拡張例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../etl/etl_maven_plugin.html">4. ETL Mavenプラグイン</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../etl/etl_maven_plugin.html#id2">4.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../etl/etl_maven_plugin.html#id3">4.2. 使用方法</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../development_tools/index.html">Nablarch開発ツール</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../development_tools/java_static_analysis/index.html">1. 効率的なJava静的チェック</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/java_static_analysis/index.html#code-analysis">1.1. 構文チェックを行う</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/java_static_analysis/index.html#code-format">1.2. フォーマットを統一する</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/java_static_analysis/index.html#api">1.3. 許可していないAPIが使用されていないかチェックする</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../development_tools/ui_dev/index.html">2. フロントエンド上級者向けのUI開発基盤</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/ui_dev/doc/index.html">2.1. Nablarch UI開発基盤 解説書</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/ui_dev/guide/index.html">2.2. JSP/HTML作成ガイド</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/ui_dev/guide/widget_usage/widget_list.html">2.3. UI部品の実装サンプルで提供しているウィジェットの一覧</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../development_tools/testing_framework/index.html">3. 大規模開発向け重厚なテスティングフレームワーク</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/index.html">3.1. 単体テスト実施方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/testing_framework/guide/development_guide/06_TestFWGuide/index.html">3.2. 自動テストフレームワークの使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/testing_framework/guide/development_guide/08_TestTools/index.html">3.3. プログラミング工程で使用するツール</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../development_tools/toolbox/index.html">4. アプリケーション開発時に使える便利なツール</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/toolbox/UnpublishedMethodDetector/UnpublishedApi.html">4.1. 使用不許可APIチェックツール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/toolbox/PublishedApi/PublishedApiConfigGenerator.html">4.2. 使用許可API一覧作成ツール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/toolbox/JspStaticAnalysis/index.html">4.3. JSP静的解析ツール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/toolbox/SqlExecutor/SqlExecutor.html">4.4. Nablarch SQL Executor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/toolbox/JspVerifier/JspVerifier.html">4.5. 業務画面JSP検証ツール</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/index.html">Nablarch実装例集</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/01/index.html">データベースを用いたパスワード認証機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/01/0101_PBKDF2PasswordEncryptor.html">PBKDF2を用いたパスワード暗号化機能サンプル</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/01/index.html#id3">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/01/index.html#id4">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/01/index.html#id6">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/01/index.html#id12">使用方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/02/index.html">バリデーション機能の拡張</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/02/index.html#id3">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/02/index.html#extendedvalidation-mailaddressvalidator">メールアドレスバリデーション</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/02/index.html#extendedvalidation-japanesetelnumbervalidator">日本電話番号バリデーション</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/02/index.html#id12">コード値精査</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/03/index.html">検索結果の一覧表示</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#id3">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#id4">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#id5">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#id8">使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#listsearchinfo">ListSearchInfoクラス</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#listsearchresult">listSearchResultタグ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#listsearchresult-sort">検索結果の並び替え</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#listsearchresult-nopaging">1画面にすべての検索結果を一覧表示する場合の実装方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#listsearchresult-defaultcondition">デフォルトの検索条件で検索した結果を初期表示する場合の実装方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#listsearchresult-setting">検索結果の一覧表示機能のデフォルト値設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#listsearchresult-customize">業務アプリケーションへのサンプル実装(タグファイル)の取り込み方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#listsearchresult-tagreference">タグリファレンス</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/04/index.html">フォーマッタ機能の拡張</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/04/0401_ExtendedDataFormatter.html">データフォーマッタの拡張</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/04/0402_ExtendedFieldType.html">データフォーマッタ機能におけるフィールドタイプの拡張</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/05/index.html">データベースを用いたファイル管理機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/05/index.html#id2">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/05/index.html#id6">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/05/index.html#id7">機能</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/05/index.html#id10">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/05/index.html#id15">使用方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/06/index.html">CAPTCHA機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/06/06_Captcha_guide.html">CAPTCHA機能の組み込み手順</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/06/index.html#id3">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/06/index.html#id4">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/06/index.html#id6">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/06/index.html#id21">使用方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/07/index.html">UserAgent情報取得機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/07/index.html#id1">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/07/index.html#id3">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/07/index.html#id8">設定の記述</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/07/index.html#id11">使用例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/08/index.html">HTMLメール送信機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/08/index.html#id1">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/08/index.html#id3">要求</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/08/index.html#id6">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/08/index.html#id14">実装例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/09/index.html">bouncycastleを使用した電子署名つきメールの送信サンプルの使用方法</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/09/index.html#id3">環境準備</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/09/index.html#id4">電子署名付きメール送信機能の構造</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/09/index.html#id5">設定ファイルの準備</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/09/index.html#id7">実行方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/10/index.html">ログ集計サンプルの使用方法</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/10/index.html#id3">提供サンプル一覧</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/11/index.html">メッセージング基盤テストシミュレータサンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/11/index.html#id4">用途</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/11/index.html#id8">特徴</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/11/index.html#id12">要求</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/11/index.html#id15">使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/11/index.html#id18">拡張例</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nablarch_api/index.html">Nablarch API</a></li>
+</ul>
+
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">∇Nablarch </a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../index.html">Nablarch拡張コンポーネント</a> &raquo;</li>
+      
+          <li><a href="../../index.html">2. ワークフロー</a> &raquo;</li>
+      
+          <li><a href="../index.html">2.1. ワークフローライブラリ</a> &raquo;</li>
+      
+    <li>2.1.2.1.1. ワークフロー定義例</li>
+      <li class="wy-breadcrumbs-aside">
+        <a href="https://github.com/nablarch" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>2.1.2.1.1. ワークフロー定義例<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>一般的な「申請」「確認」「承認」のステップからなるワークフローを、 <a class="reference internal" href="../index.html"><span class="doc">ワークフローライブラリ</span></a> ではどのような
+ワークフロー定義として実現するかの例を記載する。</p>
+<div class="section" id="workflow-normal-process">
+<span id="id2"></span><h2>2.1.2.1.1.1. 通常経路（申請・確認・承認）<a class="headerlink" href="#workflow-normal-process" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<blockquote>
+<div><dl class="docutils">
+<dt><strong>ワークフロー概要</strong></dt>
+<dd><p class="first">ワークフローインスタンスを生成し、ワークフローを開始・進行・終了させる。</p>
+<p class="last">確認や承認の <a class="reference internal" href="WorkflowProcessElement.html#workflow-element-task"><span class="std std-ref">タスク</span></a> の <a class="reference internal" href="WorkflowInstanceElement.html#workflow-task-assignee"><span class="std std-ref">タスク担当ユーザ/タスク担当グループ</span></a> を指定してワークフローを進行させる。</p>
+</dd>
+<dt><strong>実現方法</strong></dt>
+<dd>各フローノードについて、それに続くフローノードを定義する。</dd>
+<dt><strong>ワークフロー定義の例</strong></dt>
+<dd><a class="first last reference internal image-reference" href="../../../../_images/normal_process.png"><img alt="../../../../_images/normal_process.png" class="align-left" src="../../../../_images/normal_process.png" style="width: 578.4px; height: 352.8px;" /></a>
+</dd>
+</dl>
+</div></blockquote>
+</div>
+<div class="section" id="workflow-conditional-branch">
+<span id="id3"></span><h2>2.1.2.1.1.2. 条件分岐<a class="headerlink" href="#workflow-conditional-branch" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<blockquote>
+<div><dl class="docutils">
+<dt><strong>ワークフロー概要</strong></dt>
+<dd>ある <a class="reference internal" href="WorkflowProcessElement.html#workflow-element-task"><span class="std std-ref">タスク</span></a> での処理結果などに応じて進行先の <a class="reference internal" href="WorkflowProcessElement.html#workflow-element-task"><span class="std std-ref">タスク</span></a> を変更する。</dd>
+<dt><strong>実現方法</strong></dt>
+<dd><a class="reference internal" href="WorkflowProcessElement.html#workflow-element-gateway-xor"><span class="std std-ref">XORゲートウェイ</span></a> を利用し、進行先となる可能性のあるフローノードとそれらに進行する条件を定義する。
+3つ以上に条件分岐することも可能。</dd>
+<dt><strong>ワークフロー定義の例</strong></dt>
+<dd><a class="first last reference internal image-reference" href="../../../../_images/conditional_branch.png"><img alt="../../../../_images/conditional_branch.png" class="align-left" src="../../../../_images/conditional_branch.png" style="width: 553.6px; height: 173.6px;" /></a>
+</dd>
+</dl>
+</div></blockquote>
+</div>
+<div class="section" id="workflow-remand">
+<span id="id4"></span><h2>2.1.2.1.1.3. 差戻<a class="headerlink" href="#workflow-remand" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<blockquote>
+<div><dl class="docutils">
+<dt><strong>ワークフロー概要</strong></dt>
+<dd><p class="first">確認などを行う <a class="reference internal" href="WorkflowProcessElement.html#workflow-element-task"><span class="std std-ref">タスク</span></a> で、確認結果がNGだった場合に申請者に差戻しを行う。</p>
+<p class="last">このとき、差戻し後の <a class="reference internal" href="WorkflowProcessElement.html#workflow-element-task"><span class="std std-ref">タスク</span></a> の <a class="reference internal" href="WorkflowInstanceElement.html#workflow-task-assignee"><span class="std std-ref">タスク担当ユーザ/タスク担当グループ</span></a> は、
+その <a class="reference internal" href="WorkflowProcessElement.html#workflow-element-task"><span class="std std-ref">タスク</span></a> を直前に実行したユーザとなる。</p>
+</dd>
+<dt><strong>実現方法</strong></dt>
+<dd><p class="first">確認結果がOKかどうかで進行先となるフローノードを切り替える <a class="reference internal" href="WorkflowProcessElement.html#workflow-element-gateway-xor"><span class="std std-ref">XORゲートウェイ</span></a> を利用し、
+OKの場合には承認タスクへ、NGの場合は前の申請タスクにワークフローを進行させる。</p>
+<p class="last">一般に、既に一度実行されている <a class="reference internal" href="WorkflowProcessElement.html#workflow-element-task"><span class="std std-ref">タスク</span></a> へワークフローを進行させる必要がある場合には、
+<a class="reference internal" href="WorkflowProcessElement.html#workflow-element-gateway-xor"><span class="std std-ref">XORゲートウェイ</span></a> を利用することで要件を実現できる。
+その場合の <a class="reference internal" href="WorkflowInstanceElement.html#workflow-task-assignee"><span class="std std-ref">タスク担当ユーザ/タスク担当グループ</span></a> には、その <a class="reference internal" href="WorkflowProcessElement.html#workflow-element-task"><span class="std std-ref">タスク</span></a> に最後に割り当てられていたユーザが設定される。</p>
+</dd>
+<dt><strong>ワークフロー定義の例</strong></dt>
+<dd><a class="first last reference internal image-reference" href="../../../../_images/remand.png"><img alt="../../../../_images/remand.png" class="align-left" src="../../../../_images/remand.png" style="width: 723.2px; height: 369.6px;" /></a>
+</dd>
+</dl>
+</div></blockquote>
+</div>
+<div class="section" id="workflow-reapply">
+<span id="id5"></span><h2>2.1.2.1.1.4. 再申請<a class="headerlink" href="#workflow-reapply" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<blockquote>
+<div><dl class="docutils">
+<dt><strong>ワークフロー概要</strong></dt>
+<dd><p class="first">差し戻された申請を修正し、再申請を行う。</p>
+<p class="last">上記の単純な差戻しフローとは異なり、初回の申請と再申請を明確に区別する。</p>
+</dd>
+<dt><strong>実現方法</strong></dt>
+<dd><p class="first">差戻しと同様に、確認結果がOKかどうかで進行先となるフローノードを切り替える <a class="reference internal" href="WorkflowProcessElement.html#workflow-element-gateway-xor"><span class="std std-ref">XORゲートウェイ</span></a> を利用する。
+ただし、NGの場合には、申請タスクではなく、再申請タスクにワークフローを進行させる。</p>
+<p class="last">なお、申請者は申請タスクを実施後に必ずしも再申請を行うわけではないため、
+申請タスクと再申請タスクを結ぶシーケンスフローは作成しないこと。</p>
+</dd>
+<dt><strong>ワークフロー定義の例</strong></dt>
+<dd><a class="first last reference internal image-reference" href="../../../../_images/reapply.png"><img alt="../../../../_images/reapply.png" class="align-left" src="../../../../_images/reapply.png" style="width: 722.4px; height: 369.6px;" /></a>
+</dd>
+</dl>
+</div></blockquote>
+</div>
+<div class="section" id="workflow-cancel">
+<span id="id6"></span><h2>2.1.2.1.1.5. 取消<a class="headerlink" href="#workflow-cancel" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<blockquote>
+<div><dl class="docutils">
+<dt><strong>ワークフロー概要</strong></dt>
+<dd><p class="first">申請者が、申請の取り消しを行う。</p>
+<p class="last">申請が取り消された場合には、ワークフローを完了させる。</p>
+</dd>
+<dt><strong>実現方法</strong></dt>
+<dd><p class="first">申請の取り消しを行うことができる作業種別に対応する <a class="reference internal" href="WorkflowProcessElement.html#workflow-element-task"><span class="std std-ref">タスク</span></a> に、
+<a class="reference internal" href="WorkflowProcessElement.html#workflow-element-boundary-event"><span class="std std-ref">境界イベント</span></a> を関連付ける。</p>
+<p>それらの <a class="reference internal" href="WorkflowProcessElement.html#workflow-element-boundary-event"><span class="std std-ref">境界イベント</span></a> からは、 <a class="reference internal" href="WorkflowProcessElement.html#workflow-element-event-terminate"><span class="std std-ref">停止イベント</span></a> に
+ワークフローを進行させるようにしておく。</p>
+<p class="last">申請の取り消しが行われた時には、上記の <a class="reference internal" href="WorkflowProcessElement.html#workflow-element-boundary-event"><span class="std std-ref">境界イベント</span></a> をトリガーし、ワークフローを完了する。</p>
+</dd>
+<dt><strong>ワークフロー定義の例</strong></dt>
+<dd><a class="first last reference internal image-reference" href="../../../../_images/cancel.png"><img alt="../../../../_images/cancel.png" class="align-left" src="../../../../_images/cancel.png" style="width: 722.4px; height: 415.2px;" /></a>
+</dd>
+</dl>
+</div></blockquote>
+</div>
+<div class="section" id="workflow-reject">
+<span id="id7"></span><h2>2.1.2.1.1.6. 却下<a class="headerlink" href="#workflow-reject" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<blockquote>
+<div><dl class="docutils">
+<dt><strong>ワークフロー概要</strong></dt>
+<dd><p class="first">確認者や承認者が、申請を却下する。</p>
+<p class="last">申請が却下された場合には、ワークフローを完了させる。</p>
+</dd>
+<dt><strong>実現方法</strong></dt>
+<dd><a class="reference internal" href="#workflow-remand"><span class="std std-ref">差戻</span></a> と同様に、確認結果がOKかどうかで進行先となるフローノードを切り替える
+<a class="reference internal" href="WorkflowProcessElement.html#workflow-element-gateway-xor"><span class="std std-ref">XORゲートウェイ</span></a> を利用し、却下の場合には、 <a class="reference internal" href="WorkflowProcessElement.html#workflow-element-event-terminate"><span class="std std-ref">停止イベント</span></a> にワークフローを進行させる。</dd>
+<dt><strong>ワークフロー定義の例</strong></dt>
+<dd><a class="first last reference internal image-reference" href="../../../../_images/reject.png"><img alt="../../../../_images/reject.png" class="align-left" src="../../../../_images/reject.png" style="width: 723.2px; height: 405.6px;" /></a>
+</dd>
+</dl>
+</div></blockquote>
+</div>
+<div class="section" id="workflow-pullback">
+<span id="id8"></span><h2>2.1.2.1.1.7. 引戻<a class="headerlink" href="#workflow-pullback" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<blockquote>
+<div><dl class="docutils">
+<dt><strong>ワークフロー概要</strong></dt>
+<dd>確認依頼などが行われ、既に別実行ユーザの担当する <a class="reference internal" href="WorkflowProcessElement.html#workflow-element-task"><span class="std std-ref">タスク</span></a> にワークフローが進行している場合に、
+以前の実行ユーザが自分の担当する <a class="reference internal" href="WorkflowProcessElement.html#workflow-element-task"><span class="std std-ref">タスク</span></a> までワークフローを巻き戻す。</dd>
+<dt><strong>実現方法</strong></dt>
+<dd><p class="first"><a class="reference internal" href="#workflow-cancel"><span class="std std-ref">取消</span></a> と同様に、申請の引戻しを行うことができる作業種別に対応する <a class="reference internal" href="WorkflowProcessElement.html#workflow-element-task"><span class="std std-ref">タスク</span></a> に、
+<a class="reference internal" href="WorkflowProcessElement.html#workflow-element-boundary-event"><span class="std std-ref">境界イベント</span></a> を関連付ける。</p>
+<p>それらの <a class="reference internal" href="WorkflowProcessElement.html#workflow-element-boundary-event"><span class="std std-ref">境界イベント</span></a> からは、引戻し後の <a class="reference internal" href="WorkflowProcessElement.html#workflow-element-task"><span class="std std-ref">タスク</span></a> に
+ワークフローを進行させるようにしておく。</p>
+<p class="last">申請の引戻しが行われた時には、上記の <a class="reference internal" href="WorkflowProcessElement.html#workflow-element-boundary-event"><span class="std std-ref">境界イベント</span></a> を発生させし、
+ワークフローを引戻し後の <a class="reference internal" href="WorkflowProcessElement.html#workflow-element-task"><span class="std std-ref">タスク</span></a> に進行させる。</p>
+</dd>
+<dt><strong>ワークフロー定義の例</strong></dt>
+<dd><a class="first last reference internal image-reference" href="../../../../_images/pullback.png"><img alt="../../../../_images/pullback.png" class="align-left" src="../../../../_images/pullback.png" style="width: 722.4px; height: 369.6px;" /></a>
+</dd>
+</dl>
+</div></blockquote>
+</div>
+<div class="section" id="workflow-confirm">
+<span id="id9"></span><h2>2.1.2.1.1.8. 後閲<a class="headerlink" href="#workflow-confirm" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<blockquote>
+<div><dl class="docutils">
+<dt><strong>ワークフロー概要</strong></dt>
+<dd><a class="reference internal" href="WorkflowProcessElement.html#workflow-element-task"><span class="std std-ref">タスク</span></a> が代理ユーザによって処理された場合には、代理元ユーザ本人が対象を確認して、ワークフローが完了する。</dd>
+<dt><strong>実現方法</strong></dt>
+<dd><p class="first">後閲の可能性があるフローに入る際には、必ずユーザを選択してからワークフローを進行させるものとし、
+選択されたユーザが代理ユーザであるかどうかで、ワークフローを分岐する。</p>
+<p class="last">なお、要件上、確認後にユーザ選択を強制することができない場合には、フロー進行条件をアプリケーションで実装し、
+直前の <a class="reference internal" href="WorkflowProcessElement.html#workflow-element-task"><span class="std std-ref">タスク</span></a> の実行ユーザが代理ユーザであったかどうかをゲートウェイで判定することで、
+下記例の確認後の「承認者選択タスク」は不要となり、確認後にユーザ選択を強制する必要はなくなる。</p>
+</dd>
+<dt><strong>ワークフロー定義の例</strong></dt>
+<dd><a class="first last reference internal image-reference" href="../../../../_images/confirm.png"><img alt="../../../../_images/confirm.png" class="align-left" src="../../../../_images/confirm.png" style="width: 1032.0px; height: 488.8px;" /></a>
+</dd>
+</dl>
+</div></blockquote>
+</div>
+<div class="section" id="workflow-council">
+<span id="id10"></span><h2>2.1.2.1.1.9. 合議（回覧）<a class="headerlink" href="#workflow-council" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<blockquote>
+<div><dl class="docutils">
+<dt><strong>ワークフロー概要</strong></dt>
+<dd><p class="first">複数人で承認を行い、全員の承認が完了した時点でワークフローを進行させる。</p>
+<p class="last">一人でも差戻しなどを行った場合には、合議を中断して差戻し先にワークフローを進行させる。</p>
+</dd>
+<dt><strong>実現方法</strong></dt>
+<dd><p class="first">合議に対応する <a class="reference internal" href="WorkflowProcessElement.html#workflow-element-task"><span class="std std-ref">タスク</span></a> には、担当ユーザを複数人割り当てることのできる
+<a class="reference internal" href="WorkflowProcessElement.html#workflow-element-multi-instance-task"><span class="std std-ref">マルチインスタンス・タスク</span></a> を利用する。</p>
+<p class="last">なお、合議に参加する人数は動的に決定できる。</p>
+</dd>
+<dt><strong>ワークフロー定義の例</strong></dt>
+<dd><a class="first last reference internal image-reference" href="../../../../_images/council.png"><img alt="../../../../_images/council.png" class="align-left" src="../../../../_images/council.png" style="width: 722.4px; height: 370.4px;" /></a>
+</dd>
+</dl>
+</div></blockquote>
+</div>
+<div class="section" id="workflow-escalation">
+<span id="id11"></span><h2>2.1.2.1.1.10. 審議（エスカレーション）／スキップ<a class="headerlink" href="#workflow-escalation" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<blockquote>
+<div><dl class="docutils">
+<dt><strong>ワークフロー概要</strong></dt>
+<dd><p class="first">審議：確認や承認などを行った後、内容に応じて別の担当者による審査を実施する。</p>
+<p class="last">スキップ：確認や承認などを行った後、内容に応じて別の担当者による審査はスキップする。</p>
+</dd>
+<dt><strong>実現方法</strong></dt>
+<dd>審議とスキップは、同一のワークフロー定義であらわされる。
+<a class="reference internal" href="#workflow-conditional-branch"><span class="std std-ref">条件分岐</span></a> を利用して、内容に応じた分岐を行えばよい。</dd>
+<dt><strong>ワークフロー定義の例</strong></dt>
+<dd><a class="first last reference internal image-reference" href="../../../../_images/escalation.png"><img alt="../../../../_images/escalation.png" class="align-left" src="../../../../_images/escalation.png" style="width: 857.6px; height: 369.6px;" /></a>
+</dd>
+</dl>
+</div></blockquote>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+
+    <hr/>
+
+    <div role="contentinfo">
+        <p>
+            &copy; Copyright 2010-2017, TIS Inc.
+        </p>
+    </div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../',
+            VERSION:'5u8',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../../_static/custom.js"></script>
+      <script type="text/javascript" src="../../../../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

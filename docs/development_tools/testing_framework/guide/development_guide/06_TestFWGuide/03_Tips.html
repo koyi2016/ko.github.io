@@ -1,0 +1,1323 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3.2.8. 目的別API使用方法 &mdash; ∇Nablarch  5u8 ドキュメント</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../../_static/custom.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="索引"
+              href="../../../../../genindex.html"/>
+        <link rel="search" title="検索" href="../../../../../search.html"/>
+    <link rel="top" title="∇Nablarch  5u8 ドキュメント" href="../../../../../index.html"/>
+        <link rel="up" title="3.2. 自動テストフレームワークの使用方法" href="index.html"/>
+        <link rel="next" title="3.2.9. マスタデータ復旧機能" href="04_MasterDataRestore.html"/>
+        <link rel="prev" title="3.2.7. リクエスト単体テスト（HTTP同期応答メッセージ送信処理）" href="RequestUnitTest_http_send_sync.html"/> 
+
+  
+  <script src="../../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+  
+  <a href="../../../../../index.html" id="sidebar-title" class="icon"> ∇Nablarch 
+  
+
+  
+    <div id="sidebar-version">Version: 5u8</div>
+  </a>
+
+  <div role="search">
+    <form id="google-search-form" class="wy-form" method="get" action="https://www.google.co.jp/search">
+      <input type="hidden" id="document-version" value="5u8" />
+      <input type="text" name="text" placeholder="Search docs on google" id="text"/>
+      <input type="hidden" name="q" id="q"/>
+    </form>
+  </div>
+    
+    
+
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+  
+  
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../about_nablarch/index.html">Nablarchについて</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../about_nablarch/concept.html">Nablarchのコンセプト</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../about_nablarch/concept.html#robustness">Robustness</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../about_nablarch/concept.html#testability">Testability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../about_nablarch/concept.html#ready-to-use">Ready-to-Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../about_nablarch/mvn_module.html">Nablarch のモジュール一覧</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../about_nablarch/license.html">Nablarchのライセンスについて</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../application_framework/index.html">Nablarchアプリケーションフレームワーク</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../application_framework/application_framework/index.html">アプリケーションフレームワーク</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/nablarch/index.html">1. Nablarchアプリケーションフレームワークとは</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/web/index.html">2. ウェブアプリケーション編</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/web_service/index.html">3. ウェブサービス編</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/batch/index.html">4. バッチアプリケーション編</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/messaging/index.html">5. メッセージング編</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/handlers/index.html">6. Nablarchの提供する標準ハンドラ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/libraries/index.html">7. Nablarchが提供するライブラリ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/blank_project/index.html">8. ブランクプロジェクト</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/setting_guide/index.html">9. Nablarchアプリケーションフレームワーク設定ガイド</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../application_framework/adaptors/index.html">アダプタ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/log_adaptor.html">logアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/router_adaptor.html">ルーティングアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/webspheremq_adaptor.html">IBM WebSphere MQアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/jaxrs_adaptor.html">JAX-RSアダプタ</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../application_framework/example/index.html">Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/example/index.html#id1">環境構築手順について</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/example/index.html#id2">アプリケーションの実行手順について</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../extension_components/index.html">Nablarch拡張コンポーネント</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../extension_components/report/index.html">1. 帳票ライブラリ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/report/index.html#id2">1.1. 概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/report/index.html#id3">1.2. 要求</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/report/index.html#id7">1.3. 構造</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/report/index.html#report-template">1.4. 実装例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../extension_components/workflow/index.html">2. ワークフロー</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/workflow/doc/index.html">2.1. ワークフローライブラリ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/workflow/sample_application/doc/index.html">2.2. ワークフローアプリケーション実装ガイド</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/workflow/tool/doc/index.html">2.3. ワークフロー定義データ生成ツール</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../extension_components/etl/index.html">3. ETL</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/etl/index.html#id3">3.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/etl/index.html#id4">3.2. ETLの各フェーズの仕様</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/etl/index.html#id5">3.3. 使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/etl/index.html#id7">3.4. 拡張例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../extension_components/etl/etl_maven_plugin.html">4. ETL Mavenプラグイン</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/etl/etl_maven_plugin.html#id2">4.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/etl/etl_maven_plugin.html#id3">4.2. 使用方法</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../../index.html">Nablarch開発ツール</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../../java_static_analysis/index.html">1. 効率的なJava静的チェック</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../java_static_analysis/index.html#code-analysis">1.1. 構文チェックを行う</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../java_static_analysis/index.html#code-format">1.2. フォーマットを統一する</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../java_static_analysis/index.html#api">1.3. 許可していないAPIが使用されていないかチェックする</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../ui_dev/index.html">2. フロントエンド上級者向けのUI開発基盤</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../ui_dev/doc/index.html">2.1. Nablarch UI開発基盤 解説書</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../ui_dev/guide/index.html">2.2. JSP/HTML作成ガイド</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../ui_dev/guide/widget_usage/widget_list.html">2.3. UI部品の実装サンプルで提供しているウィジェットの一覧</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../../index.html">3. 大規模開発向け重厚なテスティングフレームワーク</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../05_UnitTestGuide/index.html">3.1. 単体テスト実施方法</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">3.2. 自動テストフレームワークの使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../08_TestTools/index.html">3.3. プログラミング工程で使用するツール</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../toolbox/index.html">4. アプリケーション開発時に使える便利なツール</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../toolbox/UnpublishedMethodDetector/UnpublishedApi.html">4.1. 使用不許可APIチェックツール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../toolbox/PublishedApi/PublishedApiConfigGenerator.html">4.2. 使用許可API一覧作成ツール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../toolbox/JspStaticAnalysis/index.html">4.3. JSP静的解析ツール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../toolbox/SqlExecutor/SqlExecutor.html">4.4. Nablarch SQL Executor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../toolbox/JspVerifier/JspVerifier.html">4.5. 業務画面JSP検証ツール</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../examples/index.html">Nablarch実装例集</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/01/index.html">データベースを用いたパスワード認証機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/01/0101_PBKDF2PasswordEncryptor.html">PBKDF2を用いたパスワード暗号化機能サンプル</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/01/index.html#id3">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/01/index.html#id4">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/01/index.html#id6">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/01/index.html#id12">使用方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/02/index.html">バリデーション機能の拡張</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/02/index.html#id3">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/02/index.html#extendedvalidation-mailaddressvalidator">メールアドレスバリデーション</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/02/index.html#extendedvalidation-japanesetelnumbervalidator">日本電話番号バリデーション</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/02/index.html#id12">コード値精査</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/03/index.html">検索結果の一覧表示</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#id3">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#id4">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#id5">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#id8">使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#listsearchinfo">ListSearchInfoクラス</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#listsearchresult">listSearchResultタグ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#listsearchresult-sort">検索結果の並び替え</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#listsearchresult-nopaging">1画面にすべての検索結果を一覧表示する場合の実装方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#listsearchresult-defaultcondition">デフォルトの検索条件で検索した結果を初期表示する場合の実装方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#listsearchresult-setting">検索結果の一覧表示機能のデフォルト値設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#listsearchresult-customize">業務アプリケーションへのサンプル実装(タグファイル)の取り込み方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#listsearchresult-tagreference">タグリファレンス</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/04/index.html">フォーマッタ機能の拡張</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/04/0401_ExtendedDataFormatter.html">データフォーマッタの拡張</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/04/0402_ExtendedFieldType.html">データフォーマッタ機能におけるフィールドタイプの拡張</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/05/index.html">データベースを用いたファイル管理機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/05/index.html#id2">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/05/index.html#id6">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/05/index.html#id7">機能</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/05/index.html#id10">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/05/index.html#id15">使用方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/06/index.html">CAPTCHA機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/06/06_Captcha_guide.html">CAPTCHA機能の組み込み手順</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/06/index.html#id3">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/06/index.html#id4">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/06/index.html#id6">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/06/index.html#id21">使用方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/07/index.html">UserAgent情報取得機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/07/index.html#id1">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/07/index.html#id3">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/07/index.html#id8">設定の記述</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/07/index.html#id11">使用例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/08/index.html">HTMLメール送信機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/08/index.html#id1">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/08/index.html#id3">要求</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/08/index.html#id6">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/08/index.html#id14">実装例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/09/index.html">bouncycastleを使用した電子署名つきメールの送信サンプルの使用方法</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/09/index.html#id3">環境準備</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/09/index.html#id4">電子署名付きメール送信機能の構造</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/09/index.html#id5">設定ファイルの準備</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/09/index.html#id7">実行方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/10/index.html">ログ集計サンプルの使用方法</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/10/index.html#id3">提供サンプル一覧</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/11/index.html">メッセージング基盤テストシミュレータサンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/11/index.html#id4">用途</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/11/index.html#id8">特徴</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/11/index.html#id12">要求</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/11/index.html#id15">使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/11/index.html#id18">拡張例</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../nablarch_api/index.html">Nablarch API</a></li>
+</ul>
+
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">∇Nablarch </a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../../index.html">Nablarch開発ツール</a> &raquo;</li>
+      
+          <li><a href="../../../index.html">3. 大規模開発向け重厚なテスティングフレームワーク</a> &raquo;</li>
+      
+          <li><a href="index.html">3.2. 自動テストフレームワークの使用方法</a> &raquo;</li>
+      
+    <li>3.2.8. 目的別API使用方法</li>
+      <li class="wy-breadcrumbs-aside">
+        <a href="https://github.com/nablarch" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="api">
+<h1>3.2.8. 目的別API使用方法<a class="headerlink" href="#api" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>目的別のAPIの使用方法について説明する。</p>
+<ul class="simple">
+<li><a class="reference internal" href="#how-to-get-data-from-excel"><span class="std std-ref">Excelファイルから、入力パラメータや戻り値に対する期待値などを取得したい</span></a></li>
+<li><a class="reference internal" href="#how-to-run-the-same-test"><span class="std std-ref">同じテストメソッドをテストデータを変えて実行したい</span></a></li>
+<li><a class="reference internal" href="#tips-groupid"><span class="std std-ref">一つのシートに複数テストケースのデータを記載したい</span></a></li>
+<li><a class="reference internal" href="#how-to-fix-date"><span class="std std-ref">システム日時を任意の値に固定したい</span></a></li>
+<li><a class="reference internal" href="#how-to-numbering-sequence"><span class="std std-ref">シーケンスオブジェクトを使った採番のテストをしたい</span></a></li>
+<li><a class="reference internal" href="#using-threadcontext"><span class="std std-ref">ThreadContextにユーザID、リクエストIDなどを設定したい</span></a></li>
+<li><a class="reference internal" href="#using-testdataparser"><span class="std std-ref">任意のディレクトリのExcelファイルを読み込みたい</span></a></li>
+<li><a class="reference internal" href="#using-junit-annotation"><span class="std std-ref">テスト実行前後に共通処理を行いたい。</span></a></li>
+<li><a class="reference internal" href="#using-transactions"><span class="std std-ref">デフォルト以外のトランザクションを使用したい</span></a></li>
+<li><a class="reference internal" href="#using-ohter-class"><span class="std std-ref">本フレームワークのクラスを継承せずに使用したい</span></a></li>
+<li><a class="reference internal" href="#how-to-assert-property-from-excel"><span class="std std-ref">クラスのプロパティを検証したい</span></a></li>
+<li><a class="reference internal" href="#tips-test-data"><span class="std std-ref">テストデータに空白、空文字、改行やnullを記述したい</span></a></li>
+<li><a class="reference internal" href="#how-to-express-empty-line"><span class="std std-ref">テストデータに空行を記述したい</span></a></li>
+<li><a class="reference internal" href="#how-to-change-master-data"><span class="std std-ref">マスタデータを変更してテストを行いたい</span></a></li>
+<li><a class="reference internal" href="#how-to-change-test-data-dir"><span class="std std-ref">テストデータ読み込みディレクトリを変更したい</span></a></li>
+<li><a class="reference internal" href="#how-to-convert-test-data"><span class="std std-ref">メッセージング処理でテストデータに対し定型的な変換処理を追加したい</span></a></li>
+</ul>
+<div class="section" id="excel">
+<span id="how-to-get-data-from-excel"></span><h2>3.2.8.1. Excelファイルから、入力パラメータや戻り値に対する期待値などを取得したい<a class="headerlink" href="#excel" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>テスト対象クラスのメソッドを呼び出す際の引数や、メソッドの戻り値をExcelファイルに記載しておくことができる。
+記載したデータは、List-Map形式（List&lt;Map&lt;String, String&gt;&gt;の形式）で取得できる。</p>
+<dl class="docutils">
+<dt>この形式でデータを取得する場合は、データタイプLIST_MAPを使用する。</dt>
+<dd>LIST_MAP=&lt;シート内で一意になるID（任意の文字列）&gt;</dd>
+</dl>
+<p>データの2行目はMapのKeyと解釈される。
+データの3行目以降はMapのValueと解釈される。</p>
+<p>以下のメソッドにより、Map形式またはList-Map形式で、Excelファイルよりデータを取得できる。
+第1引数にはシート名、第2引数にはIDを指定する。</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">TestSupport#getListMap(String</span> <span class="pre">sheetName,</span> <span class="pre">String</span> <span class="pre">id)</span></code></li>
+<li><code class="docutils literal"><span class="pre">DbAccessTestSupport#getListMap(String</span> <span class="pre">sheetName,</span> <span class="pre">String</span> <span class="pre">id)</span></code></li>
+</ul>
+</div></blockquote>
+<div class="section" id="id1">
+<h3>3.2.8.1.1. テストソースコード実装例<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<blockquote>
+<div><div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">EmployeeComponentTest</span> <span class="kd">extends</span> <span class="n">DbAccessTestSupport</span> <span class="o">{</span>
+
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testGetName</span><span class="o">()</span> <span class="o">{</span>
+       <span class="c1">// Excelファイルからデータ取得</span>
+       <span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;&gt;</span> <span class="n">parameters</span> <span class="o">=</span> <span class="n">getListMap</span><span class="o">(</span><span class="s">&quot;testGetName&quot;</span><span class="o">,</span> <span class="s">&quot;parameters&quot;</span><span class="o">);</span>
+       <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;&gt;</span> <span class="n">param</span> <span class="o">=</span> <span class="n">parameters</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+
+       <span class="c1">// 引数および期待値を取得</span>
+       <span class="n">String</span> <span class="n">empNo</span> <span class="o">=</span> <span class="n">parameter</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;empNo&quot;</span><span class="o">);</span>
+       <span class="n">String</span> <span class="n">expected</span> <span class="o">=</span> <span class="n">parameter</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;expected&quot;</span><span class="o">);</span>
+
+       <span class="c1">// テスト対象メソッド起動</span>
+       <span class="n">EmployeeComponent</span> <span class="n">target</span> <span class="o">=</span> <span class="k">new</span> <span class="n">EmployeeComponent</span><span class="o">();</span>
+       <span class="n">String</span> <span class="n">actual</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="na">getName</span><span class="o">(</span><span class="n">empNo</span><span class="o">);</span>
+
+       <span class="c1">// 結果確認</span>
+       <span class="n">assertEquals</span><span class="o">(</span><span class="n">expected</span><span class="o">,</span> <span class="n">actual</span><span class="o">);</span>
+
+       <span class="c1">// ＜後略＞</span>
+    <span class="o">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="id2">
+<h3>3.2.8.1.2. Excelファイル記述例<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>LIST_MAP=parameters</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="44%" />
+<col width="56%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">empNo</th>
+<th class="head">expected</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>00001</td>
+<td>山田太郎</td>
+</tr>
+<tr class="row-odd"><td>00002</td>
+<td>鈴木一郎</td>
+</tr>
+</tbody>
+</table>
+<p>上記の表で取得可能なオブジェクトは、以下のコードで取得できるListと等価である。</p>
+<blockquote>
+<div><div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;&gt;();</span>
+<span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">first</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;();</span>
+<span class="n">first</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;empNo&quot;</span><span class="o">,</span><span class="s">&quot;00001&quot;</span><span class="o">);</span>
+<span class="n">first</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;expected&quot;</span><span class="o">,</span> <span class="s">&quot;山田太郎&quot;</span><span class="o">);</span>
+<span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">first</span><span class="o">);</span>
+<span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">second</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;();</span>
+<span class="n">second</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;empNo&quot;</span><span class="o">,</span><span class="s">&quot;00002&quot;</span><span class="o">);</span>
+<span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;expected&quot;</span><span class="o">,</span> <span class="s">&quot;鈴木一郎&quot;</span><span class="o">);</span>
+<span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">second</span><span class="o">);</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="how-to-run-the-same-test">
+<span id="id3"></span><h2>3.2.8.2. 同じテストメソッドをテストデータを変えて実行したい<a class="headerlink" href="#how-to-run-the-same-test" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>同じテストメソッドをテストデータを変えて実行したい場合、前述のList-Map取得メソッドを使用して
+テストをループさせる。これにより、Excelデータを追加するだけで、データバリエーションを増やすことができる。</p>
+<p>以下の例では、前述のList-Map形式を使用して複数のテストを１つのメソッドで実行している。</p>
+<div class="section" id="id4">
+<h3>3.2.8.2.1. テストソースコード実装例<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<blockquote>
+<div><div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">EmployeeComponentTest</span> <span class="kd">extends</span> <span class="n">DbAccessTestSupport</span> <span class="o">{</span>
+
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testSelectByPk</span><span class="o">()</span> <span class="o">{</span>
+       <span class="c1">// 準備データ投入</span>
+       <span class="n">setUpDb</span><span class="o">(</span><span class="s">&quot;testSelectByPk&quot;</span><span class="o">);</span>
+
+       <span class="c1">// Excelファイルからデータ取得</span>
+       <span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;&gt;</span> <span class="n">parameters</span> <span class="o">=</span> <span class="n">getListMap</span><span class="o">(</span><span class="s">&quot;testGetName&quot;</span><span class="o">,</span> <span class="s">&quot;parameters&quot;</span><span class="o">);</span>
+
+       <span class="k">for</span> <span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">param</span> <span class="o">:</span> <span class="n">parameters</span><span class="o">)</span> <span class="o">{</span>
+           <span class="c1">// 引数および期待値を取得</span>
+           <span class="n">String</span> <span class="n">empNo</span> <span class="o">=</span> <span class="n">parameter</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;empNo&quot;</span><span class="o">);</span>
+           <span class="n">String</span> <span class="n">expectedDataId</span> <span class="o">=</span> <span class="n">parameter</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;expectedDataId&quot;</span><span class="o">);</span>
+
+           <span class="c1">// テスト対象メソッド起動</span>
+           <span class="n">EmployeeComponent</span> <span class="n">target</span> <span class="o">=</span> <span class="k">new</span> <span class="n">EmployeeComponent</span><span class="o">();</span>
+           <span class="n">SqlResultSet</span> <span class="n">actual</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="na">selectByPk</span><span class="o">(</span><span class="n">empNo</span><span class="o">);</span>
+
+           <span class="c1">// 結果確認</span>
+           <span class="n">assertSqlResultSetEquals</span><span class="o">(</span><span class="s">&quot;testSelectByPk&quot;</span><span class="o">,</span> <span class="n">expectedDataId</span><span class="o">,</span> <span class="n">actual</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="id5">
+<h3>3.2.8.2.2. Excelファイル記述例<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>// ループさせるデータ</p>
+<p>LIST_MAP=parameters</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="39%" />
+<col width="61%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">empNo</th>
+<th class="head">expectedDataId</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>00001</td>
+<td>expected01</td>
+</tr>
+<tr class="row-odd"><td>00002</td>
+<td>expected02</td>
+</tr>
+</tbody>
+</table>
+<p>// データベースの準備データ</p>
+<p>SETUP_TABLE=EMPLOYEE</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="44%" />
+<col width="56%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">NO</th>
+<th class="head">NAME</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>00001</td>
+<td>山田太郎</td>
+</tr>
+<tr class="row-odd"><td>00002</td>
+<td>鈴木一郎</td>
+</tr>
+</tbody>
+</table>
+<p>// 期待するデータその１</p>
+<p>LIST_MAP=expected01</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="44%" />
+<col width="56%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">NO</th>
+<th class="head">NAME</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>00001</td>
+<td>山田太郎</td>
+</tr>
+</tbody>
+</table>
+<p>// 期待するデータその２</p>
+<p>LIST_MAP=expected02</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="44%" />
+<col width="56%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">NO</th>
+<th class="head">NAME</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>00001</td>
+<td>山田太郎</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition important">
+<p class="first admonition-title">重要</p>
+<p class="last">更新系のテストを行う場合は、ループ内でsetUpDbメソッドの呼び出しを行うこと。
+そうでないと、テストの成否がデータの順番に依存してしまうからである。</p>
+</div>
+</div>
+</div>
+<div class="section" id="tips-groupid">
+<span id="id6"></span><h2>3.2.8.3. 一つのシートに複数テストケースのデータを記載したい<a class="headerlink" href="#tips-groupid" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>一つのテスト対象メソッドに対して多くのテストケースが存在する場合、
+１シート１テストケースという書き方をすると、シート数が増加して保守容易性が落ちることが懸念される。</p>
+<p>テーブルデータをグルーピングするための情報（グループID）を付与することで、複数テストケースのデータをひとつのシートに混在させることができる。</p>
+<p>サポートされるデータタイプは以下の通り。</p>
+<ul class="simple">
+<li>EXPECTED_TABLE</li>
+<li>SETUP_TABLE</li>
+</ul>
+<p>書式は以下の通り。</p>
+<blockquote>
+<div>データタイプ[グループID]=テーブル名</div></blockquote>
+<p>例えば、2種類のテストケースのデータ(case_001,case_002)を混在させる場合は、以下のように記載する。</p>
+<p>テストクラス側では、前述のAPIと同名のオーバーロードメソッドに引数グループIDを渡す。
+これにより、指定したグループIDのデータのみを処理対象とすることができる。</p>
+<div class="section" id="id7">
+<h3>3.2.8.3.1. テストソースコード実装例<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<blockquote>
+<div><div class="highlight-java"><div class="highlight"><pre><span></span><span class="c1">// DBにデータ登録（グループIDが&quot;case_001&quot;のものだけ登録対象になる）</span>
+<span class="n">setUpDb</span><span class="o">(</span><span class="s">&quot;testUpdate&quot;</span><span class="o">,</span> <span class="s">&quot;case_001&quot;</span><span class="o">);</span>
+
+
+<span class="c1">// 結果確認（グループIDが&quot;case_001&quot;のものだけassert対象になる）</span>
+<span class="n">assertTableEquals</span><span class="o">(</span><span class="s">&quot;データベース更新結果確認&quot;</span><span class="o">,</span> <span class="s">&quot;testUpdate&quot;</span><span class="o">,</span> <span class="s">&quot;case_001&quot;</span><span class="o">);</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="id8">
+<h3>3.2.8.3.2. Excelファイル記述例<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>// ケース001:従業員の所属を変更する。</p>
+<p>SETUP_TABLE[case_001]=EMPLOYEE_TABLE</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="32%" />
+<col width="35%" />
+<col width="32%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">ID</th>
+<th class="head">EMP_NAME</th>
+<th class="head">DEPT_CODE</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>// CHAR(5)</td>
+<td>VARCHAR(64)</td>
+<td>CHAR(4)</td>
+</tr>
+<tr class="row-odd"><td>00001</td>
+<td>山田太郎</td>
+<td>0001</td>
+</tr>
+<tr class="row-even"><td>00002</td>
+<td>田中一郎</td>
+<td>0002</td>
+</tr>
+</tbody>
+</table>
+<p>EXPECTED_TABLE[case_001]=EMPLOYEE_TABLE</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="27%" />
+<col width="29%" />
+<col width="27%" />
+<col width="17%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">ID</th>
+<th class="head">EMP_NAME</th>
+<th class="head">DEPT_CODE</th>
+<th class="head">&#160;</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>// CHAR(5)</td>
+<td>VARCHAR(64)</td>
+<td>CHAR(4)</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>00001</td>
+<td>山田太郎</td>
+<td>0001</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>00002</td>
+<td>田中一郎</td>
+<td>0010</td>
+<td>//更新</td>
+</tr>
+</tbody>
+</table>
+<p>// ケース002:従業員の氏名を変更する。</p>
+<p>SETUP_TABLE[case_002]=EMPLOYEE_TABLE</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="32%" />
+<col width="35%" />
+<col width="32%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">ID</th>
+<th class="head">EMP_NAME</th>
+<th class="head">DEPT_CODE</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>// CHAR(5)</td>
+<td>VARCHAR(64)</td>
+<td>CHAR(4)</td>
+</tr>
+<tr class="row-odd"><td>00001</td>
+<td>山田太郎</td>
+<td>0001</td>
+</tr>
+<tr class="row-even"><td>00002</td>
+<td>田中一郎</td>
+<td>0002</td>
+</tr>
+</tbody>
+</table>
+<p>EXPECTED_TABLE[case_002]=EMPLOYEE_TABLE</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="27%" />
+<col width="29%" />
+<col width="27%" />
+<col width="17%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">ID</th>
+<th class="head">EMP_NAME</th>
+<th class="head">DEPT_CODE</th>
+<th class="head">&#160;</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>// CHAR(5)</td>
+<td>VARCHAR(64)</td>
+<td>CHAR(4)</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>00001</td>
+<td>佐藤太郎</td>
+<td>0001</td>
+<td>//更新</td>
+</tr>
+<tr class="row-even"><td>00002</td>
+<td>田中一郎</td>
+<td>0002</td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="how-to-fix-date">
+<span id="id9"></span><h2>3.2.8.4. システム日時を任意の値に固定したい<a class="headerlink" href="#how-to-fix-date" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>登録日時や更新日時などのシステム日付を設定する項目の場合、普通にテストを実行すると日によって想定結果が変わるため、自動テストで設定値が正しいことを確認できない。
+そこで、本フレームワークではシステム日付に固定値を設定する機能を提供する。この機能を使用することにより、システム日付を設定する項目も自動テストで設定値が正しいことを確認することができる。</p>
+<p>Nablarch Application Frameworkでは、SystemTimeProviderインタフェースの実装クラスがシステム日時を提供する。この実装クラスを、固定値を返却するテスト用クラスに差し替えることにより、任意のシステム日時を返却させることができる。</p>
+<div class="section" id="id10">
+<h3>3.2.8.4.1. 設定ファイル例<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>コンポーネント定義ファイルにて、SystemTimeProviderインタフェースの実装クラスを指定する箇所に
+FixedSystemTimeProviderを指定し、そのプロパティに任意の日時を設定する。
+例えば、システム日時を2010年9月14日12時34分56秒とする場合は以下のように設定する。</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;systemTimeProvider&quot;</span>
+    <span class="na">class=</span><span class="s">&quot;nablarch.test.FixedSystemTimeProvider&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;fixedDate&quot;</span> <span class="na">value=</span><span class="s">&quot;20100913123456&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+<table border="1" class="docutils">
+<colgroup>
+<col width="24%" />
+<col width="76%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">property名</th>
+<th class="head">設定内容</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>fixedDate</td>
+<td><dl class="first last docutils">
+<dt>指定したい日時を以下のフォーマットいずれかに合致する文字列で指定する。</dt>
+<dd><ul class="first last simple">
+<li>yyyyMMddHHmmss (12桁)</li>
+<li>yyyyMMddHHmmssSSS (15桁)</li>
+</ul>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="c1">// システム日時を取得</span>
+<span class="n">SystemTimeProvider</span> <span class="n">provider</span> <span class="o">=</span> <span class="o">(</span><span class="n">SystemTimeProvider</span><span class="o">)</span> <span class="n">SystemRepository</span><span class="o">.</span><span class="na">getObject</span><span class="o">(</span><span class="s">&quot;systemTimeProvider&quot;</span><span class="o">);</span>
+<span class="n">Date</span> <span class="n">now</span> <span class="o">=</span> <span class="n">provider</span><span class="o">.</span><span class="na">getDate</span><span class="o">();</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="how-to-numbering-sequence">
+<span id="id11"></span><h2>3.2.8.5. シーケンスオブジェクトを使った採番のテストをしたい<a class="headerlink" href="#how-to-numbering-sequence" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>シーケンスオブジェクトを使用して値の採番処理を行った場合、次に採番される値が事前に予測できないため期待値を設定することができない。
+そこで、本フレームワークではシーケンスオブジェクトを使用した採番処理を設定ファイルの変更のみでテーブル採番に置き換える機能を提供する。
+この機能を利用することで、正しく採番処理を行なっていることを確認できる。</p>
+<p>手順は以下のとおり。</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line">① 準備データをテーブルにセットアップする。</div>
+<div class="line">② 期待値はテーブルに設定した値を元に設定する。</div>
+</div>
+</div></blockquote>
+<p>以下に設定例及び使用例を示す。</p>
+<div class="section" id="id12">
+<h3>3.2.8.5.1. 設定ファイルの例<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>この例では、下記のように本番用の設定ファイルにシーケンスオブジェクトの採番定義がされているとする。</p>
+<blockquote>
+<div><div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- シーケンスオブジェクトを使用した採番設定 --&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;idGenerator&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.common.idgenerator.OracleSequenceIdGenerator&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;idTable&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;map&gt;</span>
+            <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;1101&quot;</span> <span class="na">value=</span><span class="s">&quot;SEQ_1&quot;</span><span class="nt">/&gt;</span> <span class="c">&lt;!-- ID1採番用 --&gt;</span>
+            <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;1102&quot;</span> <span class="na">value=</span><span class="s">&quot;SEQ_2&quot;</span><span class="nt">/&gt;</span> <span class="c">&lt;!-- ID2採番用 --&gt;</span>
+            <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;1103&quot;</span> <span class="na">value=</span><span class="s">&quot;SEQ_3&quot;</span><span class="nt">/&gt;</span> <span class="c">&lt;!-- ID3採番用 --&gt;</span>
+            <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;1104&quot;</span> <span class="na">value=</span><span class="s">&quot;SEQ_4&quot;</span><span class="nt">/&gt;</span> <span class="c">&lt;!-- ID4採番用 --&gt;</span>
+        <span class="nt">&lt;/map&gt;</span>
+    <span class="nt">&lt;/property&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>この場合、テスト用の設定ファイルでは、上記本番用の設定をテーブル採番用の設定で上書きする。</p>
+<blockquote>
+<div><div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- シーケンスオブジェクトの採番設定をテーブルを使用した採番設定に置き換える --&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;idGenerator&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.common.idgenerator.FastTableIdGenerator&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;tableName&quot;</span> <span class="na">value=</span><span class="s">&quot;TEST_SBN_TBL&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;idColumnName&quot;</span> <span class="na">value=</span><span class="s">&quot;ID_COL&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;noColumnName&quot;</span> <span class="na">value=</span><span class="s">&quot;NO_COL&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;dbTransactionManager&quot;</span> <span class="na">ref=</span><span class="s">&quot;dbTransactionManager&quot;</span> <span class="nt">/ &gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">ちなみに</p>
+<p class="last">テーブル採番用の設定値の詳細は、<a class="reference external" href="https://nablarch.github.io/docs/5u8/javadoc/nablarch/common/idgenerator/IdGenerator.html" title="nablarch.common.idgenerator.IdGenerator">IdGenerator</a>を参照すること。</p>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="id13">
+<h3>3.2.8.5.2. Excelファイル記述例<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>採番対象ID:1101を採番する処理をテストする場合を例に説明する。</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line">// 準備データ</div>
+<div class="line">// 採番用テーブル</div>
+<div class="line">SETUP_TABLE=TEST_SBN_TBL</div>
+</div>
+<table border="1" class="docutils">
+<colgroup>
+<col width="48%" />
+<col width="52%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">ID_COL</th>
+<th class="head">NO_COL</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>1101</td>
+<td>100</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="first admonition-title">ちなみに</p>
+<p class="last">採番用テーブルに準備データを設定する。
+準備データでは、テスト範囲内で使用する採番対象のレコードのみを設定する。</p>
+</div>
+<div class="line-block">
+<div class="line">// 期待値</div>
+<div class="line">// 採番用テーブル</div>
+<div class="line">EXPECTED_TABLE=TEST_SBN_TBL</div>
+</div>
+<table border="1" class="docutils">
+<colgroup>
+<col width="48%" />
+<col width="52%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">ID_COL</th>
+<th class="head">NO_COL</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>1101</td>
+<td>101</td>
+</tr>
+</tbody>
+</table>
+<div class="line-block">
+<div class="line">// 期待値</div>
+<div class="line">// 採番した値が登録されるテーブル(USER_IDに採番された値が登録される。)</div>
+<div class="line">EXPECTED_TABLE=USER_INFO</div>
+</div>
+<table border="1" class="docutils">
+<colgroup>
+<col width="31%" />
+<col width="34%" />
+<col width="34%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">USER_ID</th>
+<th class="head">KANJI_NAME</th>
+<th class="head">KANA_NAME</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>0000000101</td>
+<td>漢字名</td>
+<td>ｶﾅﾒｲ</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="first admonition-title">ちなみに</p>
+<p class="last">本記述例では、テスト内で1度のみ採番処理が行われていることを想定している。
+このため、期待値は「準備データの値 + 1」となっている。</p>
+</div>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="threadcontextidid">
+<span id="using-threadcontext"></span><h2>3.2.8.6. ThreadContextにユーザID、リクエストIDなどを設定したい<a class="headerlink" href="#threadcontextidid" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Nablarch Application Frameworkでは、通常ThreadContextにてユーザIDやリクエストIDがあらかじめ設定されている。データベースアクセスクラスの自動テストを行う場合、フレームワークを経由せず、テストクラスからテスト対象クラスを直接起動するため、ThreadContextには値が設定されていない。</p>
+<p>Excelファイルに設定する値を記述して下記メソッドを呼び出すことで、ThreadContextに値を設定できる。</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">TestSupport#setThreadContextValues(String</span> <span class="pre">sheetName,</span> <span class="pre">String</span> <span class="pre">id)</span></code></li>
+<li><code class="docutils literal"><span class="pre">DbAccessTestSupport#setThreadContextValues(String</span> <span class="pre">sheetName,</span> <span class="pre">String</span> <span class="pre">id)</span></code></li>
+</ul>
+</div></blockquote>
+<div class="admonition tip">
+<p class="first admonition-title">ちなみに</p>
+<p class="last">特に自動設定項目を利用してデータベースに登録・更新する際は、ThreadContextにリクエストIDとユーザIDが設定されている必要がある。テスト対象クラス起動前にこれらの値をThreadContextに設定しておくこと。</p>
+</div>
+<div class="section" id="id14">
+<h3>3.2.8.6.1. テストソースコード実装例<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<blockquote>
+<div><div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">DbAccessTestSample</span> <span class="kd">extends</span> <span class="n">DbAccessTestSupport</span> <span class="o">{</span>
+    <span class="c1">// ＜中略＞</span>
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testInsert</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// ThreadContextに値を設定する（シート名、IDを指定）</span>
+        <span class="n">setThreadContextValues</span><span class="o">(</span><span class="s">&quot;testSelect&quot;</span><span class="o">,</span> <span class="s">&quot;threadContext&quot;</span><span class="o">);</span>
+
+       <span class="c1">// ＜後略＞</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="id15">
+<h3>3.2.8.6.2. テストデータ記述例<a class="headerlink" href="#id15" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>シート[testInsert]に以下のようにデータを記載する。(IDは任意）</p>
+<p>LIST_MAP=threadContext</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="31%" />
+<col width="33%" />
+<col width="36%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">USER_ID</th>
+<th class="head">REQUEST_ID</th>
+<th class="head">LANG</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>U00001</td>
+<td>RS000001</td>
+<td>ja_JP</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="using-testdataparser">
+<span id="id16"></span><h2>3.2.8.7. 任意のディレクトリのExcelファイルを読み込みたい<a class="headerlink" href="#using-testdataparser" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>テストソースコードと同じディレクトリに存在するExcelファイルであれば、
+シート名を指定するだけで読み込み可能であるが、別のディレクトリに存在するファイルを
+読み込みたい場合は、TestDataParser実装クラスを直接使用することで取得できる。</p>
+<p>&#8220;/foo/bar/&#8221;に存在する&#8221;Buz.xlsx&#8221;というファイルからデータを読み込む場合の例を以下に示す。</p>
+<div class="section" id="id17">
+<h3>3.2.8.7.1. テストソースコード実装例<a class="headerlink" href="#id17" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<blockquote>
+<div><div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">TestDataParser</span> <span class="n">parser</span> <span class="o">=</span> <span class="o">(</span><span class="n">TestDataParser</span><span class="o">)</span> <span class="n">SystemRepository</span><span class="o">.</span><span class="na">getObject</span><span class="o">(</span><span class="s">&quot;testDataParser&quot;</span><span class="o">);</span>
+<span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="na">getListMap</span><span class="o">(</span><span class="s">&quot;/foo/bar/Baz.xlsx&quot;</span><span class="o">,</span> <span class="s">&quot;sheet001&quot;</span><span class="o">,</span> <span class="s">&quot;params&quot;</span><span class="o">);</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="using-junit-annotation">
+<span id="id18"></span><h2>3.2.8.8. テスト実行前後に共通処理を行いたい。<a class="headerlink" href="#using-junit-annotation" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>JUnit4で用意されたアノテーション(&#64;Before, &#64;After, &#64;BeforeClass, &#64;AfterClass)を使用することで、
+テスト実行前後に共通処理を実行させることができる。</p>
+<div class="section" id="id19">
+<h3>3.2.8.8.1. 注意事項<a class="headerlink" href="#id19" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>上記のアノテーションを利用する際は、以下の点に注意すること。</p>
+<div class="section" id="beforeclass-afterclass">
+<h4>3.2.8.8.1.1. &#64;BeforeClass, &#64;AfterClass使用時の注意点<a class="headerlink" href="#beforeclass-afterclass" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<blockquote>
+<div><ul class="simple">
+<li>サブクラスにて、スーパークラスと同名の名前、同じアノテーションを付与のメソッドを作成しないこと。
+同名のメソッドに同種のアノテーションを付与した場合、スーパークラスのメソッドは起動されなくなる。</li>
+</ul>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestSuper</span> <span class="o">{</span>
+    <span class="nd">@BeforeClass</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">setUpBeforeClass</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;super&quot;</span><span class="o">);</span>   <span class="c1">// 表示されない。</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestSub</span> <span class="kd">extends</span> <span class="n">TestSuper</span> <span class="o">{</span>
+
+    <span class="nd">@BeforeClass</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">setUpBeforeClass</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// スーパークラスのメソッドを上書き</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">test</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;test&quot;</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>上記のTestSubを実行した場合、「test」と表示される。</p>
+</div>
+</div>
+</div>
+<div class="section" id="using-transactions">
+<span id="id20"></span><h2>3.2.8.9. デフォルト以外のトランザクションを使用したい<a class="headerlink" href="#using-transactions" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>データベースアクセスクラスの単体テストを行う場合、テストクラスからデータベースアクセスクラスを起動する。
+通常、データベースアクセスクラスではトランザクション制御を行わないので、テストクラス側でトランザクションを制御する必要がある。</p>
+<p>トランザクション制御は定型処理であるため、テスティングフレームワークにてトランザクションを制御する機構を用意している。プロパティファイルにトランザクション名を記載しておけば、テスティングフレームワークは、テストメソッド実行前にトランザクション開始、テストメソッド終了後にトランザクションを終了する。
+この機構を利用することにより、個別のテストにて、テスト実行前に明示的にトランザクションを開始する必要がなくなる。また、トランザクション終了処理漏れもなくなる。</p>
+<dl class="docutils">
+<dt>この機能を利用する手順は以下の通り。</dt>
+<dd><ul class="first last simple">
+<li>テストクラスにてDbAccessTestSupportを継承する（これにより、スーパークラスの&#64;Before、&#64;Afterメソッドが自動的に呼び出される）。</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="using-ohter-class">
+<span id="id21"></span><h2>3.2.8.10. 本フレームワークのクラスを継承せずに使用したい<a class="headerlink" href="#using-ohter-class" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>通常、テストクラス作成時は本フレームワークで用意されているスーパークラスを継承すればよいが、
+別のクラスを継承しなければならない等の理由で、本フレームワークのスーパークラスを継承できない場合がある。この場合、本フレームワークのスーパークラスをインスタンス化し、処理を委譲することで代替可能である。</p>
+<p>委譲を使用する場合、コンストラクタにテストクラス自身のClassインスタンスを渡す必要がある。
+また、前処理(&#64;Before)メソッド、後処理(&#64;After)メソッドについては、明示的に呼び出す必要がある。</p>
+<div class="section" id="id22">
+<h3>3.2.8.10.1. テストソースコード実装例<a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<blockquote>
+<div><div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SampleTest</span> <span class="kd">extends</span> <span class="n">AnotherSuperClass</span> <span class="o">{</span>
+
+    <span class="cm">/** DbAccessテストサポート */</span>
+    <span class="kd">private</span> <span class="n">DbAccessTestSupport</span> <span class="n">dbSupport</span>
+          <span class="o">=</span> <span class="k">new</span> <span class="n">DbAccessTestSupport</span><span class="o">(</span><span class="n">getClass</span><span class="o">());</span>
+
+    <span class="cm">/** 前処理 */</span>
+    <span class="nd">@Before</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setUp</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// DbSupportの前処理を起動</span>
+        <span class="n">dbSupport</span><span class="o">.</span><span class="na">beginTransactions</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="cm">/** 後処理 */</span>
+    <span class="nd">@After</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">tearDown</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// DbSupportの後処理を起動</span>
+        <span class="n">dbSupport</span><span class="o">.</span><span class="na">endTransactions</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">test</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// データベースに準備データ投入</span>
+        <span class="n">dbSupport</span><span class="o">.</span><span class="na">setUpDb</span><span class="o">(</span><span class="s">&quot;test&quot;</span><span class="o">);</span>
+
+        <span class="c1">// ＜中略＞</span>
+        <span class="n">dbSupport</span><span class="o">.</span><span class="na">assertSqlResultSetEquals</span><span class="o">(</span><span class="s">&quot;test&quot;</span><span class="o">,</span> <span class="s">&quot;id&quot;</span><span class="o">,</span> <span class="n">actual</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="how-to-assert-property-from-excel">
+<span id="id23"></span><h2>3.2.8.11. クラスのプロパティを検証したい<a class="headerlink" href="#how-to-assert-property-from-excel" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>テスト対象クラスのプロパティの検証を、容易に実装できる。</p>
+<p>テストデータの記述方法は、 <a class="reference internal" href="#how-to-get-data-from-excel"><span class="std std-ref">Excelファイルから、入力パラメータや戻り値に対する期待値などを取得したい</span></a> で記載した方法と同様に記載する。</p>
+<p>データの意味は、2行目が プロパティ名、3行目以降が検証時に使用するプロパティの値となる。</p>
+<p>以下のメソッドにより、プロパティの持つ値がExcelファイルに記載したデータとなっていることを検証できる。
+第1引数にはエラー時に表示するメッセージ、第2引数にはシート名、第3引数にはID、第4引数に検証対象のクラス、クラスの配列、クラスのリストのいずれかを指定する。</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">HttpRequestTestSupport#assertObjectPropertyEquals(String</span> <span class="pre">message,</span> <span class="pre">String</span> <span class="pre">sheetName,</span> <span class="pre">String</span> <span class="pre">id,</span> <span class="pre">Object</span> <span class="pre">actual)</span></code></li>
+<li><code class="docutils literal"><span class="pre">HttpRequestTestSupport#assertObjectArrayPropertyEquals(String</span> <span class="pre">message,</span> <span class="pre">String</span> <span class="pre">sheetName,</span> <span class="pre">String</span> <span class="pre">id,</span> <span class="pre">Object[]</span> <span class="pre">actual)</span></code></li>
+<li><code class="docutils literal"><span class="pre">HttpRequestTestSupport#assertObjectListPropertyEquals(String</span> <span class="pre">message,</span> <span class="pre">String</span> <span class="pre">sheetName,</span> <span class="pre">String</span> <span class="pre">id,</span> <span class="pre">List&lt;?&gt;</span> <span class="pre">actual)</span></code></li>
+</ul>
+</div></blockquote>
+<div class="section" id="id24">
+<h3>3.2.8.11.1. テストソースコード実装例<a class="headerlink" href="#id24" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<blockquote>
+<div><div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserUpdateActionRequestTest</span> <span class="kd">extends</span> <span class="n">HttpRequestTestSupport</span> <span class="o">{</span>
+
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testRW11AC0301Normal</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">execute</span><span class="o">(</span><span class="s">&quot;testRW11AC0301Normal&quot;</span><span class="o">,</span> <span class="k">new</span> <span class="n">BasicAdvice</span><span class="o">()</span> <span class="o">{</span>
+            <span class="nd">@Override</span>
+            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">afterExecute</span><span class="o">(</span><span class="n">TestCaseInfo</span> <span class="n">testCaseInfo</span><span class="o">,</span>
+                    <span class="n">ExecutionContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">String</span> <span class="n">message</span> <span class="o">=</span> <span class="n">testCaseInfo</span><span class="o">.</span><span class="na">getTestCaseName</span><span class="o">();</span>
+                <span class="n">String</span> <span class="n">sheetName</span> <span class="o">=</span> <span class="n">testCaseInfo</span><span class="o">.</span><span class="na">getSheetName</span><span class="o">();</span>
+
+                <span class="n">UserForm</span> <span class="n">form</span> <span class="o">=</span> <span class="o">(</span><span class="n">UserForm</span><span class="o">)</span> <span class="n">context</span><span class="o">.</span><span class="na">getRequestScopedVar</span><span class="o">(</span><span class="s">&quot;user_form&quot;</span><span class="o">);</span>
+                <span class="n">UsersEntity</span> <span class="n">users</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="na">getUsers</span><span class="o">();</span>
+
+                <span class="c1">// users のプロパティ kanjiName,kanaName,mailAddress を検証。</span>
+                <span class="n">assertObjectPropertyEquals</span><span class="o">(</span><span class="n">message</span><span class="o">,</span> <span class="n">sheetName</span><span class="o">,</span> <span class="s">&quot;expectedUsers&quot;</span><span class="o">,</span> <span class="n">users</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="id25">
+<h3>3.2.8.11.2. Excelファイル記述例<a class="headerlink" href="#id25" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>LIST_MAP=expectedUsers</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="22%" />
+<col width="22%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">kanjiName</th>
+<th class="head">kanaName</th>
+<th class="head">mailAddress</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>漢字氏名</td>
+<td>カナシメイ</td>
+<td><a class="reference external" href="mailto:test&#37;&#52;&#48;anydomain&#46;com">test<span>&#64;</span>anydomain<span>&#46;</span>com</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="null">
+<span id="tips-test-data"></span><h2>3.2.8.12. テストデータに空白、空文字、改行やnullを記述したい<a class="headerlink" href="#null" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<blockquote>
+<div><a class="reference internal" href="01_Abstract.html#special-notation-in-cell"><span class="std std-ref">セルへの特殊な記述方法</span></a> を参照。</div></blockquote>
+<p></p>
+</div>
+<div class="section" id="how-to-express-empty-line">
+<span id="id26"></span><h2>3.2.8.13. テストデータに空行を記述したい<a class="headerlink" href="#how-to-express-empty-line" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>可変長ファイルを扱う場合等で、テストデータに空行を含めたい場合がある。
+全くの空行は無視されるため、<a class="reference internal" href="01_Abstract.html#special-notation-in-cell"><span class="std std-ref">セルへの特殊な記述方法</span></a> の
+ダブルクォーテーションを使用して<code class="docutils literal"><span class="pre">&quot;&quot;</span></code>のように空文字列を記述することで、
+空行を表すことができる。</p>
+<p>以下の例では、2レコード目が空行となる。</p>
+<p><strong>SETUP_VARIABLE=/path/to/file.csv</strong></p>
+<blockquote>
+<div>＜中略＞</div></blockquote>
+<table border="1" class="docutils">
+<colgroup>
+<col width="46%" />
+<col width="54%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">name</th>
+<th class="head">address</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>山田</td>
+<td>東京都</td>
+</tr>
+<tr class="row-odd"><td>&#8220;&#8221;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>田中</td>
+<td>大阪府</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="first admonition-title">ちなみに</p>
+<p class="last">空行を表す場合、全てのセルを<code class="docutils literal"><span class="pre">&quot;&quot;</span></code>で埋める必要はない。
+行のうちのいずれか1セルだけでよい。可読性を考慮し、
+左端のセルに<code class="docutils literal"><span class="pre">&quot;&quot;</span></code>を記載することを推奨する。</p>
+</div>
+</div>
+<div class="section" id="how-to-change-master-data">
+<span id="id27"></span><h2>3.2.8.14. マスタデータを変更してテストを行いたい<a class="headerlink" href="#how-to-change-master-data" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<blockquote>
+<div><a class="reference internal" href="04_MasterDataRestore.html"><span class="doc">マスタデータ復旧機能</span></a> を参照</div></blockquote>
+</div>
+<div class="section" id="how-to-change-test-data-dir">
+<span id="id28"></span><h2>3.2.8.15. テストデータ読み込みディレクトリを変更したい<a class="headerlink" href="#how-to-change-test-data-dir" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>デフォルトの設定では、テストデータは<code class="docutils literal"><span class="pre">test/java</span></code>配下から読み込まれる。</p>
+<p>プロジェクトのディレクトリ構成に応じて、テストデータディレクトリを変更する必要がある場合、
+コンポーネント定義ファイルに以下の設定を追加する<a class="footnote-reference" href="#id31" id="id29">[1]</a>。</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="36%" />
+<col width="64%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">キー</th>
+<th class="head">値</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>nablarch.test.resource-root</td>
+<td>テスト実行時のカレントディレクトリからの相対パス
+セミコロン(;)区切りで複数指定可 <a class="footnote-reference" href="#id32" id="id30">[2]</a></td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<p>設定例を以下に示す。</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>nablarch.test.resource-root<span class="o">=</span>path/to/test-data-dir
+</pre></div>
+</div>
+<p></p>
+<p>複数のディレクトリからテストデータを読み込みたい場合は、
+セミコロンで区切ることにより複数指定することができる。
+設定例を以下に示す。</p>
+<div class="highlight-text"><div class="highlight"><pre><span></span>nablarch.test.resource-root=test/online;test/batch
+</pre></div>
+</div>
+<p></p>
+<table class="docutils footnote" frame="void" id="id31" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id29">[1]</a></td><td><p class="first">一時的に設定を変更する場合は、設定ファイルを変更しなくても、
+テスト実行時のVM引数指定を追加することで代替可能である。</p>
+<p class="last">【例】 <code class="docutils literal"><span class="pre">-Dnablarch.test.resource-root=path/to/test-data-dir</span></code></p>
+</td></tr>
+</tbody>
+</table>
+<p></p>
+<table class="docutils footnote" frame="void" id="id32" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id30">[2]</a></td><td>複数のディレクトリを指定した場合、同名のテストデータが存在した場合、
+最初に発見されたテストデータが読み込まれる。</td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="how-to-convert-test-data">
+<span id="id33"></span><h2>3.2.8.16. メッセージング処理でテストデータに対し定型的な変換処理を追加したい<a class="headerlink" href="#how-to-convert-test-data" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>テストデータ用のExcelに記述されたデータはデフォルトでは指定されたエンコーディングを使用してバイト列に変換されるのみである。
+例えばURLエンコーディングされたデータが他システムから連携される場合、URLエンコーディングされたデータをExcelに記述する必要があるが、
+可読性や保守性、作業効率といった面で現実的ではない。</p>
+<p>以下のインタフェースを実装し、システムリポジトリに登録することでURLエンコーディングのような定型的な変換処理を追加することができる。</p>
+<div class="section" id="id34">
+<h3>3.2.8.16.1. 実装するインタフェース<a class="headerlink" href="#id34" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">nablarch.test.core.file.TestDataConverter</span></code></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="id35">
+<h3>3.2.8.16.2. システムリポジトリ登録内容<a class="headerlink" href="#id35" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="38%" />
+<col width="62%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">キー</th>
+<th class="head">値</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>TestDataConverter_&lt;データ種別&gt;</td>
+<td>上記インタフェースを実装したクラスのクラス名。
+データ種別はテストデータのfile-typeに指定した値。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id36">
+<h3>3.2.8.16.3. システムリポジトリ登録例<a class="headerlink" href="#id36" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- テストデータコンバータ定義 --&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;TestDataConverter_FormUrlEncoded&quot;</span>
+           <span class="na">class=</span><span class="s">&quot;please.change.me.test.core.file.FormUrlEncodedTestDataConverter&quot;</span><span class="nt">/&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id37">
+<h3>3.2.8.16.4. Excelファイル記述例<a class="headerlink" href="#id37" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<img alt="../../../../../_images/data_convert_example.png" src="../../../../../_images/data_convert_example.png" />
+<p>上記で指定したコンバータでセル内の各データにURLエンコーディングを行うように実装した場合、
+テストフレームワーク内部では以下のデータを記述した場合と同様に扱われる。</p>
+<img alt="../../../../../_images/data_convert_internal.png" src="../../../../../_images/data_convert_internal.png" />
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+
+    <hr/>
+
+    <div role="contentinfo">
+        <p>
+            &copy; Copyright 2010-2017, TIS Inc.
+        </p>
+    </div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../../',
+            VERSION:'5u8',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../../../_static/custom.js"></script>
+      <script type="text/javascript" src="../../../../../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
