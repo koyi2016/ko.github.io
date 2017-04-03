@@ -1,0 +1,351 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>第１章：Java実装環境と流れ &mdash; sphinx  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="索引"
+              href="../../../../genindex.html"/>
+        <link rel="search" title="検索" href="../../../../search.html"/>
+    <link rel="top" title="sphinx  documentation" href="../../../../index.html"/>
+        <link rel="up" title="Java言語基本文法" href="../index.html"/>
+        <link rel="next" title="第２章：データの宣言と使用" href="../variables_and_arrays/index.html"/>
+        <link rel="prev" title="Java言語基本文法" href="../index.html"/> 
+
+  
+  <script src="../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+  
+  <a href="../../../../index.html" class="icon icon-home"> sphinx
+  
+
+  
+  </a>
+
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+  
+  
+    <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Java学習メモ</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">Java言語の基本知識</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">Java言語基本文法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../object_and_class/index.html">クラス定義とオブジェクト生成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../inheritance_and_interface/index.html">継承とサブクラスの定義</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../exception/index.html">例外処理</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../javaTraining/index.html">Javaトレーニング</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../javaFramework/index.html">Javaフレームワークの学習メモ</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../sql/index.html">sql</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../office/index.html">Office学習メモ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../office/excel/index.html">Excelメモ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../office/excel/index.html#id1">excelでセルの値を選択できるようにリストを設定方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../office/excel/index.html#id2">同じシートの複数ページに対して、共通ヘッダーの印刷設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../office/excel/index.html#id4">関数利用</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../sphinx/index.html">sphinx文法</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../sphinx/index.html#url">urlの利用</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../soft/index.html">ソフトメモ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../soft/sphinx.html">sphinxのインストールメモ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../soft/sphinx.html#python">pythonのインストール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../soft/sphinx.html#javasphinx">javasphinxのインストール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../soft/sphinx.html#html">最後htmlファイルを生成する</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../soft/github.html">githubの利用メモ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../soft/github.html#github-pages">github Pagesを使ってドキュメントを公開方法</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">sphinx</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Java学習メモ</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Java言語の基本知識</a> &raquo;</li>
+        
+          <li><a href="../index.html">Java言語基本文法</a> &raquo;</li>
+        
+      <li>第１章：Java実装環境と流れ</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="java">
+<h1>第１章：Java実装環境と流れ<a class="headerlink" href="#java" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>・ Javaプログラムの作成から実行まで<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<img alt="../../../../_images/jdk.png" src="../../../../_images/jdk.png" />
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<blockquote>
+<div><p>一つのソースファイル内に複数のクラス定義を行った場合、ソースファイル内の全てのクラス定義に基づいてクラスファイルが生成される。</p>
+<p>例：sample.javaの中、三つのクラスsample, test, passを定義した場合、コンパイル時、sample,test,passのclassファイルが生成される。</p>
+</div></blockquote>
+<img alt="../../../../_images/sampleJava.png" class="last" src="../../../../_images/sampleJava.png" />
+</div>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">一つのJavaソースファイルでは複数のpublicクラスを定義することができないため、public修飾子を指定した場合、ソースファイル名とクラス名を同じにしなれけばならない。</p>
+</div>
+<p>Javac Test.javaを実行する時、もしソースコードの中に、日本語がある場合、エラーになりますので、以下のように実行が必要。</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Javac</span> <span class="o">-</span><span class="n">encoding</span> <span class="n">UTF</span><span class="o">-</span><span class="mi">8</span> <span class="n">Test</span><span class="o">.</span><span class="n">java</span>
+</pre></div>
+</div>
+<p>文字コードを指定するには「-encoding」オプションを使います。</p>
+</div>
+<div class="section" id="id2">
+<h2>・ Javaプログラム動作環境<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>特徴：Javaで一つのプログラムを作成することで、どのコンピュータ上でも動作させることができます。</p>
+<ol class="arabic simple">
+<li>JVM（Java Virtual Machine）Java仮想マシンとは：バイトコードのJavaプログラムを解釈し実行するソフトウェア。</li>
+<li>JRE（Java Runtime Environment）とは：Java実行環境。JVMおよびプログラムの実行に必要なライブラリがまとめられた。</li>
+<li>JDK（Java Development Kit）とは：Java開発環境と言います。Javaでプログラムを作成する時必要です。</li>
+</ol>
+<p>JVM、JREとJDKの範囲は以下の図で示します。</p>
+<img alt="../../../../_images/jdkHani.png" src="../../../../_images/jdkHani.png" />
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p>JDKにはJREが含まれています。つまり、Java開発環境ではJDKのインストールとPath設定が必要です。</p>
+<p class="last">参考URL:　<a class="reference external" href="http://www.task-notes.com/entry/20140810/1407599796">http://www.task-notes.com/entry/20140810/1407599796</a></p>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>・ Javaプラットフォーム各エディションの特徴と説明<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>Javaプラットフォームは、Javaで記述されたプログラムの開発および実行を行うことのできるソフトウェア群の総称。</p>
+<ol class="arabic simple">
+<li>Java SE（バージョン5.0までは Java Platform, Standard Edition または J2SE）は基礎と一部機能を提供する。</li>
+<li>Java Platform, Enterprise Edition (Java EE) は、Javaの企業用機能セット。Java SE の拡張機能の形で提供される。</li>
+<li>Java Platform, Micro Edition (Java ME)は携帯電話、PDA、テレビのようなのリソースが制限されたデバイスにおけるJavaの小型セット。</li>
+</ol>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<ol class="last arabic simple">
+<li>Java EEを利用するために、JavaSEが必要です。<br /></li>
+<li>Java EEはGUI関連のライブラリ（java.awtやjava.swing）以外にも、ネットワーク、スレッド、データベースアクセスなどのライブラリが用意されている</li>
+</ol>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>・ 注意点<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>Java開発する時、注意点をここでまとめます。</p>
+<ol class="arabic">
+<li><p class="first">Javaでは大文字と小文字は区別される。　<br /></p>
+</li>
+<li><p class="first">Javaプログラムはmainメソッドから実行する。　<br /></p>
+</li>
+<li><p class="first">Javaのコメント注釈は「//」、「/* <a href="#id5"><span class="problematic" id="id6">*</span></a>/」を使う。　<br /></p>
+<div class="system-message" id="id5">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\gitDocument\sample\java\javaknowledge\basic_java\development_environment\index.rst</tt>, line 75); <em><a href="#id6">backlink</a></em></p>
+<p>Inline emphasis start-string without end-string.</p>
+</div>
+</li>
+<li><p class="first">出力方法：改行の時　System.out.println()、改行しないの時　System.out.print()。　<br /></p>
+</li>
+<li><p class="first">特殊な文字の入力(エスケープシーケンス)　<br /></p>
+<blockquote>
+<div><table border="1" class="colwidths-given white-space-normal docutils" id="id7">
+<caption><span class="caption-text">例</span><a class="headerlink" href="#id7" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="40%" />
+<col width="60%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">使用例</th>
+<th class="head">意味</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>¥t</td>
+<td>タブスペース</td>
+</tr>
+<tr class="row-odd"><td>¥n</td>
+<td>改行</td>
+</tr>
+<tr class="row-even"><td>¥¥</td>
+<td>¥</td>
+</tr>
+<tr class="row-odd"><td>¥&#8221;</td>
+<td>&#8220;</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</li>
+<li><p class="first">Javaアプリケーションはmain()メソッドから実行する。(必ず一つ定義される) <br /></p>
+<p>定型句：</p>
+<blockquote>
+<div><div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">public</span> <span class="n">static</span> <span class="n">void</span> <span class="n">main</span><span class="p">(</span><span class="n">String</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ol>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+
+    <hr/>
+
+    <div role="contentinfo">
+        <p>
+            &copy; Copyright 2016-2017, ko.
+        </p>
+    </div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
