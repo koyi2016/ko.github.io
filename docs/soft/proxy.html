@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sql &mdash; sphinx  ドキュメント</title>
+  <title>proxyの設定メモ &mdash; sphinx  ドキュメント</title>
   
 
   
@@ -34,8 +34,8 @@
               href="../genindex.html"/>
         <link rel="search" title="検索" href="../search.html"/>
     <link rel="top" title="sphinx  ドキュメント" href="../index.html"/>
-        <link rel="next" title="Office学習メモ" href="../office/index.html"/>
-        <link rel="prev" title="Javaフレームワークの学習メモ" href="../java/javaFramework/index.html"/> 
+        <link rel="up" title="ソフトメモ" href="index.html"/>
+        <link rel="prev" title="githubの利用メモ" href="github.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -76,10 +76,11 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../java/javaTraining/index.html">Javaトレーニング</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../java/javaFramework/index.html">Javaフレームワークの学習メモ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../java/nablarch/index.html">Nablarchメモ</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">sql</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#oracle">・oracleシステムユーザーがロックされた際の解除</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sql/index.html">sql</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../sql/index.html#oracle">・oracleシステムユーザーがロックされた際の解除</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../office/index.html">Office学習メモ</a><ul>
@@ -96,15 +97,19 @@
 <li class="toctree-l2"><a class="reference internal" href="../sphinx/index.html#url">urlの利用</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../soft/index.html">ソフトメモ</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../soft/sphinx.html">sphinxのインストールメモ</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../soft/sphinx.html#python">pythonのインストール</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../soft/sphinx.html#javasphinx">javasphinxのインストール</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../soft/sphinx.html#html">最後htmlファイルを生成する</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">ソフトメモ</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="sphinx.html">sphinxのインストールメモ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="sphinx.html#python">pythonのインストール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sphinx.html#javasphinx">javasphinxのインストール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sphinx.html#html">最後htmlファイルを生成する</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../soft/github.html">githubの利用メモ</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../soft/github.html#github-pages">github Pagesを使ってドキュメントを公開方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="github.html">githubの利用メモ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="github.html#github-pages">github Pagesを使ってドキュメントを公開方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">proxyの設定メモ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">プロキシ権限設定</a></li>
 </ul>
 </li>
 </ul>
@@ -153,7 +158,9 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>sql</li>
+          <li><a href="index.html">ソフトメモ</a> &raquo;</li>
+        
+      <li>proxyの設定メモ</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -170,38 +177,16 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="sql">
-<h1>sql<a class="headerlink" href="#sql" title="このヘッドラインへのパーマリンク">¶</a></h1>
-<p>作成予定</p>
-<div class="section" id="oracle">
-<h2>・oracleシステムユーザーがロックされた際の解除<a class="headerlink" href="#oracle" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>自分設定されたシステムユーザーがロックされた際、解除方法は以下となる</p>
-<p>１. 別の管理者ユーザーとしてoracleにログイン</p>
-<p>cmdでコマンドを開く、以下のコードを実行</p>
-<p>※別の管理者がログインできないと、解除ができない。その時、oracleの再インストールしかないと考える。</p>
-<blockquote>
-<div><div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">SQLPLUS</span> <span class="o">/</span><span class="n">NOLOG</span>
-<span class="n">connect</span> <span class="n">sys</span><span class="o">/</span><span class="n">password</span> <span class="k">as</span> <span class="n">sysdba</span>
+  <div class="section" id="proxy">
+<span id="id1"></span><h1>proxyの設定メモ<a class="headerlink" href="#proxy" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="id2">
+<h2>プロキシ権限設定<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>権限追加:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">http</span><span class="o">.</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/.</span><span class="n">proxy</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">proxy</span><span class="o">.</span><span class="n">example</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="mi">8080</span>
+<span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">http</span><span class="o">.</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">bitbucket</span><span class="o">.</span><span class="n">org</span><span class="o">/.</span><span class="n">proxy</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">proxy</span><span class="o">.</span><span class="n">example</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="mi">8080</span>
 </pre></div>
 </div>
-</div></blockquote>
-<ol class="arabic simple" start="2">
-<li>ロックされたユーザーの解除</li>
-</ol>
-<p>この例のユーザーはTEST。</p>
-<blockquote>
-<div><div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">alter</span> <span class="n">user</span> <span class="n">TEST</span> <span class="n">account</span> <span class="n">unlock</span><span class="p">;</span>
-</pre></div>
-</div>
-</div></blockquote>
-<ol class="arabic simple" start="3">
-<li>自分設定されたユーザーのパスワード変更</li>
-</ol>
-<blockquote>
-<div><div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">ALTER</span> <span class="n">USER</span> <span class="n">system</span> <span class="n">IDENTIFIED</span> <span class="n">BY</span> <span class="n">oracle</span><span class="p">;</span>
-</pre></div>
-</div>
-</div></blockquote>
+<p>ここのhttp://proxy.example.comを自分のプロキシに変更</p>
 </div>
 </div>
 

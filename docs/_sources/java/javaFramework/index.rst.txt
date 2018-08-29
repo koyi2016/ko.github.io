@@ -4,7 +4,7 @@
 Javaフレームワークの学習メモ
 ==================================
 
-Javaフレームワークの学習について、主に自社の `Nabalrch <https://nablarch.github.io/docs/5u9/doc/>`_ を中心に学習しています。
+Javaフレームワークの学習について、主に `Nabalrch <https://nablarch.github.io/docs/5u9/doc/>`_ を中心に学習しています。
   
   
   

@@ -10,6 +10,7 @@
 
   sphinx
   github
+  proxy
 
 
 

@@ -1,0 +1,401 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>メモ &mdash; sphinx  ドキュメント</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="索引"
+              href="../../genindex.html"/>
+        <link rel="search" title="検索" href="../../search.html"/>
+    <link rel="top" title="sphinx  ドキュメント" href="../../index.html"/>
+        <link rel="up" title="Java学習メモ" href="../index.html"/>
+        <link rel="next" title="sql" href="../../sql/index.html"/>
+        <link rel="prev" title="Javaフレームワークの学習メモ" href="../javaFramework/index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+  
+  <a href="../../index.html" class="icon icon-home"> sphinx
+  
+
+  
+  </a>
+
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+  
+  
+    <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Java学習メモ</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../javaknowledge/index.html">Java言語の基本知識</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../javaknowledge/basic_java/index.html">Java言語基本文法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../javaknowledge/object_and_class/index.html">クラス定義とオブジェクト生成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../javaknowledge/inheritance_and_interface/index.html">継承とサブクラスの定義</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../javaknowledge/exception/index.html">例外処理</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../javaTraining/index.html">Javaトレーニング</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javaFramework/index.html">Javaフレームワークの学習メモ</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">メモ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#nablarch">1. Nablarchログ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#universaldao">2. universalDaoの利用</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#listsetstring">3. List、Set、string配列の変更</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pre">4. &lt;pre&gt;タグの役割</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spring">5. spring のリストに対して精査方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">6. Springプロジェクトのソースコード修正後、コンパイルだけで反映するための依存関係</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../sql/index.html">sql</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../sql/index.html#oracle">・oracleシステムユーザーがロックされた際の解除</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../office/index.html">Office学習メモ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../office/excel/index.html">Excelメモ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../office/excel/index.html#id1">・excelでセルの値を選択できるようにリストを設定方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../office/excel/index.html#id2">・同じシートの複数ページに対して、共通ヘッダーの印刷設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../office/excel/index.html#id4">・関数利用</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../office/excel/index.html#id5">・Excelの個人情報を自動に削除</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../sphinx/index.html">sphinx文法</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../sphinx/index.html#url">urlの利用</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../soft/index.html">ソフトメモ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../soft/sphinx.html">sphinxのインストールメモ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../soft/sphinx.html#python">pythonのインストール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../soft/sphinx.html#javasphinx">javasphinxのインストール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../soft/sphinx.html#html">最後htmlファイルを生成する</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../soft/github.html">githubの利用メモ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../soft/github.html#github-pages">github Pagesを使ってドキュメントを公開方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../soft/proxy.html">proxyの設定メモ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../soft/proxy.html#id2">プロキシ権限設定</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">sphinx</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Java学習メモ</a> &raquo;</li>
+        
+      <li>メモ</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>メモ<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="nablarch">
+<h2>1. Nablarchログ<a class="headerlink" href="#nablarch" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ログ出力にはレベルがあり、レベルによって表示するエラーの量が変わります。</p>
+<p>BeanExceptionはログレベル「DEBUG」として出力されているようなので、設定ファイル（log.properties）を書き換えてログレベルを変えれば出なくなると思います。</p>
+<p><a class="reference external" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/libraries/log.html#log-log-level">【参考】7.1.6. ログレベルの定義</a></p>
+</div>
+<div class="section" id="universaldao">
+<h2>2. universalDaoの利用<a class="headerlink" href="#universaldao" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>検索条件が単項目・複数項目の場合、new Object[] {項目１, 項目2}</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">UserDto</span> <span class="n">dto</span> <span class="o">=</span> <span class="n">UniversalDao</span><span class="o">.</span><span class="n">findBySqlFile</span><span class="p">(</span><span class="n">UserDto</span><span class="o">.</span><span class="n">class</span><span class="p">,</span> <span class="s2">&quot;SEARCH_USER_DETAIL&quot;</span><span class="p">,</span> <span class="n">new</span> <span class="n">Object</span><span class="p">[]</span> <span class="p">{</span><span class="n">form</span><span class="o">.</span><span class="n">getUserId</span><span class="p">()});</span>
+</pre></div>
+</div>
+<p>検索条件がbeanの場合（form dto entityなど）、new Objectが不要</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">List</span><span class="o">&lt;</span><span class="n">UserDto</span><span class="o">&gt;</span> <span class="n">searchResult</span> <span class="o">=</span> <span class="n">UniversalDao</span><span class="o">.</span><span class="n">page</span><span class="p">(</span><span class="n">searchCondition</span><span class="o">.</span><span class="n">getPageNumber</span><span class="p">())</span><span class="o">.</span><span class="n">per</span><span class="p">(</span><span class="mi">20</span><span class="n">L</span><span class="p">)</span><span class="o">.</span><span class="n">findAllBySqlFile</span><span class="p">(</span><span class="n">UserDto</span><span class="o">.</span><span class="n">class</span><span class="p">,</span> <span class="s2">&quot;SEARCH_USER&quot;</span><span class="p">,</span> <span class="n">searchCondition</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="listsetstring">
+<h2>3. List、Set、string配列の変更<a class="headerlink" href="#listsetstring" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>リストをStringに変更</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">String</span> <span class="p">[]</span> <span class="n">samples</span> <span class="o">=</span> <span class="n">sampleList</span><span class="o">.</span><span class="n">toArray</span><span class="p">(</span><span class="n">new</span> <span class="n">String</span><span class="p">[</span><span class="n">sampleList</span><span class="o">.</span><span class="n">size</span><span class="p">()]);</span>
+</pre></div>
+</div>
+<p>セットをStringに変更</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">String</span> <span class="p">[]</span> <span class="n">samples</span> <span class="o">=</span> <span class="n">sampleSet</span><span class="o">.</span><span class="n">toArray</span><span class="p">(</span><span class="n">new</span> <span class="n">String</span><span class="p">[</span><span class="n">sampleSet</span><span class="o">.</span><span class="n">size</span><span class="p">()]);</span>
+</pre></div>
+</div>
+<p>セットからリストに変更</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">sampleList</span> <span class="o">=</span> <span class="n">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="n">sampleSet</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>リストからセットに変更</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">sampleSet</span> <span class="o">=</span> <span class="n">new</span> <span class="n">HashSet</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="n">sampleList</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="pre">
+<h2>4. &lt;pre&gt;タグの役割<a class="headerlink" href="#pre" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li>連続する半角スペースはまとめて1つの半角スペースとして扱われる</li>
+<li>タブ文字は半角スペース1つとして扱われる</li>
+<li>改行コードは半角スペース1つとして扱われる</li>
+<li>テキストが表示領域の横幅に達すると、そこで折り返して表示される</li>
+</ul>
+</div></blockquote>
+<p>HTMLで&lt;/pre&gt;タグを使用すると、直後に1行空行が入るのですが、これを入らなくするために、スタイルシートでmarginを0に設定する</p>
+<blockquote>
+<div><div class="highlight-python"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">pre</span> <span class="n">style</span><span class="o">=</span><span class="s2">&quot;margin:0; padding:0&quot;</span><span class="o">&gt;</span>
+<span class="n">aaa</span>
+<span class="n">bbb</span>
+<span class="o">&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p><a class="reference external" href="https://dekiru.net/article/12888/">参考URL</a></p>
+</div>
+<div class="section" id="spring">
+<h2>5. spring のリストに対して精査方法<a class="headerlink" href="#spring" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>入力フォームにリストを精査する時、こんな感じて作って、</p>
+<blockquote>
+<div><div class="highlight-python"><div class="highlight"><pre><span></span><span class="nd">@Digits</span><span class="p">(</span><span class="n">integer</span> <span class="o">=</span> <span class="mi">9</span><span class="p">,</span> <span class="n">fraction</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">userIdList</span><span class="p">;</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>で、実際に動かしてみると、エラーになっる</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">javax</span><span class="o">.</span><span class="n">validation</span><span class="o">.</span><span class="n">UnexpectedTypeException</span><span class="p">:</span> <span class="n">HV000030</span><span class="p">:</span> <span class="n">No</span> <span class="n">validator</span> <span class="n">could</span> <span class="n">be</span> <span class="n">found</span> <span class="k">for</span> <span class="n">constraint</span> <span class="s1">&#39;javax.validation.constraints.Digits&#39;</span> <span class="n">validating</span> <span class="nb">type</span> <span class="s1">&#39;java.util.List&#39;</span><span class="o">.</span> <span class="n">Check</span> <span class="n">configuration</span> <span class="k">for</span> <span class="s1">&#39;userIdList&#39;</span>
+</pre></div>
+</div>
+<p>対応方法として、以下の二つがある</p>
+<ol class="arabic simple">
+<li>メインフォームに対応するサブフォームを作って&#64;Validと組み合わせる方法。</li>
+</ol>
+<blockquote>
+<div><div class="highlight-python"><div class="highlight"><pre><span></span><span class="nd">@Valid</span>
+<span class="n">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">UserIdList</span><span class="o">&gt;</span> <span class="n">userIdList</span><span class="p">;</span>
+
+<span class="n">public</span> <span class="k">class</span> <span class="nc">UserIdList</span> <span class="p">{</span>
+  <span class="nd">@Digits</span><span class="p">(</span><span class="n">integer</span> <span class="o">=</span> <span class="mi">9</span><span class="p">,</span> <span class="n">fraction</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+  <span class="n">private</span> <span class="nb">int</span> <span class="n">userId</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>jsp側の書き方(nabalrchのタグを利用する場合)：</p>
+<blockquote>
+<div><div class="highlight-python"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">n</span><span class="p">:</span><span class="n">checkboxes</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;form.userIdList&quot;</span> <span class="n">listName</span><span class="o">=</span><span class="s2">&quot;userIds&quot;</span> <span class="n">elementLabelProperty</span><span class="o">=</span><span class="s2">&quot;userName&quot;</span> <span class="n">elementValueProperty</span><span class="o">=</span><span class="s2">&quot;userId&quot;</span> <span class="n">listFormat</span><span class="o">=</span><span class="s2">&quot;span&quot;</span> <span class="n">elementLabelPattern</span><span class="o">=</span><span class="s2">&quot;$LABEL$&quot;</span> <span class="o">/&gt;</span>
+<span class="o">&lt;</span><span class="n">c</span><span class="p">:</span><span class="n">forEach</span> <span class="n">begin</span><span class="o">=</span><span class="s2">&quot;0&quot;</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;${userIds.size()-1}&quot;</span> <span class="n">varStatus</span><span class="o">=</span><span class="s2">&quot;status&quot;</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">n</span><span class="p">:</span><span class="n">error</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;form.userIdList[${status.index}].userId&quot;</span> <span class="n">errorCss</span><span class="o">=</span><span class="s2">&quot;message-error&quot;</span> <span class="o">/&gt;</span>
+<span class="o">&lt;/</span><span class="n">c</span><span class="p">:</span><span class="n">forEach</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li>Validを利用してリスト中に一つずつ精査する</li>
+</ol>
+<blockquote>
+<div><div class="highlight-python"><div class="highlight"><pre><span></span><span class="nd">@Valid</span>
+<span class="n">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="nd">@Digits</span><span class="p">(</span><span class="n">integer</span> <span class="o">=</span> <span class="mi">9</span><span class="p">,</span> <span class="n">fraction</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">userIdList</span><span class="p">;</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>jsp側の書き方：</p>
+<blockquote>
+<div><div class="highlight-python"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">form</span><span class="p">:</span><span class="n">checkboxes</span> <span class="n">path</span><span class="o">=</span><span class="s2">&quot;userIdList&quot;</span> <span class="n">items</span><span class="o">=</span><span class="s2">&quot;${userIds}&quot;</span> <span class="n">itemLabel</span><span class="o">=</span><span class="s2">&quot;userName&quot;</span> <span class="n">itemValue</span><span class="o">=</span><span class="s2">&quot;userId&quot;</span><span class="o">/&gt;</span>
+<span class="o">&lt;</span><span class="n">form</span><span class="p">:</span><span class="n">errors</span> <span class="n">path</span><span class="o">=</span><span class="s2">&quot;userIdList&quot;</span> <span class="n">cssClass</span><span class="o">=</span><span class="s2">&quot;message-error&quot;</span> <span class="n">element</span><span class="o">=</span><span class="s2">&quot;div&quot;</span><span class="o">/&gt;</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="id3">
+<h2>6. Springプロジェクトのソースコード修正後、コンパイルだけで反映するための依存関係<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>springプロジェクトに対して、サーバ起動のままソースコードの修正したら、サーバ再起動しないと変更点が反映できない。</p>
+<p>サーバの再起動をせず、コンパイルだけで変更点を反映できるために、pomに以下の依存関係を追加する。</p>
+<p>・Spring bootのバージョンが1.3以下の場合、springloadedを追加</p>
+<blockquote>
+<div><div class="highlight-python"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">plugin</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">groupId</span><span class="o">&gt;</span><span class="n">org</span><span class="o">.</span><span class="n">springframework</span><span class="o">.</span><span class="n">boot</span><span class="o">&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">spring</span><span class="o">-</span><span class="n">boot</span><span class="o">-</span><span class="n">maven</span><span class="o">-</span><span class="n">plugin</span><span class="o">&lt;/</span><span class="n">artifactId</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">dependencies</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">dependency</span><span class="o">&gt;</span>
+       <span class="o">&lt;</span><span class="n">groupId</span><span class="o">&gt;</span><span class="n">org</span><span class="o">.</span><span class="n">springframework</span><span class="o">&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span>
+       <span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">springloaded</span><span class="o">&lt;/</span><span class="n">artifactId</span><span class="o">&gt;</span>
+       <span class="o">&lt;</span><span class="n">version</span><span class="o">&gt;</span><span class="mf">1.2</span><span class="o">.</span><span class="mf">8.</span><span class="n">RELEASE</span><span class="o">&lt;/</span><span class="n">version</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">dependency</span><span class="o">&gt;</span>
+  <span class="o">&lt;/</span><span class="n">dependencies</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">plugin</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>・Spring bootのバージョンが1.3以上の場合、spring-boot-devtoolsを追加</p>
+<blockquote>
+<div><div class="highlight-python"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">dependency</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">groupId</span><span class="o">&gt;</span><span class="n">org</span><span class="o">.</span><span class="n">springframework</span><span class="o">.</span><span class="n">boot</span><span class="o">&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">spring</span><span class="o">-</span><span class="n">boot</span><span class="o">-</span><span class="n">devtools</span><span class="o">&lt;/</span><span class="n">artifactId</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">dependency</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div></blockquote>
+<ol class="arabic simple" start="7">
+<li>正規表現</li>
+</ol>
+<p>分かりやすく参考のURL <br />
+<a class="reference external" href="https://java-reference.com/java_string_regex.html">https://java-reference.com/java_string_regex.html</a></p>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+
+    <hr/>
+
+    <div role="contentinfo">
+        <p>
+            &copy; Copyright 2016-2018, ko.
+        </p>
+    </div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

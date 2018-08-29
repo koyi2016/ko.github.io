@@ -1,0 +1,173 @@
+
+
+==================================
+メモ
+==================================
+
+1. Nablarchログ
+---------------------------------------
+
+ログ出力にはレベルがあり、レベルによって表示するエラーの量が変わります。
+
+BeanExceptionはログレベル「DEBUG」として出力されているようなので、設定ファイル（log.properties）を書き換えてログレベルを変えれば出なくなると思います。
+
+`【参考】7.1.6. ログレベルの定義 <https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/libraries/log.html#log-log-level>`_ 
+
+ 
+  
+2. universalDaoの利用
+------------------------------------------
+
+検索条件が単項目・複数項目の場合、new Object[] {項目１, 項目2} ::
+
+   UserDto dto = UniversalDao.findBySqlFile(UserDto.class, "SEARCH_USER_DETAIL", new Object[] {form.getUserId()});
+
+
+検索条件がbeanの場合（form dto entityなど）、new Objectが不要 ::
+
+   List<UserDto> searchResult = UniversalDao.page(searchCondition.getPageNumber()).per(20L).findAllBySqlFile(UserDto.class, "SEARCH_USER", searchCondition);  
+
+
+3. List、Set、string配列の変更
+----------------------------------------------------
+
+リストをStringに変更 ::
+
+   String [] samples = sampleList.toArray(new String[sampleList.size()]);
+
+
+セットをStringに変更 ::
+
+   String [] samples = sampleSet.toArray(new String[sampleSet.size()]);
+
+セットからリストに変更 ::
+
+   List<String> sampleList = new ArrayList<String>sampleSet;
+
+リストからセットに変更 ::
+
+   Set<String> sampleSet = new HashSet<String>sampleList;
+
+
+4. <pre>タグの役割
+--------------------------------------------------------
+
+ * 連続する半角スペースはまとめて1つの半角スペースとして扱われる
+ * タブ文字は半角スペース1つとして扱われる
+ * 改行コードは半角スペース1つとして扱われる
+ * テキストが表示領域の横幅に達すると、そこで折り返して表示される
+
+HTMLで</pre>タグを使用すると、直後に1行空行が入るのですが、これを入らなくするために、スタイルシートでmarginを0に設定する
+
+ .. code-block:: python
+ 
+     <pre style="margin:0; padding:0">
+     aaa
+     bbb
+     </pre>
+
+`参考URL <https://dekiru.net/article/12888/>`_ 
+
+
+
+5. spring のリストに対して精査方法
+---------------------------------------------------------
+
+入力フォームにリストを精査する時、こんな感じて作って、
+
+ .. code-block:: python
+ 
+     @Digits(integer = 9, fraction = 0)
+     private List<Integer> userIdList;
+
+で、実際に動かしてみると、エラーになっる ::
+  
+    javax.validation.UnexpectedTypeException: HV000030: No validator could be found for constraint 'javax.validation.constraints.Digits' validating type 'java.util.List'. Check configuration for 'userIdList'
+
+対応方法として、以下の二つがある
+
+1. メインフォームに対応するサブフォームを作って@Validと組み合わせる方法。
+
+ .. code-block:: python
+ 
+     @Valid
+     private List<UserIdList> userIdList;
+ 
+     public class UserIdList {
+       @Digits(integer = 9, fraction = 0)
+       private int userId;
+     }
+
+jsp側の書き方(nabalrchのタグを利用する場合)：
+
+ .. code-block:: python
+ 
+     <n:checkboxes name="form.userIdList" listName="userIds" elementLabelProperty="userName" elementValueProperty="userId" listFormat="span" elementLabelPattern="$LABEL$" />
+     <c:forEach begin="0" end="${userIds.size()-1}" varStatus="status">
+       <n:error name="form.userIdList[${status.index}].userId" errorCss="message-error" />
+     </c:forEach>
+
+
+2. Validを利用してリスト中に一つずつ精査する
+
+ .. code-block:: python
+ 
+     @Valid
+     private List<@Digits(integer = 9, fraction = 0) Integer> userIdList;
+
+
+jsp側の書き方：
+
+ .. code-block:: python
+ 
+     <form:checkboxes path="userIdList" items="${userIds}" itemLabel="userName" itemValue="userId"/>
+     <form:errors path="userIdList" cssClass="message-error" element="div"/>
+
+
+
+6. Springプロジェクトのソースコード修正後、コンパイルだけで反映するための依存関係
+-------------------------------------------------------------------------------------------------------------
+
+springプロジェクトに対して、サーバ起動のままソースコードの修正したら、サーバ再起動しないと変更点が反映できない。
+
+サーバの再起動をせず、コンパイルだけで変更点を反映できるために、pomに以下の依存関係を追加する。
+
+・Spring bootのバージョンが1.3以下の場合、springloadedを追加
+
+ .. code-block:: python
+ 
+     <plugin>		
+       <groupId>org.springframework.boot</groupId>		
+       <artifactId>spring-boot-maven-plugin</artifactId>		
+       <dependencies>		
+         <dependency>		
+            <groupId>org.springframework</groupId>		
+            <artifactId>springloaded</artifactId>		
+            <version>1.2.8.RELEASE</version>		
+         </dependency>		
+       </dependencies>		
+     </plugin>		
+
+・Spring bootのバージョンが1.3以上の場合、spring-boot-devtoolsを追加
+
+ .. code-block:: python
+ 
+     <dependency>
+       <groupId>org.springframework.boot</groupId>
+       <artifactId>spring-boot-devtools</artifactId>
+     </dependency>
+
+
+
+7. 正規表現
+
+分かりやすく参考のURL |br|
+https://java-reference.com/java_string_regex.html
+
+
+
+     
+.. |br| raw:: html
+
+  <br />
+

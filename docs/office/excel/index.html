@@ -82,9 +82,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../../sql/index.html">sql</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">Office学習メモ</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Excelメモ</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id1">excelでセルの値を選択できるようにリストを設定方法</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id2">同じシートの複数ページに対して、共通ヘッダーの印刷設定</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id4">関数利用</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">・excelでセルの値を選択できるようにリストを設定方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">・同じシートの複数ページに対して、共通ヘッダーの印刷設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">・関数利用</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">・Excelの個人情報を自動に削除</a></li>
 </ul>
 </li>
 </ul>
@@ -172,11 +173,11 @@
   <div class="section" id="excel">
 <h1>Excelメモ<a class="headerlink" href="#excel" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id1">
-<h2>excelでセルの値を選択できるようにリストを設定方法<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>・excelでセルの値を選択できるようにリストを設定方法<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>参考URL: <a class="reference external" href="https://kokodane.com/2013_waza_016-3.htm">https://kokodane.com/2013_waza_016-3.htm</a></p>
 </div>
 <div class="section" id="id2">
-<h2>同じシートの複数ページに対して、共通ヘッダーの印刷設定<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<h2>・同じシートの複数ページに対して、共通ヘッダーの印刷設定<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic">
 <li><p class="first">[ページ レイアウト] タブの [ページ設定] で、[印刷タイトル] をクリックします。</p>
 </li>
@@ -187,17 +188,21 @@
 <p>参考URL: <a class="reference external" href="https://support.office.com/ja-jp/article/%E5%85%A8%E3%83%9A%E3%83%BC%E3%82%B8%E3%81%AE%E5%85%88%E9%A0%AD%E3%81%AE%E5%88%97%E8%A6%8B%E5%87%BA%E3%81%97%E3%81%A8%E3%81%A8%E3%82%82%E3%81%AB%E8%A1%8C%E3%82%92%E5%8D%B0%E5%88%B7%E3%81%99%E3%82%8B-d3550133-f6a1-4c72-ad70-5309a2e8fe8c">全ページの先頭の列見出しとともに行を印刷する</a></p>
 </div>
 <div class="section" id="id4">
-<h2>関数利用<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
-<ul>
-<li><p class="first">二つセルの文字列が同じかどうかを判断する関数：EXACT</p>
+<h2>・関数利用<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>二つセルの文字列が同じかどうかを判断する関数：EXACT</p>
 <blockquote>
+<div><blockquote>
 <div><img alt="../../_images/exact.bmp" src="../../_images/exact.bmp" />
 </div></blockquote>
-</li>
-</ul>
-<blockquote>
-<div><p>C1セルに入力する式は、  =EXACT(A1,B1)</p>
+<p>C1セルに入力する式は、  =EXACT(A1,B1)</p>
 <p>同じ場合は、TRUEを表示、違っている場合は、FALSE と表示されます。</p>
+</div></blockquote>
+</div>
+<div class="section" id="id5">
+<h2>・Excelの個人情報を自動に削除<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>Excelのオプション⇒セキュリティセンター⇒セキュリティセンターの設定⇒ドキュメント固有の設定にチェックをつける</p>
+<blockquote>
+<div><img alt="../../_images/kojinjouhou.gif" src="../../_images/kojinjouhou.gif" />
 </div></blockquote>
 </div>
 </div>
@@ -214,7 +219,7 @@
 
     <div role="contentinfo">
         <p>
-            &copy; Copyright 2016-2017, ko.
+            &copy; Copyright 2016-2018, ko.
         </p>
     </div>
     Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
