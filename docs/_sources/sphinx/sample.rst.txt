@@ -35,6 +35,27 @@ sample
    :download:`サンプル <downloadFile/sample.xlsx>`
 
 
+5. テーブル
+
+    .. list-table:: 例
+     :header-rows: 1
+     :class: white-space-normal
+     :widths: 16,24
+
+     * - 使用例
+       - 意味
+    
+     * - ¥t
+       - タブスペース
+
+     * - ¥n
+       - 改行
+
+     * - ¥¥
+       - ¥
+
+     * - ¥"
+       - "
 
 
      

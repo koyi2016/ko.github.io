@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sql &mdash; sphinx  ドキュメント</title>
+  <title>sql &mdash; sphinx  documentation</title>
   
 
   
@@ -33,9 +33,9 @@
         <link rel="index" title="索引"
               href="../genindex.html"/>
         <link rel="search" title="検索" href="../search.html"/>
-    <link rel="top" title="sphinx  ドキュメント" href="../index.html"/>
+    <link rel="top" title="sphinx  documentation" href="../index.html"/>
         <link rel="next" title="Office学習メモ" href="../office/index.html"/>
-        <link rel="prev" title="Javaフレームワークの学習メモ" href="../java/javaFramework/index.html"/> 
+        <link rel="prev" title="メモ" href="../java/nablarch/index.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -76,18 +76,35 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../java/javaTraining/index.html">Javaトレーニング</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../java/javaFramework/index.html">Javaフレームワークの学習メモ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../java/nablarch/index.html">メモ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../java/nablarch/index.html#nablarch">1. Nablarchログ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../java/nablarch/index.html#universaldao">2. universalDaoの利用</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../java/nablarch/index.html#listsetstring">3. List、Set、string配列の変更</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../java/nablarch/index.html#pre">4. &lt;pre&gt;タグの役割</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../java/nablarch/index.html#spring">5. spring のリストに対して精査方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../java/nablarch/index.html#id3">6. Springプロジェクトのソースコード修正後、コンパイルだけで反映するための依存関係</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../java/nablarch/index.html#id4">7. 正規表現</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../java/nablarch/index.html#doma-spring-bootsql">8. doma-spring-bootのSQL例外変換</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../java/nablarch/index.html#string-isempty-stringutils-isemplty">9. String.isEmpty()とStringUtils.isEmplty()の区別</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../java/nablarch/index.html#bean-validation">10. Bean Validationのメモ</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">sql</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#oracle">・oracleシステムユーザーがロックされた際の解除</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#oracle">1. oracleシステムユーザーがロックされた際の解除</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sqldb">2. SQLで文字列を連結する場合、各DBによって仕様が異なる</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#nvl">3. NVL関数メモ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id1">4. Oracleの桁数の書き方</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../office/index.html">Office学習メモ</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../office/excel/index.html">Excelメモ</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../office/excel/index.html#id1">・excelでセルの値を選択できるようにリストを設定方法</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../office/excel/index.html#id2">・同じシートの複数ページに対して、共通ヘッダーの印刷設定</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../office/excel/index.html#id4">・関数利用</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../office/excel/index.html#id5">・Excelの個人情報を自動に削除</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../office/excel/index.html#id1">1. excelでセルの値を選択できるようにリストを設定方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../office/excel/index.html#id2">2. 同じシートの複数ページに対して、共通ヘッダーの印刷設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../office/excel/index.html#id4">3. 関数利用</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../office/excel/index.html#id5">4. Excelの個人情報を自動に削除</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../office/excel/index.html#id6">5. ウインドウ枠両方固定する設定</a></li>
 </ul>
 </li>
 </ul>
@@ -105,6 +122,10 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../soft/github.html">githubの利用メモ</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../soft/github.html#github-pages">github Pagesを使ってドキュメントを公開方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../soft/proxy.html">proxyの設定メモ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../soft/proxy.html#id2">プロキシ権限設定</a></li>
 </ul>
 </li>
 </ul>
@@ -171,12 +192,14 @@
            <div itemprop="articleBody">
             
   <div class="section" id="sql">
-<h1>sql<a class="headerlink" href="#sql" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<h1>sql<a class="headerlink" href="#sql" title="Permalink to this headline">¶</a></h1>
 <p>作成予定</p>
 <div class="section" id="oracle">
-<h2>・oracleシステムユーザーがロックされた際の解除<a class="headerlink" href="#oracle" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2>1. oracleシステムユーザーがロックされた際の解除<a class="headerlink" href="#oracle" title="Permalink to this headline">¶</a></h2>
 <p>自分設定されたシステムユーザーがロックされた際、解除方法は以下となる</p>
-<p>１. 別の管理者ユーザーとしてoracleにログイン</p>
+<ul class="simple">
+<li>別の管理者ユーザーとしてoracleにログイン</li>
+</ul>
 <p>cmdでコマンドを開く、以下のコードを実行</p>
 <p>※別の管理者がログインできないと、解除ができない。その時、oracleの再インストールしかないと考える。</p>
 <blockquote>
@@ -185,23 +208,79 @@
 </pre></div>
 </div>
 </div></blockquote>
-<ol class="arabic simple" start="2">
+<ul class="simple">
 <li>ロックされたユーザーの解除</li>
-</ol>
+</ul>
 <p>この例のユーザーはTEST。</p>
 <blockquote>
 <div><div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">alter</span> <span class="n">user</span> <span class="n">TEST</span> <span class="n">account</span> <span class="n">unlock</span><span class="p">;</span>
 </pre></div>
 </div>
 </div></blockquote>
-<ol class="arabic simple" start="3">
+<ul class="simple">
 <li>自分設定されたユーザーのパスワード変更</li>
-</ol>
+</ul>
 <blockquote>
 <div><div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">ALTER</span> <span class="n">USER</span> <span class="n">system</span> <span class="n">IDENTIFIED</span> <span class="n">BY</span> <span class="n">oracle</span><span class="p">;</span>
 </pre></div>
 </div>
 </div></blockquote>
+</div>
+<div class="section" id="sqldb">
+<h2>2. SQLで文字列を連結する場合、各DBによって仕様が異なる<a class="headerlink" href="#sqldb" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><table border="1" class="colwidths-given white-space-normal docutils" id="id2">
+<caption><span class="caption-text">例</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="24%" />
+<col width="76%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">DBMS</th>
+<th class="head">SQL</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Access</td>
+<td>文字列１+ 文字列２</td>
+</tr>
+<tr class="row-odd"><td>SQLServer</td>
+<td>文字列１+ 文字列２</td>
+</tr>
+<tr class="row-even"><td>Oracle</td>
+<td>CONCAT(文字列1, 文字列2) <br />
+文字列1││文字列2</td>
+</tr>
+<tr class="row-odd"><td>MySQL</td>
+<td>CONCAT(文字列1, 文字列2, 文字列3)</td>
+</tr>
+<tr class="row-even"><td>PostgreSQL</td>
+<td>文字列1││文字列2</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+<div class="section" id="nvl">
+<h2>3. NVL関数メモ<a class="headerlink" href="#nvl" title="Permalink to this headline">¶</a></h2>
+<p>OracleではNULL値を別の値に変換するには、NVL関数を使用します。
+SQL Serverの場合はISNULL関数を使用します。使い方はNVLとISNULLは同じです。</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">NVL</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>aがNULL値でない場合はaを返し、aがNULL値の場合はbを返す。</p>
+</div>
+<div class="section" id="id1">
+<h2>4. Oracleの桁数の書き方<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>NUMBER 精度３８桁の浮動小数点型です。</li>
+<li>NUMBER(桁数) 桁数の整数型です。</li>
+</ul>
+<p>例：NUMBER(10)の場合、10桁の整数を定義する</p>
+<ul class="simple">
+<li>NUMBER(合計桁数, 小数点以下の桁数)</li>
+</ul>
+<p>例：NUMBER(4, 2)の場合、整数部は2桁、小数部は2桁</p>
 </div>
 </div>
 

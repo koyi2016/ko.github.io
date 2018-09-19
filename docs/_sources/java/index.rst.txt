@@ -12,7 +12,12 @@ Java学習メモ
   javaFramework/index
   nablarch/index
 
-     
+
+
+:download:`Javaメモ <downloadFile/javamemo.xlsx>`
+
+
+
 .. |br| raw:: html
 
   <br />
